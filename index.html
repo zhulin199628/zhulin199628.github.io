@@ -262,6 +262,51 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let pro &#x3D; new Promise((resolve, rejected) &#x3D;&gt;&#123;</span><br><span class="line">            resolve(&quot;success1&quot;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">let pro2 &#x3D; new Promise((resolve, rejected) &#x3D;&gt;&#123;</span><br><span class="line">            resolve(&quot;success2&quot;)</span><br><span class="line">            &#x2F;&#x2F; reject(&quot;error2&quot;)</span><br><span class="line">&#125;)</span><br><span class="line">let pro3 &#x3D; new Promise((resolve, rejected) &#x3D;&gt;&#123;</span><br><span class="line">            resolve(&quot;success3&quot;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">let all &#x3D; Promise.race([pro, pro2, pro3]).then(res &#x3D;&gt;&#123;</span><br><span class="line">        console.log(res)     &#x2F;&#x2F;  success1</span><br><span class="line">&#125;).catch(err &#x3D;&gt;&#123;</span><br><span class="line">        console.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>三、  手写Promise</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  1.构造函数接受一个回调函数，也就是是Promise 的执行器</span><br><span class="line">&#x2F;&#x2F;  2.  promise 的三种状态，Pedding(进行中)、fulfilled(成功)、rejectd(失败)， resolve和reject时都要改变状态</span><br><span class="line">&#x2F;&#x2F;  3. 添加then 构造方法， 利用回调函数返回成功或失败的值</span><br><span class="line"></span><br><span class="line">class myPromise &#123;</span><br><span class="line">    constructor(executor) &#123;</span><br><span class="line"></span><br><span class="line">       this. status &#x3D; &quot;Pedding&quot;;</span><br><span class="line">        this.successValue &#x3D; undefined;</span><br><span class="line">        this.errorValue &#x3D; undefined;</span><br><span class="line"></span><br><span class="line">        let resolve &#x3D; (value) &#x3D;&gt; &#123;</span><br><span class="line">            this.status &#x3D; &quot;fulfilled&quot;;</span><br><span class="line">            this.successValue &#x3D; value;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        let reject &#x3D; (errValue) &#x3D;&gt; &#123;</span><br><span class="line">            this.status &#x3D; &quot;rejected&quot;;</span><br><span class="line">            this.errValue &#x3D; errValue;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        executor(resolve, reject)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    then(successFn, errorFn) &#123;</span><br><span class="line">        let &#123; status, successValue, errorValue &#125; &#x3D; this;</span><br><span class="line">        console.log(status)</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;fulfilled&quot;) &#123;</span><br><span class="line">            successFn(successValue)</span><br><span class="line">        &#125;</span><br><span class="line">        if (status &#x3D;&#x3D;&#x3D; &quot;rejected&quot;) &#123;</span><br><span class="line">            errorFn(errorValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let _promise &#x3D; new myPromise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    resolve(&quot;success&quot;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">_promise.then(res &#x3D;&gt; &#123;</span><br><span class="line">    console.log(res,&quot;----success&quot;)</span><br><span class="line">&#125;, err &#x3D;&gt; &#123;</span><br><span class="line">    console.log(err,&quot;-----error&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果promise  中有异步操作</p>
+<p>class myPromise {<br>    constructor(executor) {</p>
+<pre><code>   this. status = &quot;pedding&quot;;
+    this.successValue = undefined;
+    this.errorValue = undefined;
+    this.successFn = [];
+    this.errorFn = [];
+
+    let resolve = (value) =&gt; {
+        this.status = &quot;fulfilled&quot;;
+        this.successValue = value;
+            //  执行 then  构造方法的回调
+        this.successFn.forEach((fn) =&gt; fn());
+    };
+
+    let reject = (errValue) =&gt; {
+            this.status = &quot;rejected&quot;;
+            this.errValue = errValue;
+            this.errorFn.forEach((fn) =&gt; fn())
+    };
+
+    executor(resolve, reject)
+}
+
+then(successFn, errorFn) {
+    let { status, successValue, errorValue } = this;
+    console.log(status)
+    if (status === &quot;fulfilled&quot;) {
+        successFn(successValue)
+    }
+    if (status === &quot;rejected&quot;) {
+        errorFn(errorValue)
+    }
+   if (status === &quot;pedding&quot;) {
+        this.successFn.push(() =&gt; {
+            successFn(this.successValue)
+        });
+        this.errorFn.push(() =&gt; {
+            errorFn(this.errorValue)
+        })
+    }
+}</code></pre><p>}</p>
+<p>let _promise = new myPromise((resolve, reject) =&gt; {<br>         setTimeout(() =&gt; {<br>        resolve(“success”)<br>    }, 1000);<br>});</p>
+<p>_promise.then(res =&gt; {<br>    console.log(res,”—-success”)<br>}, err =&gt; {<br>    console.log(err,”—–error”)<br>})</p>
+
       
 
       
