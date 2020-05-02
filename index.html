@@ -152,19 +152,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Flat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-flat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/02/Flat/">Flat</a>
+      <a class="article-title" href="/2020/05/02/flat/">数组扁平化</a>
     </h1>
   
 
         
-        <a href="/2020/05/02/Flat/" class="archive-article-date">
+        <a href="/2020/05/02/flat/" class="archive-article-date">
   	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
 </a>
         
@@ -172,7 +172,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>数组扁平化就是将多层嵌套的数组转成一层</p>
+<ol>
+<li>多种实现</li>
+</ol>
+<p>toString()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[3,4,[5,6]]];</span><br><span class="line">arr.toString().split(&quot;,&quot;).map(item &#x3D;&gt; Number(item));</span><br></pre></td></tr></table></figure>
+<p>stringify()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[3,4,[5,6]]];</span><br><span class="line">JSON.stringify(arr).replace(&#x2F;\[|\]&#x2F;g, &#39;&#39;).split(&#39;,&#39;).map(item &#x3D;&gt;Number(item))</span><br></pre></td></tr></table></figure>
+
+<p>while()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  some  判断数组中的元素是否满足指定的条件</span><br><span class="line"></span><br><span class="line"> while(arr.some(item &#x3D;&gt; Array.isArray(item)))&#123;</span><br><span class="line">       arr &#x3D; [].concat(...arr)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> console.log(arr)</span><br></pre></td></tr></table></figure>
+
+<p>  prototype</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  原理： 在数组原型对象添加方法，在方法内部实递归方法</span><br><span class="line">let arr &#x3D; [[1],[2,3],[4,5,6,[7,8,[9,10]]]]</span><br><span class="line"></span><br><span class="line"> Array.prototype.flat &#x3D; function()&#123;</span><br><span class="line">     let _this &#x3D; this;</span><br><span class="line">    let result &#x3D; [];</span><br><span class="line">    function _flat(arr)&#123;</span><br><span class="line">        for(let i &#x3D; 0; i &lt; arr.length; i++)&#123;</span><br><span class="line">            let item &#x3D; arr[i];</span><br><span class="line">            if(Array.isArray(item))&#123;</span><br><span class="line">                _flat(item)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                result.push(item)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    _flat(_this);</span><br><span class="line">    return result</span><br><span class="line"> &#125;</span><br><span class="line"> console.log(arr.flat()) &#x2F;&#x2F;  [1,2,3,4,5,6,7,8,9,10]</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -184,69 +198,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/02/Flat/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Currying" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/01/Currying/">Currying</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/01/Currying/" class="archive-article-date">
-  	<time datetime="2020-05-01T07:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/01/Currying/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/02/flat/">展开全文 >></a>
         </p>
       
 

@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Currying | Hexo</title>
+  <title>数组扁平化 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Currying">
-<meta property="og:url" content="http://yoursite.com/2020/05/01/Currying/index.html">
+  <meta name="description" content="数组扁平化就是将多层嵌套的数组转成一层  多种实现  toString() 12let arr &#x3D; [1,2,[3,4,[5,6]]];arr.toString().split(&quot;,&quot;).map(item &#x3D;&gt; Number(item)); stringify() 12let arr &#x3D; [1,2,[3,4,[5,6]]];JSON.stri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组扁平化">
+<meta property="og:url" content="http://yoursite.com/2020/05/02/flat/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数组扁平化就是将多层嵌套的数组转成一层  多种实现  toString() 12let arr &#x3D; [1,2,[3,4,[5,6]]];arr.toString().split(&quot;,&quot;).map(item &#x3D;&gt; Number(item)); stringify() 12let arr &#x3D; [1,2,[3,4,[5,6]]];JSON.stri">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-01T07:33:38.000Z">
-<meta property="article:modified_time" content="2020-05-01T07:33:38.750Z">
+<meta property="article:published_time" content="2020-05-02T02:09:47.000Z">
+<meta property="article:modified_time" content="2020-05-02T16:42:39.352Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -152,27 +154,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Currying" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flat" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Currying
+      数组扁平化
     </h1>
   
 
         
-        <a href="/2020/05/01/Currying/" class="archive-article-date">
-  	<time datetime="2020-05-01T07:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
+        <a href="/2020/05/02/flat/" class="archive-article-date">
+  	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>数组扁平化就是将多层嵌套的数组转成一层</p>
+<ol>
+<li>多种实现</li>
+</ol>
+<p>toString()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[3,4,[5,6]]];</span><br><span class="line">arr.toString().split(&quot;,&quot;).map(item &#x3D;&gt; Number(item));</span><br></pre></td></tr></table></figure>
+<p>stringify()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[3,4,[5,6]]];</span><br><span class="line">JSON.stringify(arr).replace(&#x2F;\[|\]&#x2F;g, &#39;&#39;).split(&#39;,&#39;).map(item &#x3D;&gt;Number(item))</span><br></pre></td></tr></table></figure>
+
+<p>while()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  some  判断数组中的元素是否满足指定的条件</span><br><span class="line"></span><br><span class="line"> while(arr.some(item &#x3D;&gt; Array.isArray(item)))&#123;</span><br><span class="line">       arr &#x3D; [].concat(...arr)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> console.log(arr)</span><br></pre></td></tr></table></figure>
+
+<p>  prototype</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  原理： 在数组原型对象添加方法，在方法内部实递归方法</span><br><span class="line">let arr &#x3D; [[1],[2,3],[4,5,6,[7,8,[9,10]]]]</span><br><span class="line"></span><br><span class="line"> Array.prototype.flat &#x3D; function()&#123;</span><br><span class="line">     let _this &#x3D; this;</span><br><span class="line">    let result &#x3D; [];</span><br><span class="line">    function _flat(arr)&#123;</span><br><span class="line">        for(let i &#x3D; 0; i &lt; arr.length; i++)&#123;</span><br><span class="line">            let item &#x3D; arr[i];</span><br><span class="line">            if(Array.isArray(item))&#123;</span><br><span class="line">                _flat(item)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                result.push(item)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    _flat(_this);</span><br><span class="line">    return result</span><br><span class="line"> &#125;</span><br><span class="line"> console.log(arr.flat()) &#x2F;&#x2F;  [1,2,3,4,5,6,7,8,9,10]</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -251,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/01/Currying/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/02/flat/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -264,15 +280,6 @@
 
   
 <nav id="article-nav">
-  
-    <a href="/2020/05/02/Flat/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Flat
-        
-      </div>
-    </a>
   
   
     <a href="/2020/04/25/call-apply-1/" id="article-nav-older" class="article-nav-link-wrap">
