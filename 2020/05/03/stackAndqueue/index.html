@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>栈和队列 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="一、 栈 1.1 数据结构中的栈 栈是一种数据的存放方式，特点是先进后出，后进先出 元素入栈演示  元素出栈演示  js 元素入栈和出栈演示 12345678910111213141516171819class Stack&amp;#123;     constructor()&amp;#123;         this.item &#x3D; [];     &amp;#125;      push(data)&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈和队列">
+<meta property="og:url" content="http://yoursite.com/2020/05/03/stackAndqueue/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、 栈 1.1 数据结构中的栈 栈是一种数据的存放方式，特点是先进后出，后进先出 元素入栈演示  元素出栈演示  js 元素入栈和出栈演示 12345678910111213141516171819class Stack&amp;#123;     constructor()&amp;#123;         this.item &#x3D; [];     &amp;#125;      push(data)&amp;#1">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/05/03/stackAndqueue/into.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/03/stackAndqueue/out.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/03/stackAndqueue/ram.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/03/stackAndqueue/into-team.png">
+<meta property="article:published_time" content="2020-05-03T01:33:45.000Z">
+<meta property="article:modified_time" content="2020-05-04T12:34:05.622Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/03/stackAndqueue/into.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,265 +159,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-stackAndqueue" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/04/execution-context/" class="archive-article-date">
-  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/04/execution-context/">执行上下文</a>
+    <h1 class="article-title" itemprop="name">
+      栈和队列
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/03/stackAndqueue/" class="archive-article-date">
+        
+        <a href="/2020/05/03/stackAndqueue/" class="archive-article-date">
   	<time datetime="2020-05-03T01:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/03/stackAndqueue/">栈和队列</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、 栈</p>
+<p>1.1 数据结构中的栈</p>
+<p>栈是一种数据的存放方式，特点是先进后出，后进先出</p>
+<p>元素入栈演示</p>
+<p><img src="/2020/05/03/stackAndqueue/into.png" alt="into"></p>
+<p>元素出栈演示</p>
+<p><img src="/2020/05/03/stackAndqueue/out.png" alt="out"></p>
+<p>js 元素入栈和出栈演示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Stack&#123;</span><br><span class="line">     constructor()&#123;</span><br><span class="line">         this.item &#x3D; [];</span><br><span class="line">     &#125;</span><br><span class="line">      push(data)&#123;</span><br><span class="line">        this.item.push(data);  &#x2F;&#x2F;  元素入栈 [1,2,3]</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      pop()&#123;</span><br><span class="line">            return  this.item.pop();   &#x2F;&#x2F; 后进先出  元素出栈 3</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let stack &#x3D; new Stack();</span><br><span class="line">stack.push(1);</span><br><span class="line">stack.push(2);</span><br><span class="line">stack.push(3);</span><br><span class="line"></span><br><span class="line">console.log(stack.pop())</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>1.2  内存区域</p>
+<p>程序运行的时候，需要内存空间存放数据，一般来说，系统会划分两个不同的内存空间：stack(栈)、heap(堆)。</p>
+<p>一般情况下，基础数据类型：string、number、boolean、null、undefined、Symbol,有固定大小的值，往往都保存在栈里面。<br>应用数据类型：Array, Function, Object，都是保存在堆里面的，js  不允许直接访问堆内存中的位置，因此不能直接操作对象的堆内存空间，在操作对象时，实际是操作对象的应用</p>
+<p>案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &quot;this  is string&quot;;  &#x2F;&#x2F;  栈</span><br><span class="line">var b &#x3D; 0;  &#x2F;&#x2F;  栈</span><br><span class="line">var c &#x3D; null;  &#x2F;&#x2F;  栈</span><br><span class="line">var e &#x3D; &#123;name: &quot;张三&quot;&#125;; &#x2F;&#x2F; 变量e存在栈中，&#123;name: &quot;张三&quot;&#125;作为对象存在堆里</span><br><span class="line">var f &#x3D; [1,2,3]; &#x2F;&#x2F;  变量c存在栈中， [1,2,3]最为对象存在堆里</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/05/03/stackAndqueue/ram.png" alt="ram"></p>
+<p>经典案例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 10;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">b &#x3D; 20;  &#x2F;&#x2F;   给b变量重新分配值</span><br><span class="line">console.log(a)  &#x2F;&#x2F;  10,  两者互不影响，两个有自己独立的的栈内存空间，</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var  obj &#x3D; &#123;name: &quot;张三&quot;&#125;;</span><br><span class="line">var obj2 &#x3D; obj;  &#x2F;&#x2F;  分配新的值，这个值是一个对象的引用地址</span><br><span class="line">obj2.name&#x3D;  &quot;李四&quot;;</span><br><span class="line">console.log(obj)   &#x2F;&#x2F; &#123;name: &quot;李四&quot;&#125;  两个对象的引用地址一样</span><br></pre></td></tr></table></figure>
+<p>1.3 内存生命周期</p>
+<p>分配内存 (申明变量、函数、对象)——&gt;  使用内存(读写内存，也就是使用变量、函数) ——&gt;  释放内存(使用完毕，由垃圾回收机制自动回收不在使用的内存)</p>
+<p>1.4 内存回收<br>JS 有自动垃圾回收机制，不再需要使用的变量也就是生命周期结束的变量是局部变量，局部变量只在函数的执行过程中存在,当函数运行结束时，如果没有其它引用，该变量就会被标记回收。</p>
+<p>全局变量的生命周期会一直到浏览器关闭才会结束，也就是说全局变量不会被自动垃圾回收</p>
+<p>1.5 JS  垃圾回收方式</p>
+<p>标记清除</p>
+<p>垃圾收集器在运行的时候会给所有变量都加上标记，然后去掉环境中的变量或者是环境中引用的变量的标记，在此后载被加上标记的变量将会被当做即将要被删除的变量，最后垃圾收集器完成内存清除工作，销毁带标记的值并且回收所占用的内存空间</p>
+<p>引用计数</p>
+<p>跟踪每个记录每个值被引用的次数，当声明一个变量并将一个引用类型赋值给这个变量时该值的引用次数加1（引用类型是放在堆里面的）,<br>当这个变量指向其它一个时告该值的引用次数减1，当该值的引用次数为0时，就会被回收</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    var a &#x3D; new Object();  &#x2F;&#x2F;  创建新对象，此时对象的引用为0</span><br><span class="line">    &#x2F;&#x2F; 给新对象的引用计数加1</span><br><span class="line">    var b &#x3D; new Object(); &#x2F;&#x2F;  再次创建新对象， 此时对象的引用为0</span><br><span class="line">    &#x2F;&#x2F;给第二个新对象的引用计数加1</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 准备离开</span><br><span class="line">    &#x2F;&#x2F;  给第二个新对象的引用计数减1，计数到0，对象释放</span><br><span class="line">    &#x2F;&#x2F;  给第一个新对象的引用计数减1，计数到0，对象释放</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>引用计数所引起的循环引用问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  每次调用函数，a、b的应用计数都是2，这不分内存永远不会被释放，即内存泄露</span><br><span class="line">function test()&#123;</span><br><span class="line">    var a&#x3D;  &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; a引用  加1</span><br><span class="line">    var b &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; b 引用 加1</span><br><span class="line">    a.prop &#x3D; b;</span><br><span class="line">    &#x2F;&#x2F; a引用  加1</span><br><span class="line">    b.prop &#x3D; a;</span><br><span class="line">    &#x2F;&#x2F; b 引用 加1</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;  解决办法</span><br><span class="line"></span><br><span class="line">    a.prop &#x3D; null;</span><br><span class="line">    b.prop &#x3D; null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ol start="2">
+<li>队列</li>
+</ol>
+<p>队列是一种受限制的线性表。</p>
+<p>只能在列表的前端进行删除， 在表的后端进行插入操作。</p>
+<p>插入操作的端为队尾，删除操作的端为队头。</p>
+<p>因为队列只允许在一端插入，在另一端删除，所以最早进入队列的元素最早从队列中删除，所以队列又称为先进先出的线性表。</p>
+<p>入队演示</p>
+<p><img src="/2020/05/03/stackAndqueue/into-team.png" alt="into-team"></p>
+<p>代码演示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Queue&#123;</span><br><span class="line">     constructor()&#123;</span><br><span class="line">         this.item &#x3D; []  Execution Context</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     push(value)&#123;</span><br><span class="line">         this.item.push(value);  &#x2F;&#x2F;  添加元素到栈顶，也就是栈的末尾</span><br><span class="line">     &#125;</span><br><span class="line">     dequeue()&#123;</span><br><span class="line">         return this.item.shift();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let queue &#x3D; new Queue();</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(3);</span><br><span class="line"></span><br><span class="line">console.log(queue.dequeue())</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/03/stackAndqueue/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/02/flat/" class="archive-article-date">
-  	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/04/execution-context/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          执行上下文
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/02/flat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数组扁平化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/02/flat/">数组扁平化</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/25/call-apply-1/" class="archive-article-date">
-  	<time datetime="2020-04-25T08:30:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/25/call-apply-1/">call_apply</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/22/ubuntu-git/" class="archive-article-date">
-  	<time datetime="2020-04-22T14:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/22/ubuntu-git/">ubuntu 将本地文件上传到github的基本操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/Promise/" class="archive-article-date">
-  	<time datetime="2020-04-19T09:55:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/Promise/">Promise</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/linuxCode/" class="archive-article-date">
-  	<time datetime="2020-04-19T05:18:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/linuxCode/">Linux 命令备忘录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/hello-world/" class="archive-article-date">
-  	<time datetime="2020-04-19T03:28:33.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/hello-world/">hexo  搭建博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/JavascriptOOP/" class="archive-article-date">
-  	<time datetime="2020-04-19T00:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/JavascriptOOP/">JavascriptOOP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -431,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
