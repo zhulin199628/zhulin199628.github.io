@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JavascriptOOP | Hexo</title>
+  <title>react-redux | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单例设计模式 表现形式  1var  obj  &#x3D; &amp;#123;xxx:xxx&amp;#125; 在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突  作用把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染  1var  obj &#x3D; &amp;#123;name: &quot;x">
+  <meta name="description" content="一、reacr-redux  的核心模块  Provider  为所有子组件提供  Store,  内部其实就是用context 来实现的 一般在入口文件， index中使用 123&lt;Provider store &#x3D; &amp;#123;store&amp;#125;&gt;            &lt;App&#x2F;&gt;&lt;&#x2F;Provider&gt;  实现 context.js 1const Red">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavascriptOOP">
-<meta property="og:url" content="http://yoursite.com/2020/04/19/JavascriptOOP/index.html">
+<meta property="og:title" content="react-redux">
+<meta property="og:url" content="http://yoursite.com/2020/08/09/react-redux/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="单例设计模式 表现形式  1var  obj  &#x3D; &amp;#123;xxx:xxx&amp;#125; 在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突  作用把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染  1var  obj &#x3D; &amp;#123;name: &quot;x">
+<meta property="og:description" content="一、reacr-redux  的核心模块  Provider  为所有子组件提供  Store,  内部其实就是用context 来实现的 一般在入口文件， index中使用 123&lt;Provider store &#x3D; &amp;#123;store&amp;#125;&gt;            &lt;App&#x2F;&gt;&lt;&#x2F;Provider&gt;  实现 context.js 1const Red">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-19T00:40:49.000Z">
-<meta property="article:modified_time" content="2020-08-09T09:56:32.375Z">
+<meta property="article:published_time" content="2020-08-09T06:22:26.000Z">
+<meta property="article:modified_time" content="2020-08-09T09:52:59.084Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -154,54 +154,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavascriptOOP" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react-redux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavascriptOOP
+      react-redux
     </h1>
   
 
         
-        <a href="/2020/04/19/JavascriptOOP/" class="archive-article-date">
-  	<time datetime="2020-04-19T00:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+        <a href="/2020/08/09/react-redux/" class="archive-article-date">
+  	<time datetime="2020-08-09T06:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><ol>
-<li>表现形式</li>
+        <p>一、reacr-redux  的核心模块</p>
+<ol>
+<li>Provider</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj  = &#123;<span class="attr">xxx</span>:xxx&#125;</span><br></pre></td></tr></table></figure>
-<p>在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突</p>
+<p>为所有子组件提供  Store,  内部其实就是用context 来实现的</p>
+<p>一般在入口文件， index中使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store = &#123;store&#125;&gt;</span><br><span class="line">            &lt;App/&gt;</span><br><span class="line">&lt;<span class="regexp">/Provider&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<p>context.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ReduxContext = React.createContext(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>provder.js   //   利用 context把store 传给所有子组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">        render()&#123;</span><br><span class="line">            <span class="keyword">return</span>(</span><br><span class="line">                &lt;ReduxContext.Provider value = &#123;&#123;<span class="attr">store</span>: ths.props.store&#125;&#125;&gt;</span><br><span class="line">                                &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">                &lt;<span class="regexp">/ReduxContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">            )   </span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
 <ol start="2">
-<li>作用<br>把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染</li>
+<li>connect</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;; <span class="keyword">var</span> obj2  = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>负责连接组件和仓库， 函数执行两次，第一次传入  state  和  dispatch  映射的参数, 第二次是传入当前组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">参数说明：</span></span><br><span class="line"><span class="comment">mapStateProps：  state的映射</span></span><br><span class="line"><span class="comment">第二个参数：  </span></span><br><span class="line"><span class="comment">第一种：可以是整个actions对象</span></span><br><span class="line"><span class="comment">第二种： </span></span><br><span class="line"><span class="comment">const mapStateToDispatch = (dispatch) =&gt;&#123;</span></span><br><span class="line"><span class="comment">    return &#123;</span></span><br><span class="line"><span class="comment">        add: (...args) =&gt; dispatch(actions.add(...args))</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">const</span> mapStateProps  = <span class="function"><span class="params">state</span> =&gt;</span>&#123;<span class="keyword">return</span> state&#125;;</span><br><span class="line">  connect (mapStateProps, actions)(componentname)</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>单例设计莫斯命名的由来</li>
-</ol>
-<p>每一个命名空间都是JS中Object这个内置基类的实例， 而实例之间是相互独立互不干扰的，“单独的实例”</p>
-<ol start="4">
-<li>高级单例模式</li>
-</ol>
-<p>4.1 在给命名空间赋值的时候，不是直接赋值一个对象，而是先执行匿名函数。形成一个私有作用域AA(不销毁的栈内存)，在AA中创建一个堆内存，把堆内存地址赋值给命名空间</p>
-<p>4.2  这种模式的好处，我们完全可以在私有作用域中创造很多内容，那些需要供外面使用的，我们暴露到返回的对象中（模块化实现在一种思想）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  nameSpace = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> n = <span class="number">12</span>;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              ......</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">         fn: fn</span><br><span class="line">         ......</span><br><span class="line">     &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span> (<span class="params">mapStateToProps, mapStateDispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">wrapperComponent</span>)</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span>()</span>&#123;</span><br><span class="line">                            <span class="comment">//  初始化 unsubscribe 函数</span></span><br><span class="line">                            unsubscribe = () =&#123;&#125;;</span><br><span class="line">                            <span class="comment">//  接收context值</span></span><br><span class="line">                            <span class="keyword">static</span> contextType = ReduxContext;</span><br><span class="line"></span><br><span class="line">                            contructor(props, context)&#123;</span><br><span class="line">                                <span class="keyword">super</span> (props);</span><br><span class="line">                                <span class="comment">//  通过context  获取Provider  传过来的Store</span></span><br><span class="line">                                <span class="keyword">this</span>.state = mapStateToProps(context.store.getState());</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 当接收到新的状态的时候，重新渲染页面</span></span><br><span class="line"></span><br><span class="line">                            componentDidMount()&#123;</span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe = (<span class="function"><span class="params">state</span> =&gt;</span>&#123;</span><br><span class="line">                                        <span class="keyword">this</span>.setState(mapStateToProps(<span class="keyword">this</span>.context.store.getState())</span><br><span class="line">                                  &#125;)</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            componentWillUnmount() &#123;</span><br><span class="line">                                <span class="comment">//  取消订阅</span></span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe();</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            render()&#123;</span><br><span class="line"></span><br><span class="line">                                actions = &#123;&#125;;</span><br><span class="line">                                <span class="comment">//  mapDispatchToProps  如果是一个函数， 就不需要使用  bindActionCreator,</span></span><br><span class="line">                                <span class="keyword">if</span>(<span class="keyword">typeof</span>  mapDispatchToProps === <span class="string">"function"</span>)&#123;</span><br><span class="line">                                    <span class="comment">// 如果是一个函数就直接把dispacth  方法映射到组件中去</span></span><br><span class="line">                                    action =  mapDispatchToProps(<span class="keyword">this</span>.context.store.dispatch)</span><br><span class="line">                                &#125;  <span class="keyword">else</span>&#123;</span><br><span class="line">                                    action = bindActionCreator(mapDispatchToProps, <span class="keyword">this</span>.context.store.dispatch) </span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">return</span> (</span><br><span class="line">                                    &lt;wrapperComponent  &#123;...this.state&#125; &#123;...actions&#125;/&gt;</span><br><span class="line">                                )</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="5">
-<li>实战项目中的模块化</li>
-</ol>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><ol>
-<li>把实现相同功能的代码进行“封装”，以此实现“批量生产”，（后期想要实现这个功能，我们只需要执行函数即可）</li>
-<li>“低耦合高内聚” 减少页面中的冗余代码，提高代码的重复使用率</li>
-</ol>
+
+
 
       
 
@@ -281,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/JavascriptOOP/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/09/react-redux/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,15 +294,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/19/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hexo  搭建博客
-        
-      </div>
-    </a>
   
+    <a href="/2020/08/08/browser-listener/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浏览器渲染原理</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

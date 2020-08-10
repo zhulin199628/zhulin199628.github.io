@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JavascriptOOP | Hexo</title>
+  <title>实现redux | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单例设计模式 表现形式  1var  obj  &#x3D; &amp;#123;xxx:xxx&amp;#125; 在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突  作用把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染  1var  obj &#x3D; &amp;#123;name: &quot;x">
+  <meta name="description" content="react  工作流  redux  实现 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&#x2F;&#x2F;  判断对象是否是纯对象function isPlainObject(obj)&amp;#123;     if(typeof obj !&#x3D;&#39;o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavascriptOOP">
-<meta property="og:url" content="http://yoursite.com/2020/04/19/JavascriptOOP/index.html">
+<meta property="og:title" content="实现redux">
+<meta property="og:url" content="http://yoursite.com/2020/08/03/redux/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="单例设计模式 表现形式  1var  obj  &#x3D; &amp;#123;xxx:xxx&amp;#125; 在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突  作用把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染  1var  obj &#x3D; &amp;#123;name: &quot;x">
+<meta property="og:description" content="react  工作流  redux  实现 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758&#x2F;&#x2F;  判断对象是否是纯对象function isPlainObject(obj)&amp;#123;     if(typeof obj !&#x3D;&#39;o">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-19T00:40:49.000Z">
-<meta property="article:modified_time" content="2020-08-09T09:56:32.375Z">
+<meta property="og:image" content="http://yoursite.com/2020/08/03/redux/redux.png">
+<meta property="article:published_time" content="2020-08-03T12:33:55.000Z">
+<meta property="article:modified_time" content="2020-08-09T09:53:46.585Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/03/redux/redux.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,53 +156,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavascriptOOP" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavascriptOOP
+      实现redux
     </h1>
   
 
         
-        <a href="/2020/04/19/JavascriptOOP/" class="archive-article-date">
-  	<time datetime="2020-04-19T00:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+        <a href="/2020/08/03/redux/" class="archive-article-date">
+  	<time datetime="2020-08-03T12:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><ol>
-<li>表现形式</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj  = &#123;<span class="attr">xxx</span>:xxx&#125;</span><br></pre></td></tr></table></figure>
-<p>在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突</p>
-<ol start="2">
-<li>作用<br>把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;; <span class="keyword">var</span> obj2  = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>单例设计莫斯命名的由来</li>
-</ol>
-<p>每一个命名空间都是JS中Object这个内置基类的实例， 而实例之间是相互独立互不干扰的，“单独的实例”</p>
-<ol start="4">
-<li>高级单例模式</li>
-</ol>
-<p>4.1 在给命名空间赋值的时候，不是直接赋值一个对象，而是先执行匿名函数。形成一个私有作用域AA(不销毁的栈内存)，在AA中创建一个堆内存，把堆内存地址赋值给命名空间</p>
-<p>4.2  这种模式的好处，我们完全可以在私有作用域中创造很多内容，那些需要供外面使用的，我们暴露到返回的对象中（模块化实现在一种思想）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  nameSpace = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> n = <span class="number">12</span>;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              ......</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">         fn: fn</span><br><span class="line">         ......</span><br><span class="line">     &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>实战项目中的模块化</li>
-</ol>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><ol>
-<li>把实现相同功能的代码进行“封装”，以此实现“批量生产”，（后期想要实现这个功能，我们只需要执行函数即可）</li>
-<li>“低耦合高内聚” 减少页面中的冗余代码，提高代码的重复使用率</li>
+        <ol>
+<li><p>react  工作流<br><img src="/2020/08/03/redux/redux.png" alt="this"></p>
+</li>
+<li><p>redux  实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  判断对象是否是纯对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !=<span class="string">'object'</span> || obj == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> proto  = obj;</span><br><span class="line">     <span class="keyword">while</span>(<span class="built_in">Object</span>.getPrototypeOf(proto))&#123;</span><br><span class="line">            proto = <span class="built_in">Object</span>.getPrototypeOf(proto)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Object</span>.getProtypeOf(obj) === proto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  createStore  返回三个方法  getState,  dispatch,  subscribe</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, initState</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> reducer != <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"reducer  必须是一个函数"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> currentState = initState;</span><br><span class="line">     <span class="keyword">let</span>  currentReducer  = reducer;</span><br><span class="line">    <span class="comment">//  getState方法  返回的是当前的状态</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> currentState</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  action  必须是一个纯对象， &#123;type: "ADD"&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!isPlainObject(action))&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>  (action必须是一个纯对象)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(action === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"type 不能为undefined"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//  触发reducer  方法,  reducer 会返回一个新的state,赋值给currentState,  getState的时候会返回新的state</span></span><br><span class="line">            currentState = currentReducer(currentState, action);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> currentListener = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  订阅，  当state  变化的时候重新渲染</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">subscribe</span>(<span class="params">listener</span>)</span>&#123;</span><br><span class="line">        currentListener.push(listener);</span><br><span class="line">        <span class="keyword">let</span> isunsubscribe = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//  返回取消订阅的函数， 在组件将要卸载的时候调用，componentWillunmount</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unsubscribe</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!isunsubscribe) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">const</span> index = currentListener.indexOf(listener);</span><br><span class="line">                currentListener.splice(index, <span class="number">1</span>);</span><br><span class="line">                isunsubscribe = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  初始化State   , 如果不初始化，reducer 中接收到的actoin的Type属性就是undefined, reducer源码中，reducer 中是不能为undefined的</span></span><br><span class="line">        dispatch(&#123;<span class="attr">type</span>: actionType.INIT&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -281,7 +261,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/JavascriptOOP/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/03/redux/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,15 +275,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/19/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/08/04/react-bindActionCreators/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          hexo  搭建博客
+          redux-bindActionCreators
         
       </div>
     </a>
   
+  
+    <a href="/2020/08/03/react-middleware/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redux-middleware</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
