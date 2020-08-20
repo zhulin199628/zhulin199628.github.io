@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>react-router | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="一、原生路由  简介一般来说，前端路由框架的路由实现可以两种， hashRouter 和 BrowserRouter  (h5 Api)  hashRouter   #&#x2F;home   eg: 123456789html&lt;a href &#x3D; &quot;#&#x2F;home&quot;&gt;首页&lt;&#x2F;a&gt;&lt;a href &#x3D; &quot;#&#x2F;user&quot;&gt;用户&lt;&#x2F;a&gt;&lt;div id &#x3D; &quot;con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-router">
+<meta property="og:url" content="http://yoursite.com/2020/08/15/Router/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、原生路由  简介一般来说，前端路由框架的路由实现可以两种， hashRouter 和 BrowserRouter  (h5 Api)  hashRouter   #&#x2F;home   eg: 123456789html&lt;a href &#x3D; &quot;#&#x2F;home&quot;&gt;首页&lt;&#x2F;a&gt;&lt;a href &#x3D; &quot;#&#x2F;user&quot;&gt;用户&lt;&#x2F;a&gt;&lt;div id &#x3D; &quot;con">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/08/15/Router/windowHistory.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/15/Router/router-ruzhan.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/15/Router/react-router-obj.png">
+<meta property="article:published_time" content="2020-08-15T00:22:30.000Z">
+<meta property="article:modified_time" content="2020-08-20T15:59:26.017Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/15/Router/windowHistory.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,241 +158,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Router" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react-router
+    </h1>
+  
+
+        
+        <a href="/2020/08/15/Router/" class="archive-article-date">
+  	<time datetime="2020-08-15T00:22:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、原生路由</p>
+<ol>
+<li><p>简介<br>一般来说，前端路由框架的路由实现可以两种， hashRouter 和 BrowserRouter  (h5 Api)</p>
+</li>
+<li><p>hashRouter   #/home</p>
+</li>
+</ol>
+<p>eg:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">html</span><br><span class="line">&lt;a href = <span class="string">"#/home"</span>&gt;首页&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;a href = "#/u</span>ser<span class="string">"&gt;用户&lt;/a&gt;</span></span><br><span class="line"><span class="string">&lt;div id = "</span>container<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">js</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">window.addEventListener("</span>hashchange<span class="string">", (event) =&gt;&#123;</span></span><br><span class="line"><span class="string">        document.getElementById("</span>container<span class="string">").innerHTML = `当前的路径是$&#123;window.location.hash&#125;`</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>browserRouter</li>
+</ol>
+<p>3.1  window.history  对象属性简介</p>
+<p><img src="/2020/08/15/Router/windowHistory.png" alt="windowhistory"></p>
+<p>back:  返回上一个路径；<br>forward:  跳转下一个路径；<br>go(index) :  指定跳转到某一个路径<br>pushState:  在历史记录队列中添加并且激活路径，入栈操作<br>replaceState:  修改当前历史记录条例</p>
+<p>浏览器每次跳转都是在队列中添加一条路径，（入栈操作）</p>
+<p><img src="/2020/08/15/Router/router-ruzhan.png" alt="windowhistory"></p>
+<p>3.2  browserHistory 实现单页应用案例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/a')"</span>&gt;</span>跳转到A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/b')"</span>&gt;</span>跳转到B<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/c')"</span>&gt;</span>跳转到C<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//  监听浏览器返回和前进事件，也就是出栈和入栈操作</span></span><br><span class="line">    <span class="built_in">window</span>.onpopstate = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"container"</span>).innerHTML = event.state.to</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  自定义onpushstate方法， 原生没有，  每次 pushState的时候  去更新 容器内容</span></span><br><span class="line">    <span class="built_in">window</span>.onpushstate = <span class="function"><span class="keyword">function</span>(<span class="params">state, title, url</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"container"</span>).innerHTML = state.to || url</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  重写window.history.pushstate 方法，用来触发自定义的onpushstate</span></span><br><span class="line">    <span class="keyword">let</span> oldPush = <span class="built_in">window</span>.history.pushState;</span><br><span class="line">    <span class="built_in">window</span>.history.pushState = <span class="function"><span class="keyword">function</span>(<span class="params">state, title, url</span>)</span>&#123;</span><br><span class="line">         oldPush.call(<span class="built_in">window</span>.history,state, title, url);</span><br><span class="line">         <span class="built_in">window</span>.onpushstate(state, title, url)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">to</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//pushState 三个参数： 状态对象  标题（已经废弃）,  路径地址</span></span><br><span class="line">        <span class="built_in">window</span>.history.pushState(&#123;to&#125;, <span class="literal">null</span>, to)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>二、 react-router</p>
+<ol>
+<li>react  使用方法</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;HashRouter <span class="keyword">as</span> Router, Route, Link&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./routeComponent/Home'</span>;</span><br><span class="line"><span class="keyword">import</span> User <span class="keyword">from</span> <span class="string">'./routeComponent/User'</span>;</span><br><span class="line"><span class="keyword">import</span> Profile <span class="keyword">from</span> <span class="string">'./routeComponent/Profile'</span>;</span><br><span class="line">&lt;Router&gt;</span><br><span class="line">        &lt;Link to = &#123;&#123;<span class="attr">pathname</span>: <span class="string">"/"</span>,<span class="attr">state</span>: &#123;<span class="attr">title</span>: <span class="string">"首页"</span>&#125;&#125;&#125;&gt;首页&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Link to=&#123;&#123; pathname: "/u</span>ser<span class="string">", state: &#123; title: "</span>用户<span class="string">" &#125; &#125;&#125;&gt;用户&lt;/Link&gt;</span></span><br><span class="line"><span class="string">        &lt;Link to=&#123;&#123; pathname: "</span>/profile<span class="string">", state: &#123; title: "</span>个人中心<span class="string">" &#125; &#125;&#125;&gt;个人中心&lt;/Link&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/<span class="string">" component=&#123;Home&#125; exact /&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/user<span class="string">" component=&#123;User&#125; /&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/profile<span class="string">" component=&#123;Profile&#125; /&gt;</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">&lt;/Router&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>实现</li>
+</ol>
+<p>原生react-router  对象<br><img src="/2020/08/15/Router/react-router-obj.png" alt="react-router-obj"></p>
+<p>RouterContext.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">const</span> RouterContext = React.createContext();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> RouterContext</span><br></pre></td></tr></table></figure>
+
+<p>HashRouter.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1.     监听hash  变化，　　</span></span><br><span class="line"><span class="comment">２． 通过context  把所有 构建的路由对象传给所有子组件，  &#123;history, location, match&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouteContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">HashRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    state = &#123;</span><br><span class="line">        location:&#123;</span><br><span class="line">            pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>, <span class="comment">//  给hash  默认值为 '/'</span></span><br><span class="line">            state: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    locationState = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="comment">//  给  hash  默认值'/'</span></span><br><span class="line">        <span class="built_in">window</span>.location.hash =  <span class="built_in">window</span>.location.hash || <span class="string">'/'</span>;</span><br><span class="line">        <span class="comment">//  监听hash  值变化</span></span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"hashchange"</span>, () =&gt;&#123;</span><br><span class="line">              <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">                     location: &#123;</span><br><span class="line">                           ...this.state.location,</span><br><span class="line">                           pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>,</span><br><span class="line">                           state: <span class="keyword">this</span>.state.locationState  <span class="comment">// 每次调用history.push  跳转路由的时候state  都会变化，这里需要重新赋值</span></span><br><span class="line">                     &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  构建路由对象，以便在所有子元素中能够调用和取值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> value = &#123;</span><br><span class="line">            location:<span class="keyword">this</span>.state.location,</span><br><span class="line">            history: &#123;</span><br><span class="line">                push: <span class="function"><span class="keyword">function</span>(<span class="params">to, state</span>)</span>&#123;</span><br><span class="line">                        <span class="comment">//  to  可能是对象&#123;pathname:"", state: &#123;&#125;&#125; 和 ""</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="keyword">typeof</span> to === <span class="string">'object'</span>)&#123;</span><br><span class="line">                            <span class="built_in">window</span>.location.hash = to.pathname;</span><br><span class="line">                            <span class="keyword">this</span>.locationState = to.state</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                         <span class="built_in">window</span>.location.hash = to;</span><br><span class="line">                        <span class="keyword">this</span>.locationState = <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="keyword">return</span> (</span><br><span class="line">              &lt;RouterContext.Provider value = &#123;value&#125;&gt;</span><br><span class="line">                        &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">              &lt;<span class="regexp">/RouterContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">          )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Route.js<br>根据传过来的path，通过正则匹配路由渲染对应的组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; <span class="keyword">from</span> <span class="string">'path-to-regexp'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Route</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>  contextType = RouterContext;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">            <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component, exact = <span class="literal">false</span>&#125; = <span class="keyword">this</span>.props;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//  通过正则匹配路由，判断Route中的 path  和 地址栏中的hash是否一致</span></span><br><span class="line">            <span class="keyword">let</span> &#123;pathname&#125; = <span class="keyword">this</span>.context.location;</span><br><span class="line">            <span class="keyword">let</span> pathNames = [];</span><br><span class="line">            <span class="keyword">let</span> regexp = pathToRegexp(path, pathNames, &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">            <span class="keyword">let</span> result =  pathname.match(regexp);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建一个 类似于React 中的路由对象，通过props 传递给所有子组件</span></span><br><span class="line">            <span class="keyword">let</span>  props  = &#123;</span><br><span class="line">                 location: <span class="keyword">this</span>.context.location,</span><br><span class="line">                 history: <span class="keyword">this</span>.contxt.history</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//  props 中增加  match  属性，  便于存储state(路由传参)</span></span><br><span class="line">                <span class="comment">//  paramNames   [&#123;name: "id", prefix: "/", suffix: "", pattern: "[^\/#\?]+?", modifier: ""&#125;]</span></span><br><span class="line">                pathNames = pathNames.map(<span class="function"><span class="params">item</span> =&gt;</span> item.name)</span><br><span class="line">                 <span class="comment">// result  ["/user/detaile/1", "1", index: 0, input: "/user/detaile/1", groups: undefined]</span></span><br><span class="line">                <span class="keyword">let</span> [url, ...values] =  result;</span><br><span class="line">                <span class="keyword">let</span> params = &#123;&#125;;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pathNames.length; i++)&#123;</span><br><span class="line">                        params[pathNames[i]] = value[i];</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                props.match = &#123;</span><br><span class="line">                      isExact: url === pathname,</span><br><span class="line">                      params,</span><br><span class="line">                      path,</span><br><span class="line">                      url</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> (</span><br><span class="line">                    &lt;Component  &#123;...props&#125; /&gt;     </span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Switch.js</p>
+<p>当涉及到重定向的时候(redirect), 会重新去渲染路由，当重新新渲染路由并且匹配到对应路由的时候代码会继续往下执行，从而造成死循环<br>Switch  是为了值渲染匹配到的路由，当路由匹配到之后就返回当前路由</p>
+<p>使用方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">         &lt;Route path=<span class="string">"/user/list"</span> component=&#123;UserList&#125;&gt;&lt;<span class="regexp">/Route&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>Switch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  遍历所有子元素，通过判断子元素props  的path  属性是否和当前的地址是否相同</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; fom <span class="string">'path-to-regexp'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Switch extends React.Component&#123;</span><br><span class="line">      <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">    </span><br><span class="line">    render()&#123;</span><br><span class="line">         <span class="keyword">let</span> &#123;pathname&#125;  = <span class="keyword">this</span>.context.location;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.props.children.lengt; i++)&#123;</span><br><span class="line">                <span class="keyword">let</span> child = <span class="keyword">this</span>.props.children[i];</span><br><span class="line">                <span class="keyword">let</span> &#123;path = <span class="string">'/'</span>, exact = <span class="literal">false</span>&#125;  = child.props;</span><br><span class="line">                <span class="keyword">let</span> regexp = pathTpRegexp(path, [], &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">                <span class="keyword">let</span> result = pathname.match(regexp);</span><br><span class="line">                <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                     <span class="keyword">return</span> child</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Link.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Link extends React.Component&#123;</span><br><span class="line">    <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;a onClick = &#123;()=&gt; <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)&#125;&gt;&#123;<span class="keyword">this</span>.props.children&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Redirect.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Redirect extends React.Component&#123;</span><br><span class="line">    staic contextType = RouterContext;</span><br><span class="line">    render&#123;</span><br><span class="line">        <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/03/stackAndqueue/" class="archive-article-date">
-  	<time datetime="2020-05-03T01:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/03/stackAndqueue/">栈和队列</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/15/Router/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/02/flat/" class="archive-article-date">
-  	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/09/react-redux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react-redux</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/02/flat/">数组扁平化</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/25/call-apply-1/" class="archive-article-date">
-  	<time datetime="2020-04-25T08:30:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/25/call-apply-1/">call_apply</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/22/ubuntu-git/" class="archive-article-date">
-  	<time datetime="2020-04-22T14:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/22/ubuntu-git/">ubuntu 将本地文件上传到github的基本操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/Promise/" class="archive-article-date">
-  	<time datetime="2020-04-19T09:55:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/Promise/">Promise</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/linuxCode/" class="archive-article-date">
-  	<time datetime="2020-04-19T05:18:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/linuxCode/">Linux 命令备忘录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/hello-world/" class="archive-article-date">
-  	<time datetime="2020-04-19T03:28:33.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/hello-world/">hexo  搭建博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/19/JavascriptOOP/" class="archive-article-date">
-  	<time datetime="2020-04-19T00:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/19/JavascriptOOP/">JavascriptOOP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -408,8 +380,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
