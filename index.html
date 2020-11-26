@@ -152,6 +152,793 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-html-css" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/html-css/">html_css</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/26/html-css/" class="archive-article-date">
+  	<time datetime="2020-11-26T03:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="css-引入方式"><a href="#css-引入方式" class="headerlink" title="css  引入方式"></a>css  引入方式</h1><p>link  和 @ import  区别</p>
+<ul>
+<li><p>link 是html 标签，  @import  完全是css提供的方式，  要写在css  文件或者style  标签中</p>
+</li>
+<li><p>加载顺序不同，  当一个页面被加载的时候， link  引用的css文件会被同时加载，而@import 引入的css文件会等页面全部下载完成后再加载</p>
+</li>
+<li><p>当使用js控制dom 的css样式的时候，只能使用link  引入，  因为@import 不能被js控制</p>
+</li>
+</ul>
+<h1 id="css-选择器"><a href="#css-选择器" class="headerlink" title="css  选择器"></a>css  选择器</h1><ul>
+<li><p>标签选择器<br>直接使用标签元素进行选择， =》  此选择器权重为  1</p>
+</li>
+<li><p>类选择器<br>通过元素的类名，来选择元素，一个元素可以有多个类名 =》 此选择器的权重为  10</p>
+</li>
+<li><p>id  选择器：通过元素的id 来选择元素 =&gt; 此选择器的权重为    100</p>
+</li>
+<li><p>通配符选择器：  通过 * 选择全部元素，包括根元素*{}  =&gt;  权重小于  1，  可以被覆盖，  可以用来去掉浏览器默认自带的间距</p>
+</li>
+<li><p>并集选择器：  样式相同的标签可以并列的一起，  p,   div ,  span {…….}</p>
+</li>
+<li><p>交集选择器<br>几种属性同属一个元素的时候，可以使用交集选择器进行精准的选择，<br>eg:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  交集选择器</span><br><span class="line">div.test&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class &#x3D; &quot;test&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;p class &#x3D; &quot;test&quot;&gt;&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>派生（后代）选择器</p>
+</li>
+</ul>
+<p>通过依据元素在其位置的上下文关系来定义样式<br>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  div span&#123;...&#125;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;span&gt;&lt;span&#x2F;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>子代选择器<br>与后代选择器相比， 子元素选择器只能选择作为某元素子元素的元素，eg:   h1 &gt; strong {…..}</p>
+</li>
+<li><p>相邻兄弟选择器<br>相邻兄弟选择器可以选择紧接在另一元素后的元素， 并且两者具有相同父元素，  eg:    h1 + p</p>
+</li>
+<li><p>属性选择器</p>
+</li>
+</ul>
+<p>对带有指定属性的HTML元素设置样式  权重为10；</p>
+<pre><code>- 属性选择器
+[title]{color: red}
+- 属性和值选择器
+[title=zfpx]{border: 5px solid blue}
+设置表单的样式
+input[type=&quot;text&quot;]{.....}</code></pre><ul>
+<li>伪类选择器<br>a: link, a: visited,  a: hover,  a: active,  foucs, first-child, lang</li>
+</ul>
+<h1 id="css-权重和权重的基本规则"><a href="#css-权重和权重的基本规则" class="headerlink" title="css  权重和权重的基本规则"></a>css  权重和权重的基本规则</h1><ul>
+<li>基本选择器对应的权重<br>基本选择器权重大小:  id &gt; class &gt; 标签&gt; *<br>权重的计算:   基本选择的权重之和，  权重越大就选择谁;<br>权重不相等的情况下，舒蝶权重大就选择谁；<br>权重相等的情况下，遵循就近原则， 下面的会覆盖上面的；<br>权重相等，不遵循就近原则，就想要听上面的，使用!important</li>
+</ul>
+<h1 id="css中可以和不可以继承的属性"><a href="#css中可以和不可以继承的属性" class="headerlink" title="css中可以和不可以继承的属性"></a>css中可以和不可以继承的属性</h1><ul>
+<li><p>不继承的属性</p>
+<ul>
+<li><p>display</p>
+</li>
+<li><p>文本属性<br>vertical-align、 text-decoration、text-shadow、white-space、  unicode-bidi</p>
+</li>
+<li><p>盒子模型的属性</p>
+<p>with、height、margin、margin-top、border-style</p>
+</li>
+<li><p>文本类、盒子模型、背景类、浮动类、定位类</p>
+</li>
+</ul>
+</li>
+<li><p>可以继承的属性<br>字体系列的样式、文本系列样式属性（text-align  line-height  text-indent）</p>
+</li>
+</ul>
+<h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><ul>
+<li><p>基本结构: margin  border padding width height </p>
+</li>
+<li><p>盒子模型的宽高: width  height</p>
+</li>
+<li><p>盒子模型的单位</p>
+<ul>
+<li>px:  像素  写死</li>
+<li>%:  百分比  动态计算单位（自适应  响应式）</li>
+</ul>
+</li>
+<li><p>盒子模型的内边距  padding</p>
+<ul>
+<li>padding 值：  padding:10px (上右下左)、padding: 10px 20px(上下，左右)、padding:10px 20px 30px (上，左右， 下)、padding: 10px 20px 30px 40px(上右下左)</li>
+</ul>
+</li>
+<li><p>内边距会影响盒子在浏览器中的实际大小， 当设置有padding值的时候想要不改变盒子原来的宽高，  需要减去padding值</p>
+</li>
+<li><p>盒子模型的边框：  </p>
+<ul>
+<li>边框类型:  solid 实线、dashed 虚线、 dotted 点状线</li>
+<li>如果border属性只有宽度没有边框的类型和颜色， 会导致border无效</li>
+<li>制作小箭头面试题：  矩形相邻的两条边，设置高度和旋转一定的角度</li>
+<li>制作三角形面试题：  利用border的三个属性，border-width/border-style/border-color 去实现； 宽度和高度要为0;实现一个有小三角形组成的正方形<br>要啥方形的三角形，只需要保留那个方向的颜色值，其余方向的颜色设置为透明即可，三角形的大小由border-width控制</li>
+</ul>
+</li>
+<li><p>盒子模型的外边距  margin  180 290 </p>
+<ul>
+<li><p>margin 跟padding 内边距的方位值和取值情况一样，  都是顺时针方向</p>
+</li>
+<li><p>margin  值重叠的问题：一个盒子的上边距和另一个盒子的下边距 会出现margin重叠的问题，最终是谁的margin值大就取谁的margin值，不是相加之和</p>
+</li>
+<li><p>margin 的兼容处理——margin-top的传递问题：  大盒子里面嵌套小盒子，给小盒子加margin-top值， 不但没有实现和大盒子之间的间距， 反而传递到大盒子身上，导致整体下移  =&gt;  解决办法： overflow: hidden 解决margin-top的传递问题（在这里并不是溢出隐藏）；padding-top：1px,  这种方法会影响最后实际的宽高  需要在width/height的基础上减掉padding值；border-top: 1px, 这种方法和 padding-top影响的情况一样； 给子元素的margin-top值改为给父元素加 padding-top值  这样就避免了使用margin-top值导致的传递问题</p>
+</li>
+</ul>
+</li>
+<li><p>margin 负值的技巧：是往相反的方向进行设置间距的</p>
+</li>
+<li><p>padding 和 margin的区别：1. margin外边距，padding 内边距。  2.  margin不知影响最后元素的实际宽高，padding是会影响最后元素的实际宽高  3.  margin 主要是用来控制元素和元素之间的间距， padding不能控制元素之间的间距， 只能控制里面的元素</p>
+</li>
+<li><p>css  盒子模型的计算</p>
+<ul>
+<li>元素的实际宽度：  width + padding-left/padding-right + border-left/ border-right</li>
+<li>元素的实际高度：height + padding-top / padding-bottom + border-top/border-bottom</li>
+<li>元素的实际大小只会受padding  和border的影响  跟margin 没有关系</li>
+</ul>
+</li>
+</ul>
+<h1 id="css-相关背景"><a href="#css-相关背景" class="headerlink" title="css 相关背景"></a>css 相关背景</h1><pre><code>- 背景复合写法，  background:  颜色  图片 是否重复
+
+- 背景颜色
+
+- 背景重复：background-repeat:  默认值 repeat(xy轴平铺)，no-repeat(不平铺)，repeat-x（横向平铺）
+
+- 补充：   文本居中：text-align-center;  margin: 0 auto  块级元素居中；  height和line-height 一致文字内容垂直居中， line-height 用来控制行间距（一行文字和一行文字的垂直距离）
+
+- 背景定位：  background-position:  50px  50px (x 坐标，y坐标)； center  center  水平垂直居中；方位   top buttom right left; 单位 px　　百分比
+
+- 背景关联： background-attachment:  scrool (背景图片随页面的其余部分滚动，这是默认)　/ fixed(背景图像是固定的)/ inherit(指定background-attachment 的设置应该从父元素继承)
+
+- 背景尺寸: length  用长度值指定背景图像大小， 不允许负值； percentage 用百分比指定背景图像大小， 不允许负值； auto 背景图像的真实大小；cover 将背景图像等比缩放到完全覆盖容器，背景图像有可能会超出容器； contain 将背景图像等比缩放到宽度或高度与容器的宽度或高度相等， 背景图像始终包含在容器内
+
+- 背景图像的裁剪  background-clip： padding-box: 从padding区域（不包含padding）开始向外裁剪背景；  border-box: 从border区域（不包含border）开始向外裁剪背景；content-box 从content区域开始裁剪； text从前景内容（比如文字）作为裁剪区向外裁剪，  如此即可以实现使用背景作为填充色之类的遮罩效果
+
+- 背景的显示原点坐标  background-origin:  content-box  从内容区域开始显示背景图像； border-box:  从border区域（含border）开始显示背景图像； padding-box  从padding区域（含padding）开始显示背景图像
+
+- 雪碧图的使用和技巧：background-position: x轴   y轴；  雪碧图的坐标要使用负值; 纵向的时候 x轴为0 y为负数，反之y 为0  x为 负数</code></pre><p>overflow: hidden 的作用</p>
+<p> 溢出隐藏、清除浮动（大盒子包含小盒子，小盒子浮动脱离文档流，大盒子就会包不了小盒子，设置overflow:hidden就能解决这个问题）、解决margin-top的传递问题</p>
+<h1 id="让多个元素显示在一行的方法"><a href="#让多个元素显示在一行的方法" class="headerlink" title="让多个元素显示在一行的方法"></a>让多个元素显示在一行的方法</h1><ul>
+<li>display: inline、display: inline-block、float-left/right<ul>
+<li>display: inline: 设置宽高属性不起作用</li>
+<li>display: inline-block    在写代码的时候，会受到空格/换行键的影响  会产生默认间距。 =&gt; 解决办法：  1. 去掉空格和换行键的影响  让标签全部都在一行（这种方法不推荐， 阅读性差）2.  给加了diaplay: inline-block属性的父元素加一个属性 font-size:0(但是元素里面有蚊子，文字就会消失 =&gt;解决：在元素身上加一个font-size把父元素font-size:0 覆盖)（最佳方法）</li>
+<li>display: inline-block 在ie 6 7 下不兼容的方法 (css  hack 兼容)： * display: inline; * zoom: 1</li>
+</ul>
+</li>
+</ul>
+<h1 id="浮动元素的特点"><a href="#浮动元素的特点" class="headerlink" title="浮动元素的特点"></a>浮动元素的特点</h1><ul>
+<li>浮动元素显示在一行</li>
+<li>设置属性值为left时，浮动元素会依次从父级盒子的左侧排列， 设置为right时就从右边开始排列</li>
+<li>浮动元素自动具有块级元素的属性， 可以设置宽高</li>
+<li>浮动元素脱离文档流</li>
+<li>浮动元素内的子元素， 不会继承浮动属性</li>
+<li>浮动元素下面的元素不能识别浮动元素的高度和位置</li>
+</ul>
+<h1 id="多行文本出现省略号的条件-主要用在移动端手机页面"><a href="#多行文本出现省略号的条件-主要用在移动端手机页面" class="headerlink" title="多行文本出现省略号的条件  主要用在移动端手机页面"></a>多行文本出现省略号的条件  主要用在移动端手机页面</h1><ul>
+<li><p>display: -webkit-box  弹性盒子模型</p>
+</li>
+<li><p>-webkit-box-orient: vertical  规定元素的排列方式：  垂直排列</p>
+</li>
+<li><p>-webkit-line-clamp:2  文字的行数  需要显示几行就写几</p>
+</li>
+<li><p>overflow: hidden  溢出隐藏</p>
+</li>
+</ul>
+<h1 id="单行文本出现省略号的必备条件"><a href="#单行文本出现省略号的必备条件" class="headerlink" title="单行文本出现省略号的必备条件"></a>单行文本出现省略号的必备条件</h1><ul>
+<li><p>width   宽度</p>
+</li>
+<li><p>overflow: hidden 溢出隐藏</p>
+</li>
+<li><p>white-space: nowrap  强制文字不折行</p>
+</li>
+<li><p>text-overflow: ellipsis  文字隐藏的方式：   以省略号的方式隐藏</p>
+</li>
+</ul>
+<h1 id="float-元素的特点"><a href="#float-元素的特点" class="headerlink" title="float 元素的特点"></a>float 元素的特点</h1><ul>
+<li><p>浮动元素在一行显示</p>
+</li>
+<li><p>设置属性值为left时， 浮动元素会依次从父级盒子的左侧向右排布，设置属性值为right时，浮动元素会依次从父级盒子的右侧向左排布</p>
+</li>
+<li><p>浮动元素自动具有块级元素的属性</p>
+</li>
+<li><p>浮动元素脱离文档流， 当值下面没有浮动的元素不能识别浮动元素的高度和位置，就会往上跑，占领浮动元素的位置</p>
+</li>
+<li><p>浮动元素内的子元素， 不会继承浮动属性，如果想要让子元素也在一行显示，  需要子元素重新设置浮动属性</p>
+</li>
+<li><p>浮动元素下面的元素不能识别浮动元素的高度和位置</p>
+</li>
+</ul>
+<h1 id="文档流和脱离文档流"><a href="#文档流和脱离文档流" class="headerlink" title="文档流和脱离文档流"></a>文档流和脱离文档流</h1><ul>
+<li><p>文档流：  指的是元素排版布局过程中，元素会自动从左往右， 自上往下的流失排列。</p>
+</li>
+<li><p>每个非浮动块级元素都独占一行，浮动元素则按规定浮动在行的一端。若当前行容不下，则另起一行在浮动</p>
+</li>
+<li><p>内联元素也不会独占一行， 几乎所有元素（包括块级元素，内联和列表元素）均可生成子行，用于摆放子元素</p>
+</li>
+<li><p>标准文档流等级：  分为两个等级，  块级元素和行内元素；</p>
+</li>
+<li><p>脱离文档流：元素的正常排列方式被打破 ，文档流内的正常元素识别不到这个元素了（脱离文档流的元素相当于平行漂流在文档流之上）,  根据浮动元素的特点，  下面的元素会找不到上面浮动的元素导致下面的元素被上面的浮动元素覆盖</p>
+</li>
+</ul>
+<h1 id="浮动元素的值"><a href="#浮动元素的值" class="headerlink" title="浮动元素的值"></a>浮动元素的值</h1><ul>
+<li>left /  right  / none(不浮动) / inherit(规定应该从父元素继承float属性的值)</li>
+</ul>
+<h1 id="浮动元素产生的影响"><a href="#浮动元素产生的影响" class="headerlink" title="浮动元素产生的影响"></a>浮动元素产生的影响</h1><ul>
+<li><p>父元素这是背景颜色不起作用(因为父元素没有被子元素撑开，  高度为0)</p>
+</li>
+<li><p>父元素设置内边距属性不会被撑开(原因同上)</p>
+</li>
+<li><p>父元素设置边框属性不会被撑开（原因同上）</p>
+</li>
+</ul>
+<h1 id="清浮动元素的方法"><a href="#清浮动元素的方法" class="headerlink" title="清浮动元素的方法"></a>清浮动元素的方法</h1><ul>
+<li><p>给浮动元素的父元素手动添加一个height属性（不推荐）</p>
+</li>
+<li><p>overflow: hidden / auto</p>
+</li>
+<li><p>在浮动元素的父元素结束标签之前加一个具有块元素特点的标签，  给元素加一个clear: both  <code>&lt;div style = &quot;clear: both&quot;&gt; &lt;/div&gt;</code></p>
+</li>
+<li><p>利用伪元素清楚浮动  （这是项目中最常用的清浮动的方法）<br>必备条件：  1. 块级元素  2.  clear:both(不允许左右两边有浮动对象)  3.  content: “”（这是为元素before和:after天生自带的属性，  如果不写伪元素不起作用）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  这是固定清楚浮动的代码</span><br><span class="line">.header:after&#123;</span><br><span class="line">     display: block;</span><br><span class="line">     clear: both;</span><br><span class="line">     content: &quot;&quot;</span><br><span class="line"></span><br><span class="line">     &#x2F;&#x2F;  写全的样式属性：   下面的四个属性不是必备条件</span><br><span class="line">     height: 0  &#x2F;&#x2F;  防止在低版本浏览器中默认height: 1px的情况，  用height: 0 覆盖</span><br><span class="line">     font-size:  &#x2F;&#x2F; 字体大小</span><br><span class="line">     overflow: hidden  &#x2F;&#x2F;  溢出隐藏</span><br><span class="line">     visibility: hidden &#x2F;&#x2F; 让所有可见性的元素隐藏</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header&#123;*zoom : 1&#125;  &#x2F;&#x2F;  解决IE浏览器兼容问题</span><br></pre></td></tr></table></figure>
+
+<h1 id="让元素消失在我们的视野中"><a href="#让元素消失在我们的视野中" class="headerlink" title="让元素消失在我们的视野中"></a>让元素消失在我们的视野中</h1><ul>
+<li><p>opacity: 0  //透明度</p>
+</li>
+<li><p>diaplay: none </p>
+</li>
+<li><p>height: 0 和 overflow: hidden </p>
+</li>
+<li><p>没有设置高度的情况下  inline-height: 0; overflow: hidden</p>
+</li>
+<li><p>visibility: hidden  让所有可见性的元素隐藏</p>
+</li>
+<li><p>margin/padding  这是足够大  （-9999999）</p>
+</li>
+<li><p>transform: translateX(-999999)</p>
+</li>
+</ul>
+<h1 id="为元素"><a href="#为元素" class="headerlink" title="为元素"></a>为元素</h1><p>为元素相当于给当前元素添加了一个子元素</p>
+<ul>
+<li><p>:before  // 在当前元素之后添加子元素</p>
+</li>
+<li><p>:after //  在当前元素之前</p>
+</li>
+</ul>
+<h1 id="值绝对定位-position-absolute"><a href="#值绝对定位-position-absolute" class="headerlink" title="值绝对定位  position: absolute"></a>值绝对定位  position: absolute</h1><ul>
+<li><p>特点： 设置  top、left、right、bottom</p>
+</li>
+<li><p>绝对定义会脱离文档流， 不占位， 导致后面的元素会往前跑， 占领它的位置</p>
+</li>
+<li><p>绝对定位元素一定要有相对参照（它的直接父级），  如果父级元素没有加相对参照物，他会一级一级的往上找， 直到找到最外层的根元素HTMl</p>
+</li>
+<li><p>如果方位里  同时有left 和right  最后只去left,  同时有top 和bottom 最后听 top, 以后在实际项目中只需要设置其中之一</p>
+</li>
+<li><p>z-index  越大层级越往上</p>
+</li>
+<li><p>一个元素定在一个元素上 或者 两个元素的叠加这种情况  我们都可以用定位（绝对定位），注意： 绝对定位一定要给他相对参照物</p>
+</li>
+<li><p>相对参照物只要是定位元素就可以（绝对定位 相对定位  固定定位） 优先选相对定位 position: relative</p>
+</li>
+</ul>
+<h1 id="相对定位-position-relative"><a href="#相对定位-position-relative" class="headerlink" title="相对定位 position: relative"></a>相对定位 position: relative</h1><ul>
+<li><p>不会脱离文档流  占位    所有后面的元素不会往前跑</p>
+</li>
+<li><p>可以设置上下左右方位值，  如果同时设置  取值同absolute</p>
+</li>
+<li><p>参照物：  自己本身</p>
+</li>
+<li><p>z-index  必须要和定位元素（绝对， 相对，固定）同时使用 才起作用</p>
+</li>
+</ul>
+<h1 id="定位的差异"><a href="#定位的差异" class="headerlink" title="定位的差异"></a>定位的差异</h1><ol>
+<li>是否脱离文档流</li>
+</ol>
+<p>绝对定位： 是；<br>相对定位：  否；<br>固定定位： 是；<br>=&gt;  只有相对定位没有脱离文档流，  绝对和固定定位都会脱离文档流  不占位</p>
+<ol start="2">
+<li>参照物</li>
+</ol>
+<p>绝对： 是具有定位元素的父级元素， 如果直接父元素没有定位元素，  则会往上找直到找到我们的根元素HTML标签为止<br>相对： 自己本身<br>固定：整个浏览器窗口</p>
+<h1 id="z-index-属性的特点"><a href="#z-index-属性的特点" class="headerlink" title="z-index  属性的特点"></a>z-index  属性的特点</h1><ul>
+<li><p>默认是书写顺序在后的定位元素覆盖在顺序在前的定位元素</p>
+</li>
+<li><p>可以使用z-index 属性修改定位元素的层级关系</p>
+</li>
+<li><p>所有定位元素的z-index默认值都是一样的</p>
+</li>
+<li><p>z-index 值是数字没有单位，  支持负数</p>
+</li>
+<li><p>一般都是同级元素进行层级比较</p>
+</li>
+<li><p>当参照物是绝对定位或相对定位， 父级元素之间没有z-index值，子级元素的z-index值会出来做比较</p>
+</li>
+</ul>
+<h1 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h1><h2 id="标签语义化的作用"><a href="#标签语义化的作用" class="headerlink" title="标签语义化的作用"></a>标签语义化的作用</h2><ul>
+<li><p>有利于SEO优化（也即是搜索引擎的抓取，搜索引擎的爬虫也依赖于标记来确定上下文和各个关键字的权重）</p>
+</li>
+<li><p>在样式丢失的时候，还是可以比较好的呈现架构</p>
+</li>
+<li><p>更好的支持各种终端，例如无障碍阅读和有声小说等</p>
+</li>
+<li><p>利于团队开发和维护</p>
+</li>
+</ul>
+<h2 id="日常工作中，怎样遵循标签语义化"><a href="#日常工作中，怎样遵循标签语义化" class="headerlink" title="日常工作中，怎样遵循标签语义化"></a>日常工作中，怎样遵循标签语义化</h2><ol>
+<li><p>尽量减少使用无意义的标签，例如span 和 div</p>
+</li>
+<li><p>尽量不使用标签本身的css属性，例如b、font、s等标签， 如果需要这些样式，那么使用css样式进行添加</p>
+</li>
+<li><p>在需要强调的部分， 使用striong、em，但是尽量使用css样式来描述</p>
+</li>
+<li><p>表格搭建时，使用 thead、tbody  来描述表格的头部和身体</p>
+</li>
+<li><p>列表搭建时， 使用 ul 、ol、dl</p>
+</li>
+</ol>
+<h2 id="标签语义化-含义"><a href="#标签语义化-含义" class="headerlink" title="标签语义化 - 含义"></a>标签语义化 - 含义</h2><ul>
+<li><p>合适的标签做合适的事情，例如文章段落用P , 标题 用  h1-h6</p>
+</li>
+<li><p>标签语义化为浏览器和搜索引擎服务</p>
+</li>
+</ul>
+<h1 id="行内元素和块级元素"><a href="#行内元素和块级元素" class="headerlink" title="行内元素和块级元素"></a>行内元素和块级元素</h1><ol>
+<li>行嘞元素  a  span  button  datalist  em i </li>
+</ol>
+<ul>
+<li>不独占一行；  </li>
+<li>排列的方式：  从左往右了;</li>
+<li>无法设置宽高， 如果要起作用，需要转换成块级或行内块级元素， display：block/  inline-block;</li>
+<li>如果不设置宽高，  它的宽高等于自身内容的宽高；</li>
+<li>自带display: inline 属性;     </li>
+<li>行内元素中不能嵌套块级元素，  a 标签除外；</li>
+<li>a 标签不要嵌套a标签，  如果要写，浏览器解析的也会把两个a标签拆分两个同级的a标签</li>
+</ul>
+<ol start="2">
+<li>块级元素  div  p    h1-h6   table  dl dt dd   form </li>
+</ol>
+<p>独占一行 ；<br>排列方式:  从上往下；<br>可以设置宽高;<br>自带display: block属性；<br>可以嵌套行内元素；<br>p标签里面不能嵌套任何的块级元素， 包括它自身， 但是可以嵌套行内元素</p>
+<ol start="3">
+<li>行内块级元素</li>
+</ol>
+<h1 id="base-标签"><a href="#base-标签" class="headerlink" title="base  标签"></a>base  标签</h1><p> 适用于页面中元素指定的默认地址或者所有链接的目标地址， 一个页面只能出现一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;base href &#x3D; &quot;http:&#x2F;&#x2F;xxxxx&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性：  href （链接地址）,  target（指定页面中在何处打开素所有链接）</li>
+</ul>
+<h1 id="自定义字体图标"><a href="#自定义字体图标" class="headerlink" title="自定义字体图标"></a>自定义字体图标</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/26/html-css/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-react-yuanma" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/14/react-yuanma/">react 源码解析</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/14/react-yuanma/" class="archive-article-date">
+  	<time datetime="2020-11-14T01:33:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/react-yuanma/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ES6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/05/ES6/">ES6</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/05/ES6/" class="archive-article-date">
+  	<time datetime="2020-11-05T07:13:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let  和 const"></a>let  和 const</h1><ol>
+<li><p>let  声名的变量只能在  声明的代码块中使用</p>
+</li>
+<li><p>不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升</p>
+</li>
+<li><p>暂时性死区：  如果声明let  变量之前使用， 就会报错Referende error</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/05/ES6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-react-setState" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/02/react-setState/">react-state</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/02/react-setState/" class="archive-article-date">
+  	<time datetime="2020-11-02T13:35:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="react-SetState有可能是异步的"><a href="#react-SetState有可能是异步的" class="headerlink" title="react  SetState有可能是异步的"></a>react  SetState有可能是异步的</h1><p>react  setState的时候会执行如下流程</p>
+<ol>
+<li><p>this.setState(newState);</p>
+</li>
+<li><p>new State()  会存入pedding队列中</p>
+</li>
+<li><p>判断是否处于批量更新状态，如果处于批量更新状态， 就把当前的 state 加入到  dirtyComponents 集合中。如果不处于批量更新状态（放setState只执行一次或者是多个setSate执行到最后一次的时候）的时候就去遍历 dirtyComponents 集合，之后调用 updateComponent,  </p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/02/react-setState/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bibao-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/07/Bibao-1/">闭包</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/07/Bibao-1/" class="archive-article-date">
+  	<time datetime="2020-09-07T12:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="不管条件是否满足-都会进行变量提升"><a href="#不管条件是否满足-都会进行变量提升" class="headerlink" title="不管条件是否满足,  都会进行变量提升"></a>不管条件是否满足,  都会进行变量提升</h3><blockquote>
+<p> 不管条件是否成立,判断体中出现的var/function都会进行变量提升, 但是在最新的浏览器中, function声明的变量只提前声明不能定义了(前提:  函数实在判断体中)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num. test)  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> ===<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">12</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>上面代码的执行</strong></p>
+<blockquote>
+<p> 代码执行到条件判断的地方<br>[条件不成立]<br>进入不到不到判断体中, 赋值的代码就执行不了, 此时之前声明的变量或者是函数依然是undefined</p>
+<p>[条件成立]<br>进入条件判断中做的第一件事情不是执行代码,而是对之前变量提升的函数进行定义(进入到判断体中函数就定义了, 这是为了迎合ES6中的块级作用域)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(num. test)  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> ===<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num, test) <span class="comment">// undefined  函数体本身</span></span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">12</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(num, test) <span class="comment">// 12  函数体本身</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在老版本浏览器中, 不管条件是否成立, 都是进行变量提升和定义,  新版本浏览器只是声明不定义</p>
+</blockquote>
+<h3 id="重命名的处理"><a href="#重命名的处理" class="headerlink" title="重命名的处理"></a>重命名的处理</h3><blockquote>
+<p>在变量提升阶段, 如果名字重复了, 不会重新的进行声明, 但是会重新的进行定义(后面赋的值会把前面赋的值给替换)</p>
+</blockquote>
+<h3 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h3><blockquote>
+<p>JS中的私有变量有且只有两种</p>
+<ul>
+<li>在私有作用域中变量提升阶段,声明过的变量(或者函数)</li>
+<li>形参也是私有变量<br>函数执行形成一个私有作用域</li>
+</ul>
+</blockquote>
+<p><strong>函数执行的步骤</strong></p>
+<blockquote>
+<ol>
+<li>形参赋值</li>
+<li>变量提升</li>
+<li>代码自上而下执行</li>
+<li>当前栈内存(私有作用域)销毁或者不销毁</li>
+</ol>
+</blockquote>
+<h3 id="如何查找上级作用域"><a href="#如何查找上级作用域" class="headerlink" title="如何查找上级作用域"></a>如何查找上级作用域</h3><blockquote>
+<p> 函数执行形成一个私有作用域,查看函数的上级作用域,  主要看函数是在哪里定义的,  和函数在哪里执行没有任何关系<br> 宿主环境:   函数在哪个作用域中执行的,  那么这个作用域就为宿主环境</p>
+</blockquote>
+<h3 id="闭包的含义"><a href="#闭包的含义" class="headerlink" title="闭包的含义"></a>闭包的含义</h3><blockquote>
+<p> 函数执行形成一个私有作用域,  让私有作用域里面的变量不受外界干扰,  就叫闭包 ,  这是最权威的解释</p>
+</blockquote>
+<h3 id="闭包作用-保存"><a href="#闭包作用-保存" class="headerlink" title="闭包作用(保存)"></a>闭包作用(保存)</h3><blockquote>
+<p>函数执行形成一个作用域, 函数执行完成, 形成的这个栈内存一般情况下都会自动释放<br> 还有另一种情况,  函数执行完成, 当前私有作用域(栈内存)中的某一部分被栈内存以外的其它东西(变量/元素的事件)占用了. 当前的栈内存就不能释放掉,  也就形成了不销毁的私有作用域(里面的私有变量也不会被销毁)</p>
+</blockquote>
+<p>‘i++  和 ++i’的区别</p>
+<blockquote>
+<p>i++  先拿原有的i值和其它值进行运算, 运算完成之后在自身累加1<br>++i 先自增1, 然后在和其它值进行运算<br> 函数执行形成一个私有作用域, 如果私有作用域中的部分内容被外界的变量或其它东西占用这的时候,  当前作用域不被销毁<br>[形式]<br>函数执行返回一个’引用数据类型堆内存的地址’(并且堆内存的属于当前的这个作用域), 在外面有一个变量接受这个返回值,  此时当前作用域就不能销毁(想要销毁, 就给接受的这个变量赋值为Null)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i= <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(n + i++)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = fn();</span><br><span class="line">f(<span class="number">10</span>);</span><br><span class="line">fn()(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">20</span>);</span><br><span class="line">fn()(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(n + (++i))</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = fn(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">10</span>);</span><br><span class="line">fn()(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">20</span>);</span><br><span class="line">fn()(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><blockquote>
+<p>  当前函数执行的主体(谁执行的函数this  就是的谁)</p>
+<p>函数外面的this  是window, 我们一般都研究函数里面的this指向问题 </p>
+</blockquote>
+<blockquote>
+<p><strong>‘this是谁和他在哪里定义的以及在哪里执行的没有任何关系’</strong></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/07/Bibao-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bibao" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/07/Bibao/">Bibao</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/07/Bibao/" class="archive-article-date">
+  	<time datetime="2020-09-07T12:42:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/07/Bibao/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Router" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,7 +996,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1.     监听hash  变化，　　</span></span><br><span class="line"><span class="comment">２． 通过context  把所有 构建的路由对象传给所有子组件，  &#123;history, location, match&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouteContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">HashRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    state = &#123;</span><br><span class="line">        location:&#123;</span><br><span class="line">            pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>, <span class="comment">//  给hash  默认值为 '/'</span></span><br><span class="line">            state: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    locationState = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="comment">//  给  hash  默认值'/'</span></span><br><span class="line">        <span class="built_in">window</span>.location.hash =  <span class="built_in">window</span>.location.hash || <span class="string">'/'</span>;</span><br><span class="line">        <span class="comment">//  监听hash  值变化</span></span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"hashchange"</span>, () =&gt;&#123;</span><br><span class="line">              <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">                     location: &#123;</span><br><span class="line">                           ...this.state.location,</span><br><span class="line">                           pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>,</span><br><span class="line">                           state: <span class="keyword">this</span>.state.locationState  <span class="comment">// 每次调用history.push  跳转路由的时候state  都会变化，这里需要重新赋值</span></span><br><span class="line">                     &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  构建路由对象，以便在所有子元素中能够调用和取值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> value = &#123;</span><br><span class="line">            location:<span class="keyword">this</span>.state.location,</span><br><span class="line">            history: &#123;</span><br><span class="line">                push: <span class="function"><span class="keyword">function</span>(<span class="params">to, state</span>)</span>&#123;</span><br><span class="line">                        <span class="comment">//  to  可能是对象&#123;pathname:"", state: &#123;&#125;&#125; 和 ""</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="keyword">typeof</span> to === <span class="string">'object'</span>)&#123;</span><br><span class="line">                            <span class="built_in">window</span>.location.hash = to.pathname;</span><br><span class="line">                            <span class="keyword">this</span>.locationState = to.state</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                         <span class="built_in">window</span>.location.hash = to;</span><br><span class="line">                        <span class="keyword">this</span>.locationState = <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="keyword">return</span> (</span><br><span class="line">              &lt;RouterContext.Provider value = &#123;value&#125;&gt;</span><br><span class="line">                        &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">              &lt;<span class="regexp">/RouterContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">          )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>Route.js<br>根据传过来的path，通过正则匹配路由渲染对应的组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; <span class="keyword">from</span> <span class="string">'path-to-regexp'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Route</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>  contextType = RouterContext;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">            <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component, exact = <span class="literal">false</span>&#125; = <span class="keyword">this</span>.props;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//  通过正则匹配路由，判断Route中的 path  和 地址栏中的hash是否一致</span></span><br><span class="line">            <span class="keyword">let</span> &#123;pathname&#125; = <span class="keyword">this</span>.context.location;</span><br><span class="line">            <span class="keyword">let</span> pathNames = [];</span><br><span class="line">            <span class="keyword">let</span> regexp = pathToRegexp(path, pathNames, &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">            <span class="keyword">let</span> result =  pathname.match(regexp);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建一个 类似于React 中的路由对象，通过props 传递给所有子组件</span></span><br><span class="line">            <span class="keyword">let</span>  props  = &#123;</span><br><span class="line">                 location: <span class="keyword">this</span>.context.location,</span><br><span class="line">                 history: <span class="keyword">this</span>.contxt.history</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//  props 中增加  match  属性，  便于存储state(路由传参)</span></span><br><span class="line">                <span class="comment">//  paramNames   [&#123;name: "id", prefix: "/", suffix: "", pattern: "[^\/#\?]+?", modifier: ""&#125;]</span></span><br><span class="line">                pathNames = pathNames.map(<span class="function"><span class="params">item</span> =&gt;</span> item.name)</span><br><span class="line">                 <span class="comment">// result  ["/user/detaile/1", "1", index: 0, input: "/user/detaile/1", groups: undefined]</span></span><br><span class="line">                <span class="keyword">let</span> [url, ...values] =  result;</span><br><span class="line">                <span class="keyword">let</span> params = &#123;&#125;;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pathNames.length; i++)&#123;</span><br><span class="line">                        params[pathNames[i]] = value[i];</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                props.match = &#123;</span><br><span class="line">                      isExact: url === pathname,</span><br><span class="line">                      params,</span><br><span class="line">                      path,</span><br><span class="line">                      url</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> (</span><br><span class="line">                    &lt;Component  &#123;...props&#125; /&gt;     </span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; <span class="keyword">from</span> <span class="string">'path-to-regexp'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Route</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>  contextType = RouterContext;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">            <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component, exact = <span class="literal">false</span>&#125; = <span class="keyword">this</span>.props;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//  通过正则匹配路由，判断Route中的 path  和 地址栏中的hash是否一致</span></span><br><span class="line">            <span class="keyword">let</span> &#123;pathname&#125; = <span class="keyword">this</span>.context.location;</span><br><span class="line">            <span class="keyword">let</span> pathNames = [];</span><br><span class="line">            <span class="keyword">let</span> regexp = pathToRegexp(path, pathNames, &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">            <span class="keyword">let</span> result =  pathname.match(regexp);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建一个 类似于React 中的路由对象，通过props 传递给所有子组件</span></span><br><span class="line">            <span class="keyword">let</span>  props  = &#123;</span><br><span class="line">                 location: <span class="keyword">this</span>.context.location,</span><br><span class="line">                 history: <span class="keyword">this</span>.contxt.history</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//  props 中增加  match  属性，  便于存储state(路由传参)</span></span><br><span class="line">                <span class="comment">//  paramNames   [&#123;name: "id", prefix: "/", suffix: "", pattern: "[^\/#\?]+?", modifier: ""&#125;]</span></span><br><span class="line">                pathNames = pathNames.map(<span class="function"><span class="params">item</span> =&gt;</span> item.name)</span><br><span class="line">                 <span class="comment">// result  ["/user/detaile/1", "1", index: 0, input: "/user/detaile/1", groups: undefined]</span></span><br><span class="line">                <span class="keyword">let</span> [url, ...values] =  result;</span><br><span class="line">                <span class="keyword">let</span> params = &#123;&#125;;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pathNames.length; i++)&#123;</span><br><span class="line">                        params[pathNames[i]] = value[i];</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                props.match = &#123;</span><br><span class="line">                      isExact: url === pathname,</span><br><span class="line">                      params,</span><br><span class="line">                      path,</span><br><span class="line">                      url</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//  受保护的路由</span></span><br><span class="line">                <span class="comment">//  经典案例：  进入当前页面，判断是否登录，如果没有登录则跳转到登录页面</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> (</span><br><span class="line">                    &lt;Component  &#123;...props&#125; /&gt;     </span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Switch.js</p>
 <p>当涉及到重定向的时候(redirect), 会重新去渲染路由，当重新新渲染路由并且匹配到对应路由的时候代码会继续往下执行，从而造成死循环<br>Switch  是为了值渲染匹配到的路由，当路由匹配到之后就返回当前路由</p>
@@ -223,6 +1010,32 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Link extends React.Component&#123;</span><br><span class="line">    <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;a onClick = &#123;()=&gt; <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)&#125;&gt;&#123;<span class="keyword">this</span>.props.children&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>Redirect.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Redirect extends React.Component&#123;</span><br><span class="line">    staic contextType = RouterContext;</span><br><span class="line">    render&#123;</span><br><span class="line">        <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>受保护的路由</p>
+<p>经典案例</p>
+<p>index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">import</span> Protected <span class="keyword">from</span> <span class="string">'./Protected'</span>;</span><br><span class="line">+ <span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">'./Login'</span>;</span><br><span class="line">+ <span class="keyword">import</span> Profile <span class="keyword">from</span> <span class="string">'./Profile'</span>;</span><br><span class="line"></span><br><span class="line">+ <span class="xml"><span class="tag">&lt;<span class="name">Route</span>  <span class="attr">path</span> = <span class="string">"/login"</span> <span class="attr">component</span> = <span class="string">&#123;Login&#125;</span> /&gt;</span></span></span><br><span class="line">+ <span class="xml"><span class="tag">&lt;<span class="name">Protected</span> <span class="attr">path</span> = <span class="string">"/profile"</span> <span class="attr">component</span> = <span class="string">&#123;Profile&#125;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Protected.js<br>如果登录了则渲染当前组件，否则跳转到Login</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Route, Redirect&#125; <span class="keyword">from</span> <span class="string">'./react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Protected</span>(<span class="params">&#123;component: Component, ...rest&#125;</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> (</span><br><span class="line">         &lt;Route </span><br><span class="line">           &#123;...rest&#125;</span><br><span class="line">           render = &#123;props =&gt;(</span><br><span class="line">               <span class="built_in">window</span>.localStorage.getItem(<span class="string">"login"</span>)?</span><br><span class="line">               &lt;Component &#123;...props&#125; /&gt;</span><br><span class="line">               :</span><br><span class="line">               &lt;Redirect  to = &#123;&#123;<span class="attr">pathname</span>: <span class="string">'/login'</span>, <span class="attr">state</span>:&#123;<span class="attr">from</span>: props.location.pathname&#125;&#125;&#125; /&gt;</span><br><span class="line">           )&#125;</span><br><span class="line">         /&gt;</span><br><span class="line">     )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Route.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component,exact = <span class="literal">false</span>, render&#125;  = <span class="keyword">this</span>.props;</span><br><span class="line">+ <span class="keyword">if</span>(Component)&#123;</span><br><span class="line">      <span class="keyword">return</span>&lt;  Component &#123;...props&#125;/&gt; </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(render)&#123;</span><br><span class="line">      render(props)</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>widthRouter.js</p>
+<p>是一个高阶组件，能够让普通组件（没有用Route包裹的组件）能够路由的基本属性（拥有history  对象）</p>
+<p>使用方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">widthRouter(Component)</span><br></pre></td></tr></table></figure>
+<p>实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Route <span class="keyword">from</span> <span class="string">'./Route'</span></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">widthRouter</span>(<span class="params">wrapperedComponent</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="params">props</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">Route</span>  <span class="attr">component</span> = <span class="string">&#123;wrapperedComponent&#125;</span> /&gt;</span></span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Prompt.js</p>
+<p>阻止路由跳转</p>
+<p>Prompt 组件，接受两个参数，when： true  弹框  false  不弹框  message:  函数<br>使用方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Prompt <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">&lt;Prompt  </span><br><span class="line">    when = &#123;boolean&#125;</span><br><span class="line">    message = &#123;location =&gt;<span class="string">`你确定要进入<span class="subst">$&#123;location.pathname&#125;</span>?`</span>&#125;</span><br><span class="line">  /&gt;</span><br></pre></td></tr></table></figure>
+<p>实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Prompt</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">     render()&#123;</span><br><span class="line">         <span class="keyword">let</span> &#123;when, message&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="keyword">let</span> &#123;location&#125; = <span class="keyword">this</span>.context;</span><br><span class="line">        <span class="keyword">if</span>(when)&#123;</span><br><span class="line">            location.block(message)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            location.block(<span class="literal">null</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HashRouter.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">let</span> vlaue= &#123;</span><br><span class="line">      location: <span class="keyword">this</span>.state.location,</span><br><span class="line">      history: &#123;</span><br><span class="line">          push: <span class="function"><span class="keyword">function</span>(<span class="params">to, state</span>)</span>&#123;</span><br><span class="line">              + <span class="keyword">if</span>(that.message)&#123;</span><br><span class="line">                    <span class="keyword">let</span> comfirm =  confirm(that.block(<span class="keyword">typeof</span> to === <span class="string">'object'</span> ? to: &#123;<span class="attr">pathname</span>: to&#125;));</span><br><span class="line">                    <span class="keyword">if</span>(!comfirm) <span class="keyword">return</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">         + block: <span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</span><br><span class="line">          +      that.message = message</span><br><span class="line">          +&#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -478,423 +1291,9 @@
 
 
   
-    <article id="post-combineReducers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/combineReducers/">redux-combineReducers</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/05/combineReducers/" class="archive-article-date">
-  	<time datetime="2020-08-05T01:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在项目结构中， 实际只能有一个Store,  但是可以有多个reducer,combineReducers可以合并多个reducer然后返回一个reducer</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reducers = combineReducers(&#123;reducer1, reducer2&#125;);</span><br><span class="line"><span class="keyword">let</span> store = createStore(reducers)</span><br></pre></td></tr></table></figure>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// reducers  &#123;reducer1, reducer2&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">combineReducers</span>(<span class="params">reducers</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//  获取 对象的key</span></span><br><span class="line">        <span class="keyword">let</span> reducerKeys = <span class="built_in">Object</span>.keys(reducers);</span><br><span class="line">        <span class="comment">//  返回一个reducer 函数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">state = &#123;&#125;, action</span>)</span>&#123;</span><br><span class="line">               <span class="keyword">let</span> nextState = &#123;&#125;;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;  i &lt; reducerKeys.length;i++)&#123;</span><br><span class="line">                      <span class="keyword">let</span> key = reducerKeys[i];</span><br><span class="line">                      <span class="keyword">const</span> reducer = reducers[key];  </span><br><span class="line">                      <span class="comment">//  获取每个reducer 的老状态</span></span><br><span class="line">                      <span class="keyword">const</span> previousStateForKey = state[key];</span><br><span class="line">                      <span class="comment">// 调用需要合并的reducers, 然后获取每个reduce的新状态</span></span><br><span class="line">                      <span class="keyword">const</span> nextStateForKey = reducers(previousStateForKey, action);</span><br><span class="line"></span><br><span class="line">                      <span class="comment">//  下一个状态</span></span><br><span class="line">                        nextState[key] = nextStateForKey;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> nextState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/05/combineReducers/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-bindActionCreators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/04/react-bindActionCreators/">redux-bindActionCreators</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/04/react-bindActionCreators/" class="archive-article-date">
-  	<time datetime="2020-08-04T13:23:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
-<li>bindActionCreators  是用来优化代码的，接收两个参数，action和dispatch。</li>
-<li>用来抽离actionType 和 action的逻辑<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindActionCreators(actions, store.dispatch)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreator</span> (<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> funtion()&#123;</span><br><span class="line">        <span class="keyword">return</span> dispatch(actionCreators.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreators</span>(<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//  actionCreators 可能是整个actions 对象，也可能是actions 对象的某个函数</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> actionCreators === <span class="string">'function'</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> bindActionCreator(actionCreators, dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> boundActionCreators = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> actionCreators)&#123;</span><br><span class="line">            boundActionCreators[key] = bindActionCreators(actionCreators[key], dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> boundActionCreators</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/04/react-bindActionCreators/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/redux/">实现redux</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/redux/" class="archive-article-date">
-  	<time datetime="2020-08-03T12:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>react  工作流<br><img src="/2020/08/03/redux/redux.png" alt="this"></p>
-</li>
-<li><p>redux  实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  判断对象是否是纯对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !=<span class="string">'object'</span> || obj == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> proto  = obj;</span><br><span class="line">     <span class="keyword">while</span>(<span class="built_in">Object</span>.getPrototypeOf(proto))&#123;</span><br><span class="line">            proto = <span class="built_in">Object</span>.getPrototypeOf(proto)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Object</span>.getProtypeOf(obj) === proto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  createStore  返回三个方法  getState,  dispatch,  subscribe</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, initState</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> reducer != <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"reducer  必须是一个函数"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> currentState = initState;</span><br><span class="line">     <span class="keyword">let</span>  currentReducer  = reducer;</span><br><span class="line">    <span class="comment">//  getState方法  返回的是当前的状态</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> currentState</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  action  必须是一个纯对象， &#123;type: "ADD"&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!isPlainObject(action))&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>  (action必须是一个纯对象)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(action === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"type 不能为undefined"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//  触发reducer  方法,  reducer 会返回一个新的state,赋值给currentState,  getState的时候会返回新的state</span></span><br><span class="line">            currentState = currentReducer(currentState, action);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> currentListener = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  订阅，  当state  变化的时候重新渲染</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">subscribe</span>(<span class="params">listener</span>)</span>&#123;</span><br><span class="line">        currentListener.push(listener);</span><br><span class="line">        <span class="keyword">let</span> isunsubscribe = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//  返回取消订阅的函数， 在组件将要卸载的时候调用，componentWillunmount</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unsubscribe</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!isunsubscribe) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">const</span> index = currentListener.indexOf(listener);</span><br><span class="line">                currentListener.splice(index, <span class="number">1</span>);</span><br><span class="line">                isunsubscribe = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  初始化State   , 如果不初始化，reducer 中接收到的actoin的Type属性就是undefined, reducer源码中，reducer 中是不能为undefined的</span></span><br><span class="line">        dispatch(&#123;<span class="attr">type</span>: actionType.INIT&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/redux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-middleware" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/react-middleware/">redux-middleware</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/react-middleware/" class="archive-article-date">
-  	<time datetime="2020-08-03T02:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>react 的 applyModdleware  是在发起dispatch 之后 到达reducer 之前 需要做的事情；</p>
-<h1 id="react-applyMiddleware使用方法"><a href="#react-applyMiddleware使用方法" class="headerlink" title="react applyMiddleware使用方法"></a>react applyMiddleware使用方法</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;   </span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">store</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">dispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"-----老状态， store.getState());</span></span><br><span class="line"><span class="string">                  dispatch(action);</span></span><br><span class="line"><span class="string">                  console.log("</span>------新状态<span class="string">"， store.getState());</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  function logger2(store)&#123;</span></span><br><span class="line"><span class="string">        return function(dispatch)&#123;</span></span><br><span class="line"><span class="string">            return function(action)&#123;</span></span><br><span class="line"><span class="string">                  console.log("</span>-----老状态<span class="number">2</span>， store.getState());</span><br><span class="line">                  dispatch(action);</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"------新状态2"</span>， store.getState());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> store = applyMiddleware(logger, logger2)(createStore)(reducer)；</span><br></pre></td></tr></table></figure>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function compose(...funcs)&#123;   #  组合</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> a(b(...args)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params">...middlewares</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">createStore</span>)</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">reducer</span>)</span>&#123;</span><br><span class="line">                 let store = createStore(reducer);  # 原始仓库</span><br><span class="line">                 <span class="keyword">let</span> dispatch ;</span><br><span class="line">                 <span class="keyword">let</span> middlewareAPI = &#123;</span><br><span class="line">                     getState: store.getState();  </span><br><span class="line">                     dispacth: <span class="function">(<span class="params">...args</span>) =&gt;</span> dispatch(...args)</span><br><span class="line">                 &#125;;</span><br><span class="line">                 <span class="keyword">const</span> chain = middlewares.map(<span class="function"><span class="params">middleware</span> =&gt;</span> middleware(middlewareAPI));</span><br><span class="line">                 dispatch = compose(...chain)(store.dispatch);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/react-middleware/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-compose" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/01/compose/">组合（compose）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/01/compose/" class="archive-article-date">
-  	<time datetime="2020-08-01T07:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"1"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"2"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add3</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"3"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...funcs</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a,b</span>) =&gt;</span><span class="function">(<span class="params">...args</span>) =&gt;</span>a(b(...args)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = compose(add1,add2,add3)(<span class="string">"zhufeng"</span>)</span><br></pre></td></tr></table></figure>
-<p>示意图：<br><img src="/2020/08/01/compose/compose.png" alt="this"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/01/compose/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-execution-context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/04/execution-context/">执行上下文</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/04/execution-context/" class="archive-article-date">
-  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>含义</li>
-</ol>
-<p>js  执行前，会创建对应的执行上下文</p>
-<ol start="2">
-<li>全局执行上下文<br>全局执行上下文只有一个，在客户端中一般由浏览器创建，也就是window对象，能通过this直接找到它。全局window对象预定义了大量的方法和属性，在全局环境的任何一个地方都能直接访问这些属性和方法。</li>
-</ol>
-<p><img src="/2020/05/04/execution-context/this.png" alt="this"></p>
-<p>window对象是var生命的全局变量的载体，也就是说通过var创建的全局对象，都可以通过window直接访问</p>
-<p><img src="/2020/05/04/execution-context/var.png" alt="this"></p>
-<ol start="3">
-<li><p>函数执行上下文<br>函数执行上文可存在无数个，每当一个函数被调用时都会创建一个函数上下文，同一个函数被调用多次，都会创建新的上下文</p>
-</li>
-<li><p>多个执行上下文</p>
-</li>
-<li><p>1 在js  执行过程中会产生多个执行上下文， js会有栈来管理这些执行上下文</p>
-</li>
-<li><p>2 执行上下文也叫调用栈，执行栈用于储存代码执行期间创建的所有上下文，具有栈的特性（先进后出，后进先出）的特性</p>
-</li>
-<li><p>3 栈底永远是全局上下文，栈顶为当前正在执行的上下文</p>
-</li>
-<li><p>4当开启一个函数执行上下文时会产生一个新的执行上下文并放入调用栈，执行完毕后会自动出栈</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/04/execution-context/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 

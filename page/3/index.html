@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="象牙山的飒">
@@ -152,559 +152,43 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-combineReducers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/combineReducers/">redux-combineReducers</a>
+      <a class="article-title" href="/2020/04/19/Promise/">Promise</a>
     </h1>
   
 
         
-        <a href="/2020/08/05/combineReducers/" class="archive-article-date">
-  	<time datetime="2020-08-05T01:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
+        <a href="/2020/04/19/Promise/" class="archive-article-date">
+  	<time datetime="2020-04-19T09:55:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在项目结构中， 实际只能有一个Store,  但是可以有多个reducer,combineReducers可以合并多个reducer然后返回一个reducer</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reducers = combineReducers(&#123;reducer1, reducer2&#125;);</span><br><span class="line"><span class="keyword">let</span> store = createStore(reducers)</span><br></pre></td></tr></table></figure>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// reducers  &#123;reducer1, reducer2&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">combineReducers</span>(<span class="params">reducers</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//  获取 对象的key</span></span><br><span class="line">        <span class="keyword">let</span> reducerKeys = <span class="built_in">Object</span>.keys(reducers);</span><br><span class="line">        <span class="comment">//  返回一个reducer 函数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">state = &#123;&#125;, action</span>)</span>&#123;</span><br><span class="line">               <span class="keyword">let</span> nextState = &#123;&#125;;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;  i &lt; reducerKeys.length;i++)&#123;</span><br><span class="line">                      <span class="keyword">let</span> key = reducerKeys[i];</span><br><span class="line">                      <span class="keyword">const</span> reducer = reducers[key];  </span><br><span class="line">                      <span class="comment">//  获取每个reducer 的老状态</span></span><br><span class="line">                      <span class="keyword">const</span> previousStateForKey = state[key];</span><br><span class="line">                      <span class="comment">// 调用需要合并的reducers, 然后获取每个reduce的新状态</span></span><br><span class="line">                      <span class="keyword">const</span> nextStateForKey = reducers(previousStateForKey, action);</span><br><span class="line"></span><br><span class="line">                      <span class="comment">//  下一个状态</span></span><br><span class="line">                        nextState[key] = nextStateForKey;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> nextState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/05/combineReducers/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-bindActionCreators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/04/react-bindActionCreators/">redux-bindActionCreators</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/04/react-bindActionCreators/" class="archive-article-date">
-  	<time datetime="2020-08-04T13:23:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
-<li>bindActionCreators  是用来优化代码的，接收两个参数，action和dispatch。</li>
-<li>用来抽离actionType 和 action的逻辑<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindActionCreators(actions, store.dispatch)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreator</span> (<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> funtion()&#123;</span><br><span class="line">        <span class="keyword">return</span> dispatch(actionCreators.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreators</span>(<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//  actionCreators 可能是整个actions 对象，也可能是actions 对象的某个函数</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> actionCreators === <span class="string">'function'</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> bindActionCreator(actionCreators, dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> boundActionCreators = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> actionCreators)&#123;</span><br><span class="line">            boundActionCreators[key] = bindActionCreators(actionCreators[key], dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> boundActionCreators</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/04/react-bindActionCreators/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/redux/">实现redux</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/redux/" class="archive-article-date">
-  	<time datetime="2020-08-03T12:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>react  工作流<br><img src="/2020/08/03/redux/redux.png" alt="this"></p>
-</li>
-<li><p>redux  实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  判断对象是否是纯对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !=<span class="string">'object'</span> || obj == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> proto  = obj;</span><br><span class="line">     <span class="keyword">while</span>(<span class="built_in">Object</span>.getPrototypeOf(proto))&#123;</span><br><span class="line">            proto = <span class="built_in">Object</span>.getPrototypeOf(proto)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Object</span>.getProtypeOf(obj) === proto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  createStore  返回三个方法  getState,  dispatch,  subscribe</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, initState</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> reducer != <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"reducer  必须是一个函数"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> currentState = initState;</span><br><span class="line">     <span class="keyword">let</span>  currentReducer  = reducer;</span><br><span class="line">    <span class="comment">//  getState方法  返回的是当前的状态</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> currentState</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  action  必须是一个纯对象， &#123;type: "ADD"&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!isPlainObject(action))&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>  (action必须是一个纯对象)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(action === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"type 不能为undefined"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//  触发reducer  方法,  reducer 会返回一个新的state,赋值给currentState,  getState的时候会返回新的state</span></span><br><span class="line">            currentState = currentReducer(currentState, action);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> currentListener = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  订阅，  当state  变化的时候重新渲染</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">subscribe</span>(<span class="params">listener</span>)</span>&#123;</span><br><span class="line">        currentListener.push(listener);</span><br><span class="line">        <span class="keyword">let</span> isunsubscribe = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//  返回取消订阅的函数， 在组件将要卸载的时候调用，componentWillunmount</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unsubscribe</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!isunsubscribe) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">const</span> index = currentListener.indexOf(listener);</span><br><span class="line">                currentListener.splice(index, <span class="number">1</span>);</span><br><span class="line">                isunsubscribe = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  初始化State   , 如果不初始化，reducer 中接收到的actoin的Type属性就是undefined, reducer源码中，reducer 中是不能为undefined的</span></span><br><span class="line">        dispatch(&#123;<span class="attr">type</span>: actionType.INIT&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/redux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-middleware" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/react-middleware/">redux-middleware</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/react-middleware/" class="archive-article-date">
-  	<time datetime="2020-08-03T02:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>react 的 applyModdleware  是在发起dispatch 之后 到达reducer 之前 需要做的事情；</p>
-<h1 id="react-applyMiddleware使用方法"><a href="#react-applyMiddleware使用方法" class="headerlink" title="react applyMiddleware使用方法"></a>react applyMiddleware使用方法</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;   </span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">store</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">dispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"-----老状态， store.getState());</span></span><br><span class="line"><span class="string">                  dispatch(action);</span></span><br><span class="line"><span class="string">                  console.log("</span>------新状态<span class="string">"， store.getState());</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  function logger2(store)&#123;</span></span><br><span class="line"><span class="string">        return function(dispatch)&#123;</span></span><br><span class="line"><span class="string">            return function(action)&#123;</span></span><br><span class="line"><span class="string">                  console.log("</span>-----老状态<span class="number">2</span>， store.getState());</span><br><span class="line">                  dispatch(action);</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"------新状态2"</span>， store.getState());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> store = applyMiddleware(logger, logger2)(createStore)(reducer)；</span><br></pre></td></tr></table></figure>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function compose(...funcs)&#123;   #  组合</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> a(b(...args)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params">...middlewares</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">createStore</span>)</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">reducer</span>)</span>&#123;</span><br><span class="line">                 let store = createStore(reducer);  # 原始仓库</span><br><span class="line">                 <span class="keyword">let</span> dispatch ;</span><br><span class="line">                 <span class="keyword">let</span> middlewareAPI = &#123;</span><br><span class="line">                     getState: store.getState();  </span><br><span class="line">                     dispacth: <span class="function">(<span class="params">...args</span>) =&gt;</span> dispatch(...args)</span><br><span class="line">                 &#125;;</span><br><span class="line">                 <span class="keyword">const</span> chain = middlewares.map(<span class="function"><span class="params">middleware</span> =&gt;</span> middleware(middlewareAPI));</span><br><span class="line">                 dispatch = compose(...chain)(store.dispatch);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/react-middleware/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-compose" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/01/compose/">组合（compose）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/01/compose/" class="archive-article-date">
-  	<time datetime="2020-08-01T07:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"1"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"2"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add3</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"3"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...funcs</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a,b</span>) =&gt;</span><span class="function">(<span class="params">...args</span>) =&gt;</span>a(b(...args)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = compose(add1,add2,add3)(<span class="string">"zhufeng"</span>)</span><br></pre></td></tr></table></figure>
-<p>示意图：<br><img src="/2020/08/01/compose/compose.png" alt="this"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/01/compose/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-execution-context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/04/execution-context/">执行上下文</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/04/execution-context/" class="archive-article-date">
-  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>含义</li>
-</ol>
-<p>js  执行前，会创建对应的执行上下文</p>
-<ol start="2">
-<li>全局执行上下文<br>全局执行上下文只有一个，在客户端中一般由浏览器创建，也就是window对象，能通过this直接找到它。全局window对象预定义了大量的方法和属性，在全局环境的任何一个地方都能直接访问这些属性和方法。</li>
-</ol>
-<p><img src="/2020/05/04/execution-context/this.png" alt="this"></p>
-<p>window对象是var生命的全局变量的载体，也就是说通过var创建的全局对象，都可以通过window直接访问</p>
-<p><img src="/2020/05/04/execution-context/var.png" alt="this"></p>
-<ol start="3">
-<li><p>函数执行上下文<br>函数执行上文可存在无数个，每当一个函数被调用时都会创建一个函数上下文，同一个函数被调用多次，都会创建新的上下文</p>
-</li>
-<li><p>多个执行上下文</p>
-</li>
-<li><p>1 在js  执行过程中会产生多个执行上下文， js会有栈来管理这些执行上下文</p>
-</li>
-<li><p>2 执行上下文也叫调用栈，执行栈用于储存代码执行期间创建的所有上下文，具有栈的特性（先进后出，后进先出）的特性</p>
-</li>
-<li><p>3 栈底永远是全局上下文，栈顶为当前正在执行的上下文</p>
-</li>
-<li><p>4当开启一个函数执行上下文时会产生一个新的执行上下文并放入调用栈，执行完毕后会自动出栈</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/04/execution-context/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-stackAndqueue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/03/stackAndqueue/">栈和队列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/03/stackAndqueue/" class="archive-article-date">
-  	<time datetime="2020-05-03T01:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、 栈</p>
-<p>1.1 数据结构中的栈</p>
-<p>栈是一种数据的存放方式，特点是先进后出，后进先出</p>
-<p>元素入栈演示</p>
-<p><img src="/2020/05/03/stackAndqueue/into.png" alt="into"></p>
-<p>元素出栈演示</p>
-<p><img src="/2020/05/03/stackAndqueue/out.png" alt="out"></p>
-<p>js 元素入栈和出栈演示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Stack&#123;</span><br><span class="line">     constructor()&#123;</span><br><span class="line">         this.item &#x3D; [];</span><br><span class="line">     &#125;</span><br><span class="line">      push(data)&#123;</span><br><span class="line">        this.item.push(data);  &#x2F;&#x2F;  元素入栈 [1,2,3]</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      pop()&#123;</span><br><span class="line">            return  this.item.pop();   &#x2F;&#x2F; 后进先出  元素出栈 3</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let stack &#x3D; new Stack();</span><br><span class="line">stack.push(1);</span><br><span class="line">stack.push(2);</span><br><span class="line">stack.push(3);</span><br><span class="line"></span><br><span class="line">console.log(stack.pop())</span><br></pre></td></tr></table></figure>
-
-<p>1.2  内存区域</p>
-<p>程序运行的时候，需要内存空间存放数据，一般来说，系统会划分两个不同的内存空间：stack(栈)、heap(堆)。</p>
-<p>一般情况下，基础数据类型：string、number、boolean、null、undefined、Symbol,有固定大小的值，往往都保存在栈里面。<br>应用数据类型：Array, Function, Object，都是保存在堆里面的，js  不允许直接访问堆内存中的位置，因此不能直接操作对象的堆内存空间，在操作对象时，实际是操作对象的应用</p>
-<p>案例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &quot;this  is string&quot;;  &#x2F;&#x2F;  栈</span><br><span class="line">var b &#x3D; 0;  &#x2F;&#x2F;  栈</span><br><span class="line">var c &#x3D; null;  &#x2F;&#x2F;  栈</span><br><span class="line">var e &#x3D; &#123;name: &quot;张三&quot;&#125;; &#x2F;&#x2F; 变量e存在栈中，&#123;name: &quot;张三&quot;&#125;作为对象存在堆里</span><br><span class="line">var f &#x3D; [1,2,3]; &#x2F;&#x2F;  变量c存在栈中， [1,2,3]最为对象存在堆里</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/05/03/stackAndqueue/ram.png" alt="ram"></p>
-<p>经典案例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 10;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">b &#x3D; 20;  &#x2F;&#x2F;   给b变量重新分配值</span><br><span class="line">console.log(a)  &#x2F;&#x2F;  10,  两者互不影响，两个有自己独立的的栈内存空间，</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var  obj &#x3D; &#123;name: &quot;张三&quot;&#125;;</span><br><span class="line">var obj2 &#x3D; obj;  &#x2F;&#x2F;  分配新的值，这个值是一个对象的引用地址</span><br><span class="line">obj2.name&#x3D;  &quot;李四&quot;;</span><br><span class="line">console.log(obj)   &#x2F;&#x2F; &#123;name: &quot;李四&quot;&#125;  两个对象的引用地址一样</span><br></pre></td></tr></table></figure>
-<p>1.3 内存生命周期</p>
-<p>分配内存 (申明变量、函数、对象)——&gt;  使用内存(读写内存，也就是使用变量、函数) ——&gt;  释放内存(使用完毕，由垃圾回收机制自动回收不在使用的内存)</p>
-<p>1.4 内存回收<br>JS 有自动垃圾回收机制，不再需要使用的变量也就是生命周期结束的变量是局部变量，局部变量只在函数的执行过程中存在,当函数运行结束时，如果没有其它引用，该变量就会被标记回收。</p>
-<p>全局变量的生命周期会一直到浏览器关闭才会结束，也就是说全局变量不会被自动垃圾回收</p>
-<p>1.5 JS  垃圾回收方式</p>
-<p>标记清除</p>
-<p>垃圾收集器在运行的时候会给所有变量都加上标记，然后去掉环境中的变量或者是环境中引用的变量的标记，在此后载被加上标记的变量将会被当做即将要被删除的变量，最后垃圾收集器完成内存清除工作，销毁带标记的值并且回收所占用的内存空间</p>
-<p>引用计数</p>
-<p>跟踪每个记录每个值被引用的次数，当声明一个变量并将一个引用类型赋值给这个变量时该值的引用次数加1（引用类型是放在堆里面的）,<br>当这个变量指向其它一个时告该值的引用次数减1，当该值的引用次数为0时，就会被回收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    var a &#x3D; new Object();  &#x2F;&#x2F;  创建新对象，此时对象的引用为0</span><br><span class="line">    &#x2F;&#x2F; 给新对象的引用计数加1</span><br><span class="line">    var b &#x3D; new Object(); &#x2F;&#x2F;  再次创建新对象， 此时对象的引用为0</span><br><span class="line">    &#x2F;&#x2F;给第二个新对象的引用计数加1</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 准备离开</span><br><span class="line">    &#x2F;&#x2F;  给第二个新对象的引用计数减1，计数到0，对象释放</span><br><span class="line">    &#x2F;&#x2F;  给第一个新对象的引用计数减1，计数到0，对象释放</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>引用计数所引起的循环引用问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  每次调用函数，a、b的应用计数都是2，这不分内存永远不会被释放，即内存泄露</span><br><span class="line">function test()&#123;</span><br><span class="line">    var a&#x3D;  &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; a引用  加1</span><br><span class="line">    var b &#x3D; &#123;&#125;;</span><br><span class="line">    &#x2F;&#x2F; b 引用 加1</span><br><span class="line">    a.prop &#x3D; b;</span><br><span class="line">    &#x2F;&#x2F; a引用  加1</span><br><span class="line">    b.prop &#x3D; a;</span><br><span class="line">    &#x2F;&#x2F; b 引用 加1</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;  解决办法</span><br><span class="line"></span><br><span class="line">    a.prop &#x3D; null;</span><br><span class="line">    b.prop &#x3D; null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>队列</li>
-</ol>
-<p>队列是一种受限制的线性表。</p>
-<p>只能在列表的前端进行删除， 在表的后端进行插入操作。</p>
-<p>插入操作的端为队尾，删除操作的端为队头。</p>
-<p>因为队列只允许在一端插入，在另一端删除，所以最早进入队列的元素最早从队列中删除，所以队列又称为先进先出的线性表。</p>
-<p>入队演示</p>
-<p><img src="/2020/05/03/stackAndqueue/into-team.png" alt="into-team"></p>
-<p>代码演示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Queue&#123;</span><br><span class="line">     constructor()&#123;</span><br><span class="line">         this.item &#x3D; []  Execution Context</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     push(value)&#123;</span><br><span class="line">         this.item.push(value);  &#x2F;&#x2F;  添加元素到栈顶，也就是栈的末尾</span><br><span class="line">     &#125;</span><br><span class="line">     dequeue()&#123;</span><br><span class="line">         return this.item.shift();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let queue &#x3D; new Queue();</span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);</span><br><span class="line">queue.push(3);</span><br><span class="line"></span><br><span class="line">console.log(queue.dequeue())</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/03/stackAndqueue/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-flat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/02/flat/">数组扁平化</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/02/flat/" class="archive-article-date">
-  	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数组扁平化就是将多层嵌套的数组转成一层</p>
+        <p>一、Promise.all</p>
 <ol>
-<li>多种实现</li>
+<li>接受promise 对象的数组</li>
+<li>当所有promise 实例的状态都为fulfilled时，这时会把所有实例成功之后的返回值组成一个新的数组返回给新实例的成功回调函数</li>
+<li>只要遇到有promise实例的状态为 rejectd的时候，这是会把第一次的失败的返回值返回给新实例失败的回调函数</li>
 </ol>
-<p>toString()</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]]];</span><br><span class="line">arr.toString().split(<span class="string">","</span>).map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Number</span>(item));</span><br></pre></td></tr></table></figure>
-<p>stringify()</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>]]];</span><br><span class="line"><span class="built_in">JSON</span>.stringify(arr).replace(<span class="regexp">/\[|\]/g</span>, <span class="string">''</span>).split(<span class="string">','</span>).map(<span class="function"><span class="params">item</span> =&gt;</span><span class="built_in">Number</span>(item))</span><br></pre></td></tr></table></figure>
-
-<p>while()</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  some  判断数组中的元素是否满足指定的条件</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">while</span>(arr.some(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Array</span>.isArray(item)))&#123;</span><br><span class="line">       arr = [].concat(...arr)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></table></figure>
-
-<p>  prototype</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  原理： 在数组原型对象添加方法，在方法内部实递归方法</span></span><br><span class="line"><span class="keyword">let</span> arr = [[<span class="number">1</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,[<span class="number">7</span>,<span class="number">8</span>,[<span class="number">9</span>,<span class="number">10</span>]]]]</span><br><span class="line"></span><br><span class="line"> <span class="built_in">Array</span>.prototype.flat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">let</span> _this = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">_flat</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> item = arr[i];</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(item))&#123;</span><br><span class="line">                _flat(item)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                result.push(item)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    _flat(_this);</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">console</span>.log(arr.flat()) <span class="comment">//  [1,2,3,4,5,6,7,8,9,10]</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pro = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success1"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> pro2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success2"</span>)</span><br><span class="line">            <span class="comment">// reject("error2")</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> pro3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success3"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> all = <span class="built_in">Promise</span>.all([pro, pro2, pro3]).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//当pro, pro2, pro3 都为resove时，["success1","success2","success3"]</span></span><br><span class="line">    <span class="comment">// 只要遇到reject 就返回reject到失败的回调函数中去</span></span><br><span class="line">        <span class="built_in">console</span>.log(res)   </span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>二、Promise.race</p>
+<ol>
+<li>接受promise  对象数组</li>
+<li>谁先改变状态就返回谁</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pro = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success1"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> pro2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success2"</span>)</span><br><span class="line">            <span class="comment">// reject("error2")</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> pro3 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, rejected</span>) =&gt;</span>&#123;</span><br><span class="line">            resolve(<span class="string">"success3"</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> all = <span class="built_in">Promise</span>.race([pro, pro2, pro3]).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)     <span class="comment">//  success1</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>三、  手写Promise</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  1.构造函数接受一个回调函数，也就是是Promise 的执行器</span></span><br><span class="line"><span class="comment">//  2.  promise 的三种状态，Pedding(进行中)、fulfilled(成功)、rejectd(失败)， resolve和reject时都要改变状态</span></span><br><span class="line"><span class="comment">//  3. 添加then 构造方法， 利用回调函数返回成功或失败的值</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myPromise</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">this</span>. status = <span class="string">"Pedding"</span>;</span><br><span class="line">        <span class="keyword">this</span>.successValue = <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">this</span>.errorValue = <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> resolve = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.status = <span class="string">"fulfilled"</span>;</span><br><span class="line">            <span class="keyword">this</span>.successValue = value;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> reject = <span class="function">(<span class="params">errValue</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.status = <span class="string">"rejected"</span>;</span><br><span class="line">            <span class="keyword">this</span>.errValue = errValue;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        executor(resolve, reject)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    then(successFn, errorFn) &#123;</span><br><span class="line">        <span class="keyword">let</span> &#123; status, successValue, errorValue &#125; = <span class="keyword">this</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(status)</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="string">"fulfilled"</span>) &#123;</span><br><span class="line">            successFn(successValue)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="string">"rejected"</span>) &#123;</span><br><span class="line">            errorFn(errorValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> _promise = <span class="keyword">new</span> myPromise(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">"success"</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">_promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res,<span class="string">"----success"</span>)</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err,<span class="string">"-----error"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果promise  中有异步操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myPromise</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">this</span>. status = <span class="string">"pedding"</span>;</span><br><span class="line">        <span class="keyword">this</span>.successValue = <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">this</span>.errorValue = <span class="literal">undefined</span>;</span><br><span class="line">        <span class="keyword">this</span>.successFn = [];</span><br><span class="line">        <span class="keyword">this</span>.errorFn = [];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> resolve = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.status = <span class="string">"fulfilled"</span>;</span><br><span class="line">            <span class="keyword">this</span>.successValue = value;</span><br><span class="line">                <span class="comment">//  执行 then  构造方法的回调</span></span><br><span class="line">            <span class="keyword">this</span>.successFn.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> fn());</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> reject = <span class="function">(<span class="params">errValue</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.status = <span class="string">"rejected"</span>;</span><br><span class="line">                <span class="keyword">this</span>.errValue = errValue;</span><br><span class="line">                <span class="keyword">this</span>.errorFn.forEach(<span class="function">(<span class="params">fn</span>) =&gt;</span> fn())</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        executor(resolve, reject)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    then(successFn, errorFn) &#123;</span><br><span class="line">        <span class="keyword">let</span> &#123; status, successValue, errorValue &#125; = <span class="keyword">this</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(status)</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="string">"fulfilled"</span>) &#123;</span><br><span class="line">            successFn(successValue)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (status === <span class="string">"rejected"</span>) &#123;</span><br><span class="line">            errorFn(errorValue)</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">if</span> (status === <span class="string">"pedding"</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.successFn.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                successFn(<span class="keyword">this</span>.successValue)</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">this</span>.errorFn.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                errorFn(<span class="keyword">this</span>.errorValue)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> _promise = <span class="keyword">new</span> myPromise(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">         setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="string">"success"</span>)</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">_promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res,<span class="string">"----success"</span>)</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err,<span class="string">"-----error"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -716,7 +200,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/02/flat/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/19/Promise/">展开全文 >></a>
         </p>
       
 
@@ -746,36 +230,49 @@
 
 
   
-    <article id="post-call-apply-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linuxCode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/25/call-apply-1/">call_apply</a>
+      <a class="article-title" href="/2020/04/19/linuxCode/">Linux 命令备忘录</a>
     </h1>
   
 
         
-        <a href="/2020/04/25/call-apply-1/" class="archive-article-date">
-  	<time datetime="2020-04-25T08:30:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
+        <a href="/2020/04/19/linuxCode/" class="archive-article-date">
+  	<time datetime="2020-04-19T05:18:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一、Call<br> call   接受参数列表，为了改变某个函数运行时的上下文，也就是说为了改变函数体内部this的指向。</p>
-<p> 基本用法</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>, <span class="string">"------call1"</span>)  <span class="comment">//  call2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>, <span class="string">"------call2"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">call1.call(call2);</span><br></pre></td></tr></table></figure>
+        <ul>
+<li>文件系统</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">touch filname # 新建文件</span><br><span class="line">mkdir folderName # 新建文件夹</span><br><span class="line">cd .. #  返回上级目录</span><br><span class="line">cd  ~&#x2F; # 返回根目录</span><br><span class="line">sudo su  # 进入管理员</span><br><span class="line">cd -  #返回上次进入的目录</span><br><span class="line">ls -l  # 列表方式显示文件的详细信息</span><br><span class="line">ls -h  # 配合-l 以人性化的方式显示文件大小</span><br><span class="line">ls -a # 显示指定目录下所有的子目录与文件， 包括隐藏文件</span><br><span class="line">cat + 文件名称  # 打开指定文件并把文件内容显示在终端</span><br><span class="line">tree  # 树状显示路径中的所有文件</span><br><span class="line">find &#x2F; -name 文件名   # 查找文件名</span><br><span class="line">locate 文件名  # 查找文件名</span><br><span class="line">whereis 文件名 #  模糊查找文件</span><br></pre></td></tr></table></figure>
 
-<p> 原理</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 没有传参的情况</span></span><br><span class="line">        <span class="keyword">if</span>(context === <span class="literal">undefined</span> || context === <span class="literal">null</span>)&#123;</span><br><span class="line">                context = <span class="built_in">window</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">// context 为string、number、boolean值得时候，使用Object 包装成对象</span></span><br><span class="line">                context = <span class="built_in">Object</span>(context)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  两个必要的元素，call1和call的执行环境</span></span><br><span class="line">        context.fn = <span class="keyword">this</span>;</span><br><span class="line">        context.fn();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  函数携带参数的情况</span></span><br><span class="line">        <span class="keyword">let</span> arr = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++)&#123;</span><br><span class="line">            arr.push(<span class="built_in">arguments</span>[i])</span><br><span class="line">        &#125;</span><br><span class="line">        context.fn(...arr)</span><br><span class="line">        <span class="keyword">delete</span> context.fn</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>,<span class="string">"------call1"</span>, <span class="built_in">arguments</span>)  <span class="comment">//  this:  call2,  arguments:  1,2,3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">call2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>,<span class="string">"----arguments"</span>)</span><br><span class="line">        <span class="comment">// console.log(this,"-----call2")</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">call1.myCall(call2,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>二、 Apply</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  基本使用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myApply</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>,<span class="string">"-------1"</span>,<span class="built_in">arguments</span>)  <span class="comment">//myApply2  [1,2,3,4]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myApply2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myApply.apply(myApply2,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">//  原理实现</span></span><br><span class="line"><span class="comment">// 改变this 指向</span></span><br><span class="line"><span class="comment">//  接受参数数组</span></span><br><span class="line"><span class="comment">//执行函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Function</span>.prototype.startApply = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 没有参数</span></span><br><span class="line">    <span class="comment">// 参数为string, number,boolean时，包装对象    </span></span><br><span class="line">    <span class="keyword">if</span>( context === <span class="literal">null</span> || context === <span class="literal">undefined</span>)&#123;</span><br><span class="line">            context= <span class="built_in">window</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        context = <span class="built_in">Object</span>(context)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  两个必须的执行环境，  myApply  myApply2，  因为需要把myApply的this指向myApply2</span></span><br><span class="line">     context.fn = <span class="keyword">this</span>;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">arguments</span>,<span class="string">"-------"</span>)</span><br><span class="line">     <span class="keyword">let</span> newArray = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    context.fn(...newArray[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myApply</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>,<span class="string">"-------1"</span>,<span class="built_in">arguments</span>)  <span class="comment">//myApply2   [1,2,3,4]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myApply2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myApply.startApply(myApply2,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>系统命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now   #立即重启</span><br><span class="line">shutdown -h now #  立即关机</span><br><span class="line">shutdown -h 20:25  # 指定时间关机</span><br><span class="line">shutdown -h + 10 #  系统再过十分钟后自动关机</span><br><span class="line">sudo df -m  检测磁盘空间</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>软件安装</li>
+</ul>
+<p>方式一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.1 sudo apt-get update &#x2F;&#x2F;更新软件源</span><br><span class="line">3.2 sudo apt install  + 软件名称</span><br></pre></td></tr></table></figure>
 
+<p>方式二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget &quot;http:&#x2F;&#x2F;......&quot;  # 下载源码包</span><br><span class="line">tar -zxvf +  源码包名称</span><br><span class="line">make clean  # 清除编译垃圾</span><br><span class="line">make  # 执行编译</span><br><span class="line">make install  #安装</span><br><span class="line">make uninstall #  卸载</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>阿里云服务器安装Nginx</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;安装命令</span><br><span class="line"> yum install nginx -y</span><br><span class="line">&#x2F;&#x2F; 启动Nginx</span><br><span class="line">systemctl start nginx,service</span><br><span class="line">&#x2F;&#x2F; 查看当前Nginx状态</span><br><span class="line">systemctl status nginx.service</span><br><span class="line">&#x2F;&#x2F;重启</span><br><span class="line">service nginx restart</span><br><span class="line">&#x2F;&#x2F; 查看进程</span><br><span class="line">ps  -ef | grep nginx</span><br><span class="line">&#x2F;**</span><br><span class="line">* nginx  防火墙操作</span><br><span class="line">**&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 开启</span><br><span class="line">systemctl start firewalld</span><br><span class="line">&#x2F;&#x2F; 关闭</span><br><span class="line">systemctl stop firewalld</span><br><span class="line">&#x2F;&#x2F; 查看端口开放情况</span><br><span class="line">firewall-cmd --list-ports</span><br><span class="line">&#x2F;&#x2F; 开放端口</span><br><span class="line">firewall-cmd --zone&#x3D;public --add-port&#x3D;80&#x2F;tcp --permanenet  &#x2F;&#x2F;  永久生效</span><br><span class="line">&#x2F;&#x2F; 关闭端口</span><br><span class="line">firewall-cmd --remove-port&#x3D;80&#x2F;tcp --permanent</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 重启</span><br><span class="line">systemctl reload firewall</span><br></pre></td></tr></table></figure>
       
 
       
@@ -787,7 +284,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/25/call-apply-1/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/19/linuxCode/">展开全文 >></a>
         </p>
       
 
@@ -817,20 +314,20 @@
 
 
   
-    <article id="post-ubuntu-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/22/ubuntu-git/">ubuntu 将本地文件上传到github的基本操作</a>
+      <a class="article-title" href="/2020/04/19/hello-world/">hexo  搭建博客</a>
     </h1>
   
 
         
-        <a href="/2020/04/22/ubuntu-git/" class="archive-article-date">
-  	<time datetime="2020-04-22T14:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+        <a href="/2020/04/19/hello-world/" class="archive-article-date">
+  	<time datetime="2020-04-19T03:28:33.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
 </a>
         
       </header>
@@ -838,19 +335,134 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li>本地git仓库关联远程github仓库</li>
+<li>在 github 上新建仓库，仓库名和用户名必须保持一致</li>
+<li>配置  SSH  Key</li>
 </ol>
-<p>1.1 在 github 上建立和本地仓库一样名字的仓库</p>
-<p>1.2  关联远程github 仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin + 远程github 仓库地址</span><br></pre></td></tr></table></figure>
+<p>2.1 检查本地已存在的ssh  秘钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd  ~&#x2F;. sh</span><br></pre></td></tr></table></figure>
+<p>2.2 如果提示 No such file or directory 说明你是一次使用git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;邮件地址&quot;</span><br></pre></td></tr></table></figure>
+<p>完成之后，在用户目录下找到  .ssh\id_rsa.pub  复制里面的内容<br>2.3  进入github，进入个人设置　—&gt;　SSH and GPG keys -&gt; New　SSH Key;<br><img src="/2020/04/19/hello-world/settings.png" alt="setting"><br><img src="/2020/04/19/hello-world/sshkey.png" alt="sshkey"></p>
+<p>2.3.1<br>添加图片前的工作：<br>npm install <a href="https://github.com/CodeFalling/hexo-asset-image" target="_blank" rel="noopener">https://github.com/CodeFalling/hexo-asset-image</a> –save；<br>在根目录_config.yml 修改： post_asset_folder: true<br>把图片资源目录名称设置为和md 文件一样的名称，不然无法加载</p>
+<p>2.4 测试ssh  是否配置成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com  #  邮箱不用更改</span><br></pre></td></tr></table></figure>
+<p>成功之后<br><img src="/2020/04/19/hello-world/sshSuc.png" alt="sshSuc"></p>
+<p>接着需要配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git  config --global user.name &quot;github 用户名&quot;</span><br><span class="line">git config --global user.email &quot;github  注册邮箱&quot;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>hexo 搭建</li>
+</ol>
+<p>3.1  安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+<p>3.2  初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>3.3 生成和启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g  # 生成</span><br><span class="line">hexo s #  启动本地服务</span><br></pre></td></tr></table></figure>
+<p>3.4  上传到  github</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>3.4.1  配置根目录 _config.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository:  仓库地址</span><br><span class="line">    branch:  master</span><br></pre></td></tr></table></figure>
+<p>3.4.2 安装插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>3.4.3  上传</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>hexo  常用命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hexo  new &quot;文章名称&quot; # 新建文章</span><br><span class="line">hexo new page &quot;页面名称&quot;  #  新建页面</span><br><span class="line">hexo generate #  生成静态页面到public目录</span><br><span class="line">hexo server # 开启预览访问端口</span><br><span class="line">hexo d #  部署到 github</span><br><span class="line">hexo help # 查看帮助</span><br><span class="line">hexo version # 查看hexo 版本 </span><br><span class="line"></span><br><span class="line">hexo s -g  # 生成并预览</span><br><span class="line">hexo d -g # 生成并上传</span><br></pre></td></tr></table></figure>
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/19/hello-world/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavascriptOOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/19/JavascriptOOP/">JavascriptOOP</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/19/JavascriptOOP/" class="archive-article-date">
+  	<time datetime="2020-04-19T00:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><ol>
+<li>表现形式</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj  = &#123;<span class="attr">xxx</span>:xxx&#125;</span><br></pre></td></tr></table></figure>
+<p>在单例设计模型中， OBJ不仅仅是对象名， 它被称为“命名空间”，把描述事物的属性存放在命名空间中，多个命名空间是独立分开的，互不冲突</p>
 <ol start="2">
-<li>查看当前项目更改状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure></li>
-<li>把更改的文件添加到暂存区<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure></li>
-<li>提交更改<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;提交描述&quot;</span><br></pre></td></tr></table></figure></li>
-<li>推送到远程github仓库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></li>
-<li>切换分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名称</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">7. 查看当前分支</span><br></pre></td></tr></table></figure>
-git branch<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">8. 查看分支状态</span><br></pre></td></tr></table></figure>
-git status<pre><code></code></pre></li>
+<li>作用<br>把描述同一件事物的属性和特征进行 分组和归类（储存在同一个堆内存空间中）， 因此避免了全局变量之间的冲突和污染</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  obj = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;; <span class="keyword">var</span> obj2  = &#123;<span class="attr">name</span>: <span class="string">"xxx"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>单例设计莫斯命名的由来</li>
+</ol>
+<p>每一个命名空间都是JS中Object这个内置基类的实例， 而实例之间是相互独立互不干扰的，“单独的实例”</p>
+<ol start="4">
+<li>高级单例模式</li>
+</ol>
+<p>4.1 在给命名空间赋值的时候，不是直接赋值一个对象，而是先执行匿名函数。形成一个私有作用域AA(不销毁的栈内存)，在AA中创建一个堆内存，把堆内存地址赋值给命名空间</p>
+<p>4.2  这种模式的好处，我们完全可以在私有作用域中创造很多内容，那些需要供外面使用的，我们暴露到返回的对象中（模块化实现在一种思想）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  nameSpace = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> n = <span class="number">12</span>;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">              ......</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">         fn: fn</span><br><span class="line">         ......</span><br><span class="line">     &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>实战项目中的模块化</li>
+</ol>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><ol>
+<li>把实现相同功能的代码进行“封装”，以此实现“批量生产”，（后期想要实现这个功能，我们只需要执行函数即可）</li>
+<li>“低耦合高内聚” 减少页面中的冗余代码，提高代码的重复使用率</li>
 </ol>
 
       
@@ -864,7 +476,7 @@ git status<pre><code></code></pre></li>
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/22/ubuntu-git/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/19/JavascriptOOP/">展开全文 >></a>
         </p>
       
 
@@ -896,7 +508,7 @@ git status<pre><code></code></pre></li>
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
     </nav>
   
 
