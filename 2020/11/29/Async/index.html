@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Async | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/page/2/index.html">
+  <meta name="description" content="1. 异步 所谓异步就是一个任务分成两个阶段，先执行第一阶段，  然后执行其他任务，等走好了准备， 在回过头执行第二阶段，  eg: 请求文件   ——&gt;   执行其它任务 ——&gt;  处理文件  同步： 连续的执行，必须等到前面的任务执行完成之后才能执行下面的任务  eg: 请求文件 ——&gt; 等待… ——&gt; 处理文件 2. 高阶函数高阶函数： 将函数作为参数传递，或者是把函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Async">
+<meta property="og:url" content="http://yoursite.com/2020/11/29/Async/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 异步 所谓异步就是一个任务分成两个阶段，先执行第一阶段，  然后执行其他任务，等走好了准备， 在回过头执行第二阶段，  eg: 请求文件   ——&gt;   执行其它任务 ——&gt;  处理文件  同步： 连续的执行，必须等到前面的任务执行完成之后才能执行下面的任务  eg: 请求文件 ——&gt; 等待… ——&gt; 处理文件 2. 高阶函数高阶函数： 将函数作为参数传递，或者是把函">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-29T05:55:16.000Z">
+<meta property="article:modified_time" content="2020-12-08T13:04:37.426Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Async" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Async
+    </h1>
+  
+
+        
+        <a href="/2020/11/29/Async/" class="archive-article-date">
+  	<time datetime="2020-11-29T05:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-异步"><a href="#1-异步" class="headerlink" title="1. 异步"></a>1. 异步</h2><ul>
+<li>所谓异步就是一个任务分成两个阶段，先执行第一阶段，  然后执行其他任务，等走好了准备， 在回过头执行第二阶段，</li>
+</ul>
+<p>eg:</p>
+<p>请求文件   ——&gt;   执行其它任务 ——&gt;  处理文件</p>
+<ul>
+<li>同步： 连续的执行，必须等到前面的任务执行完成之后才能执行下面的任务</li>
+</ul>
+<p>eg:</p>
+<p>请求文件 ——&gt; 等待… ——&gt; 处理文件</p>
+<h2 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2. 高阶函数"></a>2. 高阶函数</h2><p>高阶函数： 将函数作为参数传递，或者是把函数作为返回值输出</p>
+<h3 id="2-1-把函数作为参数传递"><a href="#2-1-把函数作为参数传递" class="headerlink" title="2.1 把函数作为参数传递"></a>2.1 把函数作为参数传递</h3><p>eg:  回调函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let getUserList &#x3D; function(pam,  callback)&#123;</span><br><span class="line">       $.ajax(&#39;http:&#x2F;&#x2F;xxx.com&#x2F;getUserList&#39; + pam, function(data)&#123;</span><br><span class="line">           callback(data)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let userData &#x3D; getUserList(function(data)&#123;</span><br><span class="line">       console.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-把函数作为返回值返回"><a href="#2-2-把函数作为返回值返回" class="headerlink" title="2.2 把函数作为返回值返回"></a>2.2 把函数作为返回值返回</h3><p>eg: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="keyword">let</span> toString = <span class="built_in">Object</span>.prototype.toString;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   *  补充：  这里为什么使用Object.prototype.toString 去判断是否是字符串而不是直接使用  toString ，</span></span><br><span class="line"><span class="comment">   *  </span></span><br><span class="line"><span class="comment">   *   不严谨， 如果是Array  调用toString 不会检测就会去转换不会检测 ，因为在toString 方法是直接挂在 Object 原型上的，但是Array, function 等类型作为Object的实例， 重写了 toString方法，  根据原型链不会找到Object原型上的toString方法， </span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * call:  1.  改变this指针  2.将 toString方法应用到 obj上并执行</span></span><br><span class="line"><span class="comment">    *     </span></span><br><span class="line"><span class="comment">   *  </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="keyword">let</span> isString = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toString.call(obj) == <span class="string">'[object String]'</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">let</span> isFunction = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> toString.call(obj) == <span class="string">'[object Function]'</span></span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">let</span> isType = <span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> toString.call(obj) == <span class="string">`object <span class="subst">$&#123;type&#125;</span>`</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">let</span> judgeType = isType(<span class="string">"Array"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(judgeType(<span class="string">"abcs"</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-异步编程的语法目标，-就是让它更像同步编程"><a href="#3-异步编程的语法目标，-就是让它更像同步编程" class="headerlink" title="3.  异步编程的语法目标，  就是让它更像同步编程"></a>3.  异步编程的语法目标，  就是让它更像同步编程</h2><p>异步编程的常见方式</p>
+<ul>
+<li><p>回调函数实现</p>
+</li>
+<li></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/08/browser-listener/" class="archive-article-date">
-  	<time datetime="2020-08-08T14:48:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/08/browser-listener/">浏览器渲染原理</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/11/29/Async/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/06/redux-thunk/" class="archive-article-date">
-  	<time datetime="2020-08-06T03:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-06</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/29/Event-Loop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js  事件循环 （Event Loop）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/26/html-css/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">html_css</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/06/redux-thunk/">redux-thunk</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/05/combineReducers/" class="archive-article-date">
-  	<time datetime="2020-08-05T01:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/05/combineReducers/">redux-combineReducers</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/04/react-bindActionCreators/" class="archive-article-date">
-  	<time datetime="2020-08-04T13:23:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/04/react-bindActionCreators/">redux-bindActionCreators</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/03/redux/" class="archive-article-date">
-  	<time datetime="2020-08-03T12:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/03/redux/">实现redux</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/03/react-middleware/" class="archive-article-date">
-  	<time datetime="2020-08-03T02:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/03/react-middleware/">redux-middleware</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/01/compose/" class="archive-article-date">
-  	<time datetime="2020-08-01T07:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/01/compose/">组合（compose）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/04/execution-context/" class="archive-article-date">
-  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/04/execution-context/">执行上下文</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/03/stackAndqueue/" class="archive-article-date">
-  	<time datetime="2020-05-03T01:33:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/03/stackAndqueue/">栈和队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/02/flat/" class="archive-article-date">
-  	<time datetime="2020-05-02T02:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/02/flat/">数组扁平化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="extend next" rel="next" href="/archives/2020/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

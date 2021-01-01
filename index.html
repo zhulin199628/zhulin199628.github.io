@@ -152,6 +152,153 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Event-Loop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/29/Event-Loop/">js  事件循环 （Event Loop）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/29/Event-Loop/" class="archive-article-date">
+  	<time datetime="2020-11-29T10:11:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么-js-是单线程"><a href="#为什么-js-是单线程" class="headerlink" title="为什么  js 是单线程"></a>为什么  js 是单线程</h2><p>作为脚本语言， js 的只要作用是与用户进行交互，以及操作DOM,  如果是多线程，  js同事操作一个DOM,  这时浏览器就不知道以哪个线程为准。虽然HTML5 提出了Web Worker标准，允许js 脚本创建多个线程，  但是子线程完全收主线程控制， 并且不能操作DOM</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/29/Event-Loop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Async" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/29/Async/">Async</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/29/Async/" class="archive-article-date">
+  	<time datetime="2020-11-29T05:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-异步"><a href="#1-异步" class="headerlink" title="1. 异步"></a>1. 异步</h2><ul>
+<li>所谓异步就是一个任务分成两个阶段，先执行第一阶段，  然后执行其他任务，等走好了准备， 在回过头执行第二阶段，</li>
+</ul>
+<p>eg:</p>
+<p>请求文件   ——&gt;   执行其它任务 ——&gt;  处理文件</p>
+<ul>
+<li>同步： 连续的执行，必须等到前面的任务执行完成之后才能执行下面的任务</li>
+</ul>
+<p>eg:</p>
+<p>请求文件 ——&gt; 等待… ——&gt; 处理文件</p>
+<h2 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2. 高阶函数"></a>2. 高阶函数</h2><p>高阶函数： 将函数作为参数传递，或者是把函数作为返回值输出</p>
+<h3 id="2-1-把函数作为参数传递"><a href="#2-1-把函数作为参数传递" class="headerlink" title="2.1 把函数作为参数传递"></a>2.1 把函数作为参数传递</h3><p>eg:  回调函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let getUserList &#x3D; function(pam,  callback)&#123;</span><br><span class="line">       $.ajax(&#39;http:&#x2F;&#x2F;xxx.com&#x2F;getUserList&#39; + pam, function(data)&#123;</span><br><span class="line">           callback(data)</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let userData &#x3D; getUserList(function(data)&#123;</span><br><span class="line">       console.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-把函数作为返回值返回"><a href="#2-2-把函数作为返回值返回" class="headerlink" title="2.2 把函数作为返回值返回"></a>2.2 把函数作为返回值返回</h3><p>eg: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="keyword">let</span> toString = <span class="built_in">Object</span>.prototype.toString;</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   *  补充：  这里为什么使用Object.prototype.toString 去判断是否是字符串而不是直接使用  toString ，</span></span><br><span class="line"><span class="comment">   *  </span></span><br><span class="line"><span class="comment">   *   不严谨， 如果是Array  调用toString 不会检测就会去转换不会检测 ，因为在toString 方法是直接挂在 Object 原型上的，但是Array, function 等类型作为Object的实例， 重写了 toString方法，  根据原型链不会找到Object原型上的toString方法， </span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * call:  1.  改变this指针  2.将 toString方法应用到 obj上并执行</span></span><br><span class="line"><span class="comment">    *     </span></span><br><span class="line"><span class="comment">   *  </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="keyword">let</span> isString = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toString.call(obj) == <span class="string">'[object String]'</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">let</span> isFunction = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> toString.call(obj) == <span class="string">'[object Function]'</span></span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">let</span> isType = <span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> toString.call(obj) == <span class="string">`object <span class="subst">$&#123;type&#125;</span>`</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">let</span> judgeType = isType(<span class="string">"Array"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(judgeType(<span class="string">"abcs"</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-异步编程的语法目标，-就是让它更像同步编程"><a href="#3-异步编程的语法目标，-就是让它更像同步编程" class="headerlink" title="3.  异步编程的语法目标，  就是让它更像同步编程"></a>3.  异步编程的语法目标，  就是让它更像同步编程</h2><p>异步编程的常见方式</p>
+<ul>
+<li><p>回调函数实现</p>
+</li>
+<li></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/29/Async/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-html-css" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1167,130 +1314,6 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
 
 
   
-    <article id="post-browser-listener" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/08/browser-listener/">浏览器渲染原理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/08/browser-listener/" class="archive-article-date">
-  	<time datetime="2020-08-08T14:48:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/08/browser-listener/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-redux-thunk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/06/redux-thunk/">redux-thunk</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/06/redux-thunk/" class="archive-article-date">
-  	<time datetime="2020-08-06T03:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/06/redux-thunk/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1305,7 +1328,7 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 象牙山的飒
+    		&copy; 2021 象牙山的飒
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
