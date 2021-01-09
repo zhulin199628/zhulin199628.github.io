@@ -152,6 +152,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react-lifecycle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/09/react-lifecycle/">react-lifecycle</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/09/react-lifecycle/" class="archive-article-date">
+  	<time datetime="2021-01-09T05:19:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2021/01/09/react-lifecycle/life.png" alt="&quot;生命周期&quot;"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/09/react-lifecycle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Event-Loop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1196,95 +1259,6 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/08/15/Router/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/09/react-redux/">react-redux</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/09/react-redux/" class="archive-article-date">
-  	<time datetime="2020-08-09T06:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、reacr-redux  的核心模块</p>
-<ol>
-<li>Provider</li>
-</ol>
-<p>为所有子组件提供  Store,  内部其实就是用context 来实现的</p>
-<p>一般在入口文件， index中使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store = &#123;store&#125;&gt;</span><br><span class="line">            &lt;App/&gt;</span><br><span class="line">&lt;<span class="regexp">/Provider&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>实现</p>
-<p>context.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ReduxContext = React.createContext(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
-
-<p>provder.js   //   利用 context把store 传给所有子组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">        render()&#123;</span><br><span class="line">            <span class="keyword">return</span>(</span><br><span class="line">                &lt;ReduxContext.Provider value = &#123;&#123;<span class="attr">store</span>: ths.props.store&#125;&#125;&gt;</span><br><span class="line">                                &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">                &lt;<span class="regexp">/ReduxContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">            )   </span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<ol start="2">
-<li>connect</li>
-</ol>
-<p>负责连接组件和仓库， 函数执行两次，第一次传入  state  和  dispatch  映射的参数, 第二次是传入当前组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">参数说明：</span></span><br><span class="line"><span class="comment">mapStateProps：  state的映射</span></span><br><span class="line"><span class="comment">第二个参数：  </span></span><br><span class="line"><span class="comment">第一种：可以是整个actions对象</span></span><br><span class="line"><span class="comment">第二种： </span></span><br><span class="line"><span class="comment">const mapStateToDispatch = (dispatch) =&gt;&#123;</span></span><br><span class="line"><span class="comment">    return &#123;</span></span><br><span class="line"><span class="comment">        add: (...args) =&gt; dispatch(actions.add(...args))</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">const</span> mapStateProps  = <span class="function"><span class="params">state</span> =&gt;</span>&#123;<span class="keyword">return</span> state&#125;;</span><br><span class="line">  connect (mapStateProps, actions)(componentname)</span><br></pre></td></tr></table></figure>
-
-<p>实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span> (<span class="params">mapStateToProps, mapStateDispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">wrapperComponent</span>)</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span>()</span>&#123;</span><br><span class="line">                            <span class="comment">//  初始化 unsubscribe 函数</span></span><br><span class="line">                            unsubscribe = () =&#123;&#125;;</span><br><span class="line">                            <span class="comment">//  接收context值</span></span><br><span class="line">                            <span class="keyword">static</span> contextType = ReduxContext;</span><br><span class="line"></span><br><span class="line">                            contructor(props, context)&#123;</span><br><span class="line">                                <span class="keyword">super</span> (props);</span><br><span class="line">                                <span class="comment">//  通过context  获取Provider  传过来的Store</span></span><br><span class="line">                                <span class="keyword">this</span>.state = mapStateToProps(context.store.getState());</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 当接收到新的状态的时候，重新渲染页面</span></span><br><span class="line"></span><br><span class="line">                            componentDidMount()&#123;</span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe = (<span class="function"><span class="params">state</span> =&gt;</span>&#123;</span><br><span class="line">                                        <span class="keyword">this</span>.setState(mapStateToProps(<span class="keyword">this</span>.context.store.getState())</span><br><span class="line">                                  &#125;)</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            componentWillUnmount() &#123;</span><br><span class="line">                                <span class="comment">//  取消订阅</span></span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe();</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            render()&#123;</span><br><span class="line"></span><br><span class="line">                                actions = &#123;&#125;;</span><br><span class="line">                                <span class="comment">//  mapDispatchToProps  如果是一个函数， 就不需要使用  bindActionCreator,</span></span><br><span class="line">                                <span class="keyword">if</span>(<span class="keyword">typeof</span>  mapDispatchToProps === <span class="string">"function"</span>)&#123;</span><br><span class="line">                                    <span class="comment">// 如果是一个函数就直接把dispacth  方法映射到组件中去</span></span><br><span class="line">                                    action =  mapDispatchToProps(<span class="keyword">this</span>.context.store.dispatch)</span><br><span class="line">                                &#125;  <span class="keyword">else</span>&#123;</span><br><span class="line">                                    action = bindActionCreator(mapDispatchToProps, <span class="keyword">this</span>.context.store.dispatch) </span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">return</span> (</span><br><span class="line">                                    &lt;wrapperComponent  &#123;...this.state&#125; &#123;...actions&#125;/&gt;</span><br><span class="line">                                )</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/09/react-redux/">展开全文 >></a>
         </p>
       
 
