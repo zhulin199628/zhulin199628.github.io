@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>react-hooks | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="useState    useState 就是一个Hook  通过在函数组件里调用它来给组件添加一些内部的state,  React 会在重新渲染时保留这个state  useState 会返回一对值：当前状态和一个让你更新它的函数， 你可以再时间处理函数中或其它一些地方调用这个函数，它类似class组件的this.setState, 但是它不会把新的state和旧的state 合并, 而是覆盖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-hooks">
+<meta property="og:url" content="http://yoursite.com/2021/01/09/hooks/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="useState    useState 就是一个Hook  通过在函数组件里调用它来给组件添加一些内部的state,  React 会在重新渲染时保留这个state  useState 会返回一对值：当前状态和一个让你更新它的函数， 你可以再时间处理函数中或其它一些地方调用这个函数，它类似class组件的this.setState, 但是它不会把新的state和旧的state 合并, 而是覆盖">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-09T09:23:48.000Z">
+<meta property="article:modified_time" content="2021-01-10T14:57:06.350Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -150,108 +154,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Router" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-hooks" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/15/Router/">react-router</a>
+    <h1 class="article-title" itemprop="name">
+      react-hooks
     </h1>
   
 
         
-        <a href="/2020/08/15/Router/" class="archive-article-date">
-  	<time datetime="2020-08-15T00:22:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
+        <a href="/2021/01/09/hooks/" class="archive-article-date">
+  	<time datetime="2021-01-09T09:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一、原生路由</p>
-<ol>
-<li><p>简介<br>一般来说，前端路由框架的路由实现可以两种， hashRouter 和 BrowserRouter  (h5 Api)</p>
+        <h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><ol>
+<li></li>
+</ol>
+<ul>
+<li><p>useState 就是一个Hook</p>
 </li>
-<li><p>hashRouter   #/home</p>
+<li><p>通过在函数组件里调用它来给组件添加一些内部的state,  React 会在重新渲染时保留这个state</p>
+</li>
+<li><p>useState 会返回一对值：当前状态和一个让你更新它的函数， 你可以再时间处理函数中或其它一些地方调用这个函数，它类似class组件的this.setState, 但是它不会把新的state和旧的state 合并, 而是覆盖</p>
+</li>
+</ul>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let [state, setState] &#x3D; useState(&#123;num: 0, name: &quot;test&quot;&#125;)</span><br><span class="line"></span><br><span class="line">setCount(&#123;num: state.num + 1&#125;);</span><br><span class="line"></span><br><span class="line">console.log(state)  &#x2F;&#x2F;  &#123;num: 1&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>每次渲染都是一个独立的闭包</li>
+</ol>
+<ul>
+<li>每一次渲染都有他自己的props 和 state</li>
+<li>每次渲染都有他自己的事件处理函数</li>
+<li>组件函数在每次渲染的时候都会调用</li>
+<li>在单次渲染的范围内， props 和state 使用保持不变</li>
+</ul>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let  [state, setState] &#x3D; useState(&#123;name:  &quot;test&quot;, num: 0&#125;);</span><br><span class="line">let saveCallback &#x3D; useRef();  &#x2F;&#x2F;  返回的是一个对象，</span><br><span class="line">  const alertFun &#x3D; function()&#123;</span><br><span class="line">      setTimeout(function()&#123;</span><br><span class="line">           &#x2F;&#x2F;  如果点击三次，执行这个函数，  打印的是结束点击的状态值， 而不是最新的状态值</span><br><span class="line">           &#x2F;&#x2F;  如果需要拿到最新的值，  需要使用 useRef</span><br><span class="line">          console.log(state.num) </span><br><span class="line">          console.log(saveCallback.current)  &#x2F;&#x2F; 这是最新的值</span><br><span class="line">      &#125;, 3000)</span><br><span class="line">  &#125;</span><br><span class="line">     &lt;button onClick &#x3D; &#123;() &#x3D;&gt; &#123;</span><br><span class="line">         setState(&#123;num: state.num + 1&#125;)</span><br><span class="line">         saveCallback.current &#x3D; state.num + 1;</span><br><span class="line">     &#125;&#125;&gt;btn&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button onClick &#x3D; &#123;alertFun&#125;&gt;alert&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>函数式更新</li>
+</ol>
+<ul>
+<li>如果新的 state  需要通过使用先前的state计算得出， 那么可以将函数传递给setState,  该函数会接收到老的state, 并返回一个更新后的值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setState(oldState &#x3D;&gt; newState)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>惰性初始stat</li>
+</ol>
+<ul>
+<li><p>initiState  参数只会在组件的初始渲染中起作用，  后续渲染时会忽略</p>
+</li>
+<li><p>如果初始state需要通过复杂计算获得， 则可以传入一个函数， 这个函数只会在初始渲染是被调用</p>
+</li>
+</ul>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let [state, setSate]  &#x3D; useState(() &#x3D;&gt;&#123;</span><br><span class="line">    return &#123;num: 1&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>性能优化</li>
+<li>1  object.is  </li>
+</ol>
+<ul>
+<li><p>如果调用更新函数并且传入的是当前的state(老的state的时候)，react 将跳过组件的渲染和effect的执行。（react 使用Object.is 比较算法来比较state）</p>
+<p> eg:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let [state, setState] &#x3D; useState(0);</span><br><span class="line">setState(state)   &#x2F;&#x2F;  不会更新</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>5.2 减少渲染次数</p>
+<ul>
+<li><p>把内联函数以及依赖数组作为参数传入 useCallback, 它将作为该回调函数的memozied版本， 该回调函数仅在某个依赖项改变时才会更新</p>
+</li>
+<li><p>把创建函数和依赖项作为参数传入 useMemo, 它仅会在某个依赖项改变时才会重新计算memoized值，这种优化有助于避免在每次渲染时都进行高开销的计算</p>
+</li>
+</ul>
+<p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 如果依赖项是对象或者是数组，  但是只要是同一个引用地址，就不会每次都出发</span><br><span class="line">   function Child(&#123;onChildClick, data&#125;)&#123;</span><br><span class="line">  console.log(data);</span><br><span class="line">  </span><br><span class="line">   console.log(&quot;child render&quot;)</span><br><span class="line">   return (</span><br><span class="line">   &lt;button onClick &#x3D; &#123;onChildClick&#125;&gt;&#123;data.number&#125;&lt;&#x2F;button&gt;</span><br><span class="line">   )</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;  类组件需要用 shouldComponentUpdate 来执行这个优化，函数组件没有周期函数， 只能用memo 来优化</span><br><span class="line"></span><br><span class="line">&#x2F;*</span><br><span class="line">    memo  第二个参数可以实行自定义比较</span><br><span class="line"></span><br><span class="line">    function propsAreEqual(prevProps, nextProps)&#123;</span><br><span class="line">            return JSON.stringify(prevProps) &#x3D;&#x3D;&#x3D; JSON.stringify(nextProps);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Child &#x3D; memo(Child, propsAreEqual)</span><br><span class="line"></span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">Child &#x3D; memo(Child);</span><br><span class="line"></span><br><span class="line">  function App ()&#123;</span><br><span class="line">    const [number, setState] &#x3D; useState(0);</span><br><span class="line">    const [name, setName] &#x3D; useState(&quot;&quot;)</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;  在不使用useCallback的情况下， 每次渲染都会生成一个新的函数，</span><br><span class="line">    &#x2F;&#x2F;  useCallback  凡是带use的都有一个特征， 在多次渲染的时候可以保持一致</span><br><span class="line">    &#x2F;&#x2F; 依赖项  只有当依赖项的值发生改变之后才会生成新的函数</span><br><span class="line">    const addClick &#x3D; useCallback(()&#x3D;&gt;setState(number+1),[number]);</span><br><span class="line">    const onChangeInput &#x3D; (e) &#x3D;&gt; &#123;setName(e.target.value)&#125;</span><br><span class="line">    let obj &#x3D; useMemo(() &#x3D;&gt; (&#123;number&#125;) , []);</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">      &lt;input onChange &#x3D; &#123;(e) &#x3D;&gt;onChangeInput(e)&#125;&#x2F;&gt;</span><br><span class="line">      &lt;Child  onChildClick &#x3D; &#123;addClick&#125; data &#x3D; &#123;obj&#125;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>注意事项</li>
+</ol>
+<ul>
+<li><p>react  hooks  必须在每一次组件渲染中保持以相同的顺序调用</p>
+</li>
+<li><p>不能在if  while for 中调用  useState 只能在函数的最外层调用  hook</p>
+</li>
+</ul>
+<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><ol>
+<li><p>useState的替代方案， 它接受一个形如（state, action） =&gt; newState 的 reducer, 并返回当前的state 以及与其配套的dispatch 方法</p>
+</li>
+<li><p>在某些场景下， useReducer 会比useState更适用， 例如state 逻辑复杂且包含多个子值， 或者下一个state 依赖于之前的state等</p>
 </li>
 </ol>
 <p>eg:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">html</span><br><span class="line">&lt;a href = <span class="string">"#/home"</span>&gt;首页&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;a href = "#/u</span>ser<span class="string">"&gt;用户&lt;/a&gt;</span></span><br><span class="line"><span class="string">&lt;div id = "</span>container<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">js</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">window.addEventListener("</span>hashchange<span class="string">", (event) =&gt;&#123;</span></span><br><span class="line"><span class="string">        document.getElementById("</span>container<span class="string">").innerHTML = `当前的路径是$&#123;window.location.hash&#125;`</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function reducer(state, actions)&#123;</span><br><span class="line">  switch (actions.type) &#123;</span><br><span class="line">    case &quot;ADD&quot;:</span><br><span class="line">    return &#123;number: state.number + 1&#125;;</span><br><span class="line">    case &quot;JIAN&quot;:</span><br><span class="line">    return &#123;number: state.number - 1&#125;;</span><br><span class="line">    default:</span><br><span class="line">      return state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function init(number)&#123;</span><br><span class="line">     return &#123;number&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Count()&#123;</span><br><span class="line"></span><br><span class="line">  let [count, dispatch] &#x3D; useReducer(reducer, 0, init)</span><br><span class="line">  return(</span><br><span class="line">      &lt;&gt;</span><br><span class="line">          &lt;button onClick &#x3D; &#123;() &#x3D;&gt; dispatch(&#123;type: &quot;ADD&quot;&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">          &lt;button onClick &#x3D; &#123;() &#x3D;&gt; dispatch(&#123;type: &quot;JIAN&quot;&#125;)&#125;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">          &lt;p&gt;&#123;count.number&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h2><p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const CounterContext &#x3D; React.createContext();</span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;increment&#39;:</span><br><span class="line">      return &#123;number: state.number + 1&#125;;</span><br><span class="line">    case &#39;decrement&#39;:</span><br><span class="line">      return &#123;number: state.number - 1&#125;;</span><br><span class="line">    default:</span><br><span class="line">      throw new Error();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function Counter()&#123;</span><br><span class="line">  let &#123;state,dispatch&#125; &#x3D; useContext(CounterContext);</span><br><span class="line">  return (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">        &lt;p&gt;&#123;state.number&#125;&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type: &#39;increment&#39;&#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;type: &#39;decrement&#39;&#125;)&#125;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">function App()&#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, &#123;number:0&#125;);</span><br><span class="line">    return (</span><br><span class="line">        &lt;CounterContext.Provider value&#x3D;&#123;&#123;state,dispatch&#125;&#125;&gt;</span><br><span class="line">            &lt;Counter&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;CounterContext.Provider&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><ol>
+<li>useEffect 里面的函数会在组件挂载完成后， 和组件更新完成后执行</li>
+<li>如果没有传依赖数组， 则此函数每次渲染都会执行</li>
+<li>如果传一个空数组，只会在第一次挂载后执行一次， 以后不在执行了</li>
+<li>如果数组不为空， 则会在数组中元素改变的时候执行</li>
+<li>相当于  componentDidMount、 componentDidUpdate、 componentWillUnmount  合并成一个API</li>
+<li>清除副作用</li>
+</ol>
+<ul>
+<li><p>副作用函数除了通过依赖项，  还可以通过返回一个函数来指定如何清除</p>
+</li>
+<li><p>为了防止内存泄露，清除函数胡子爱组件卸载前执行， 另外，如果组件多次渲染， 则在执行下一个effect之前，  上一个effect 就被清除</p>
+</li>
+</ul>
+<h2 id="useRef-amp-forwardRef"><a href="#useRef-amp-forwardRef" class="headerlink" title="useRef &amp; forwardRef"></a>useRef &amp; forwardRef</h2><p>eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function Child(props, ref) &#123;</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;ref&#125; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let ForwardedChild &#x3D; forwardRef(Child)</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line"></span><br><span class="line">  const getFoucs &#x3D; function () &#123;</span><br><span class="line">    inputRef.current.focus();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const inputRef &#x3D; useRef();</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;getFoucs&#125;&gt;getFocus&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;ForwardedChild ref &#x3D; &#123;inputRef&#125; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useImperativeHandle"><a href="#useImperativeHandle" class="headerlink" title="useImperativeHandle"></a>useImperativeHandle</h2><ul>
+<li>可以让你在使用ref时自定义暴露给父组件的实例</li>
+<li>在大多数情况下，  应当避免使用ref这样的命令式代码，  useImperativeHandle应当与 forwardRef 一起使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">function Child(props, ref) &#123;</span><br><span class="line"></span><br><span class="line">  const inputRef &#x3D; useRef();</span><br><span class="line"></span><br><span class="line">  useImperativeHandle(ref, () &#x3D;&gt;&#123;</span><br><span class="line">     return &#123;</span><br><span class="line">         focus()&#123;</span><br><span class="line">             inputRef.current.focus();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;inputRef&#125; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let ForwardedChild &#x3D; forwardRef(Child)</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line"></span><br><span class="line">  const getFoucs &#x3D; function () &#123;</span><br><span class="line">    inputRef.current.focus();</span><br><span class="line">    inputRef.current.value  &#x3D; &quot;parent&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const inputRef &#x3D; useRef();</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;getFoucs&#125;&gt;getFocus&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;ForwardedChild ref &#x3D; &#123;inputRef&#125; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h2><ul>
+<li><p>函数签名和useEffect 相同， 但是它会在所有的DOM 变更之后同步调用effect（在DOM更新之后绘制之前）</p>
+</li>
+<li><p>可以使用它来读取DOM布局并同步触发重渲染</p>
+</li>
+<li><p>在浏览器执行绘制之前 它内部的更新计划将被同步刷新</p>
+</li>
+<li><p>尽可能使用标准的useEffect 以避免阻塞视图更新</p>
+</li>
+<li><p>useEffect 执行时机晚， 并且不会阻塞主进程</p>
+</li>
+</ul>
+<h2 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h2><ul>
+<li><p>有时候我们会想在组件中间重用一些状态逻辑</p>
+</li>
+<li><p>自定义Hook 可以让你在不增加组件的情况下达到相同的目的</p>
+</li>
+<li><p>Hook 是一种复用状态逻辑的方式，它不复用state 本身</p>
+</li>
+<li><p>事实上 Hook 的每次调用都有一个完全独立的state</p>
+</li>
+<li><p>自定义Hook 更像是一种约定， 而不是一种功能，如果函数的名字以use 开头， 并且调用了其它的hook, 就是自定义Hook</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function useNumber()&#123;</span><br><span class="line">  const [number,setNumber] &#x3D; useState(0);</span><br><span class="line">  useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">     console.log(&#39;开启一个新的定时器&#39;)</span><br><span class="line">     const $timer &#x3D; setInterval(()&#x3D;&gt;&#123;</span><br><span class="line">      setNumber(number+1);</span><br><span class="line">     &#125;,1000);</span><br><span class="line">     return ()&#x3D;&gt;&#123;</span><br><span class="line">      console.log(&#39;销毁老的定时器&#39;)</span><br><span class="line">         clearInterval($timer);</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  return number;</span><br><span class="line">&#125;</span><br><span class="line">function Counter1()&#123;</span><br><span class="line">  let number1 &#x3D; useNumber();</span><br><span class="line">  return (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">          &lt;p&gt;&#123;number1&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">function Counter2()&#123;</span><br><span class="line">  let number &#x3D; useNumber();</span><br><span class="line">  return (</span><br><span class="line">      &lt;&gt;</span><br><span class="line">          &lt;p&gt;&#123;number&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;&#x2F;&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">function App()&#123;</span><br><span class="line">  return &lt;&gt;&lt;Counter1&#x2F;&gt;&lt;Counter2&#x2F;&gt;&lt;&#x2F;&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><ol>
+<li>logger</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect, useState, useReducer &#125; from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">const initialState &#x3D; 0;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;increment&#39;:</span><br><span class="line">            return &#123; number: state.number + 1 &#125;;</span><br><span class="line">        case &#39;decrement&#39;:</span><br><span class="line">            return &#123; number: state.number - 1 &#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function init(initialState) &#123;</span><br><span class="line">    return &#123; number: initialState &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function useLogger(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchWithLogger &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;老状态&#39;, state);</span><br><span class="line">        dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    useEffect(function () &#123;</span><br><span class="line">        console.log(&#39;新状态&#39;, state);</span><br><span class="line">    &#125;, [state]);</span><br><span class="line">    return [state, dispatchWithLogger];</span><br><span class="line">&#125;</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useLogger(reducer, initialState, init);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            Count: &#123;state.number&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;decrement&#39; &#125;)&#125;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;Counter &#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>promise</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect, useState, useReducer &#125; from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">const initialState &#x3D; 0;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;increment&#39;:</span><br><span class="line">            return &#123; number: state.number + 1 &#125;;</span><br><span class="line">        case &#39;decrement&#39;:</span><br><span class="line">            return &#123; number: state.number - 1 &#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function init(initialState) &#123;</span><br><span class="line">    return &#123; number: initialState &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function useLogger(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchWithLogger &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;老状态&#39;, state);</span><br><span class="line">        dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    useEffect(function () &#123;</span><br><span class="line">        console.log(&#39;新状态&#39;, state);</span><br><span class="line">    &#125;, [state]);</span><br><span class="line">    return [state, dispatchWithLogger];</span><br><span class="line">&#125;</span><br><span class="line">function usePromise(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchPromise &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        if (action.payload &amp;&amp; action.payload.then) &#123;</span><br><span class="line">            action.payload.then((payload) &#x3D;&gt; dispatch(&#123; ...action, payload &#125;));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dispatch(action);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [state, dispatchPromise];</span><br><span class="line">&#125;</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; usePromise(reducer, initialState, init);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            Count: &#123;state.number&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123;</span><br><span class="line">                type: &#39;increment&#39;,</span><br><span class="line">                payload: new Promise(resolve &#x3D;&gt; &#123;</span><br><span class="line">                    setTimeout(resolve, 1000);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)&#125;&gt;delay&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;Counter &#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>browserRouter</li>
+<li>thunk</li>
 </ol>
-<p>3.1  window.history  对象属性简介</p>
-<p><img src="/2020/08/15/Router/windowHistory.png" alt="windowhistory"></p>
-<p>back:  返回上一个路径；<br>forward:  跳转下一个路径；<br>go(index) :  指定跳转到某一个路径<br>pushState:  在历史记录队列中添加并且激活路径，入栈操作<br>replaceState:  修改当前历史记录条例</p>
-<p>浏览器每次跳转都是在队列中添加一条路径，（入栈操作）</p>
-<p><img src="/2020/08/15/Router/router-ruzhan.png" alt="windowhistory"></p>
-<p>3.2  browserHistory 实现单页应用案例</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/a')"</span>&gt;</span>跳转到A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/b')"</span>&gt;</span>跳转到B<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span> = <span class="string">"push('/c')"</span>&gt;</span>跳转到C<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//  监听浏览器返回和前进事件，也就是出栈和入栈操作</span></span><br><span class="line">    <span class="built_in">window</span>.onpopstate = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"container"</span>).innerHTML = event.state.to</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  自定义onpushstate方法， 原生没有，  每次 pushState的时候  去更新 容器内容</span></span><br><span class="line">    <span class="built_in">window</span>.onpushstate = <span class="function"><span class="keyword">function</span>(<span class="params">state, title, url</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"container"</span>).innerHTML = state.to || url</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  重写window.history.pushstate 方法，用来触发自定义的onpushstate</span></span><br><span class="line">    <span class="keyword">let</span> oldPush = <span class="built_in">window</span>.history.pushState;</span><br><span class="line">    <span class="built_in">window</span>.history.pushState = <span class="function"><span class="keyword">function</span>(<span class="params">state, title, url</span>)</span>&#123;</span><br><span class="line">         oldPush.call(<span class="built_in">window</span>.history,state, title, url);</span><br><span class="line">         <span class="built_in">window</span>.onpushstate(state, title, url)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">to</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//pushState 三个参数： 状态对象  标题（已经废弃）,  路径地址</span></span><br><span class="line">        <span class="built_in">window</span>.history.pushState(&#123;to&#125;, <span class="literal">null</span>, to)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect, useState, useReducer &#125; from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">import &#123; resolve &#125; from &#39;dns&#39;;</span><br><span class="line">const initialState &#x3D; 0;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;increment&#39;:</span><br><span class="line">            return &#123; number: state.number + 1 &#125;;</span><br><span class="line">        case &#39;decrement&#39;:</span><br><span class="line">            return &#123; number: state.number - 1 &#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function init(initialState) &#123;</span><br><span class="line">    return &#123; number: initialState &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function useLogger(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchWithLogger &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;老状态&#39;, state);</span><br><span class="line">        dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    useEffect(function () &#123;</span><br><span class="line">        console.log(&#39;新状态&#39;, state);</span><br><span class="line">    &#125;, [state]);</span><br><span class="line">    return [state, dispatchWithLogger];</span><br><span class="line">&#125;</span><br><span class="line">function usePromise(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchPromise &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        if (action.payload &amp;&amp; action.payload.then) &#123;</span><br><span class="line">            action.payload.then((payload) &#x3D;&gt; dispatch(&#123; ...action, payload &#125;));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dispatch(action);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [state, dispatchPromise];</span><br><span class="line">&#125;</span><br><span class="line">function useThunk(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchPromise &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        if (typeof action &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#123;</span><br><span class="line">            action(dispatchPromise, () &#x3D;&gt; state);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dispatch(action)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [state, dispatchPromise];</span><br><span class="line">&#125;</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useThunk(reducer, initialState, init);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            Count: &#123;state.number&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(function (dispatch, getState) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    dispatch(&#123; type: &#39;increment&#39; &#125;);</span><br><span class="line">                &#125;, 1000);</span><br><span class="line">            &#125;)&#125;&gt;delay&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;Counter &#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
 
-<p>二、 react-router</p>
-<ol>
-<li>react  使用方法</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;HashRouter <span class="keyword">as</span> Router, Route, Link&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./routeComponent/Home'</span>;</span><br><span class="line"><span class="keyword">import</span> User <span class="keyword">from</span> <span class="string">'./routeComponent/User'</span>;</span><br><span class="line"><span class="keyword">import</span> Profile <span class="keyword">from</span> <span class="string">'./routeComponent/Profile'</span>;</span><br><span class="line">&lt;Router&gt;</span><br><span class="line">        &lt;Link to = &#123;&#123;<span class="attr">pathname</span>: <span class="string">"/"</span>,<span class="attr">state</span>: &#123;<span class="attr">title</span>: <span class="string">"首页"</span>&#125;&#125;&#125;&gt;首页&lt;<span class="regexp">/Link&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Link to=&#123;&#123; pathname: "/u</span>ser<span class="string">", state: &#123; title: "</span>用户<span class="string">" &#125; &#125;&#125;&gt;用户&lt;/Link&gt;</span></span><br><span class="line"><span class="string">        &lt;Link to=&#123;&#123; pathname: "</span>/profile<span class="string">", state: &#123; title: "</span>个人中心<span class="string">" &#125; &#125;&#125;&gt;个人中心&lt;/Link&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/<span class="string">" component=&#123;Home&#125; exact /&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/user<span class="string">" component=&#123;User&#125; /&gt;</span></span><br><span class="line"><span class="string">        &lt;Route path="</span>/profile<span class="string">" component=&#123;Profile&#125; /&gt;</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">&lt;/Router&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>实现</li>
-</ol>
-<p>原生react-router  对象<br><img src="/2020/08/15/Router/react-router-obj.png" alt="react-router-obj"></p>
-<p>RouterContext.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">const</span> RouterContext = React.createContext();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> RouterContext</span><br></pre></td></tr></table></figure>
-
-<p>HashRouter.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1.     监听hash  变化，　　</span></span><br><span class="line"><span class="comment">２． 通过context  把所有 构建的路由对象传给所有子组件，  &#123;history, location, match&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouteContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">HashRouter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    state = &#123;</span><br><span class="line">        location:&#123;</span><br><span class="line">            pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>, <span class="comment">//  给hash  默认值为 '/'</span></span><br><span class="line">            state: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    locationState = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">        <span class="comment">//  给  hash  默认值'/'</span></span><br><span class="line">        <span class="built_in">window</span>.location.hash =  <span class="built_in">window</span>.location.hash || <span class="string">'/'</span>;</span><br><span class="line">        <span class="comment">//  监听hash  值变化</span></span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"hashchange"</span>, () =&gt;&#123;</span><br><span class="line">              <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">                     location: &#123;</span><br><span class="line">                           ...this.state.location,</span><br><span class="line">                           pathname: <span class="built_in">window</span>.location.hash? <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>): <span class="string">'/'</span>,</span><br><span class="line">                           state: <span class="keyword">this</span>.state.locationState  <span class="comment">// 每次调用history.push  跳转路由的时候state  都会变化，这里需要重新赋值</span></span><br><span class="line">                     &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  构建路由对象，以便在所有子元素中能够调用和取值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> value = &#123;</span><br><span class="line">            location:<span class="keyword">this</span>.state.location,</span><br><span class="line">            history: &#123;</span><br><span class="line">                push: <span class="function"><span class="keyword">function</span>(<span class="params">to, state</span>)</span>&#123;</span><br><span class="line">                        <span class="comment">//  to  可能是对象&#123;pathname:"", state: &#123;&#125;&#125; 和 ""</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="keyword">typeof</span> to === <span class="string">'object'</span>)&#123;</span><br><span class="line">                            <span class="built_in">window</span>.location.hash = to.pathname;</span><br><span class="line">                            <span class="keyword">this</span>.locationState = to.state</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                         <span class="built_in">window</span>.location.hash = to;</span><br><span class="line">                        <span class="keyword">this</span>.locationState = <span class="literal">null</span></span><br><span class="line">                    &#125;</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="keyword">return</span> (</span><br><span class="line">              &lt;RouterContext.Provider value = &#123;value&#125;&gt;</span><br><span class="line">                        &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">              &lt;<span class="regexp">/RouterContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">          )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>Route.js<br>根据传过来的path，通过正则匹配路由渲染对应的组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; <span class="keyword">from</span> <span class="string">'path-to-regexp'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Route</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>  contextType = RouterContext;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">            <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component, exact = <span class="literal">false</span>&#125; = <span class="keyword">this</span>.props;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//  通过正则匹配路由，判断Route中的 path  和 地址栏中的hash是否一致</span></span><br><span class="line">            <span class="keyword">let</span> &#123;pathname&#125; = <span class="keyword">this</span>.context.location;</span><br><span class="line">            <span class="keyword">let</span> pathNames = [];</span><br><span class="line">            <span class="keyword">let</span> regexp = pathToRegexp(path, pathNames, &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">            <span class="keyword">let</span> result =  pathname.match(regexp);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 创建一个 类似于React 中的路由对象，通过props 传递给所有子组件</span></span><br><span class="line">            <span class="keyword">let</span>  props  = &#123;</span><br><span class="line">                 location: <span class="keyword">this</span>.context.location,</span><br><span class="line">                 history: <span class="keyword">this</span>.contxt.history</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//  props 中增加  match  属性，  便于存储state(路由传参)</span></span><br><span class="line">                <span class="comment">//  paramNames   [&#123;name: "id", prefix: "/", suffix: "", pattern: "[^\/#\?]+?", modifier: ""&#125;]</span></span><br><span class="line">                pathNames = pathNames.map(<span class="function"><span class="params">item</span> =&gt;</span> item.name)</span><br><span class="line">                 <span class="comment">// result  ["/user/detaile/1", "1", index: 0, input: "/user/detaile/1", groups: undefined]</span></span><br><span class="line">                <span class="keyword">let</span> [url, ...values] =  result;</span><br><span class="line">                <span class="keyword">let</span> params = &#123;&#125;;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pathNames.length; i++)&#123;</span><br><span class="line">                        params[pathNames[i]] = value[i];</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                props.match = &#123;</span><br><span class="line">                      isExact: url === pathname,</span><br><span class="line">                      params,</span><br><span class="line">                      path,</span><br><span class="line">                      url</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//  受保护的路由</span></span><br><span class="line">                <span class="comment">//  经典案例：  进入当前页面，判断是否登录，如果没有登录则跳转到登录页面</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> (</span><br><span class="line">                    &lt;Component  &#123;...props&#125; /&gt;     </span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Switch.js</p>
-<p>当涉及到重定向的时候(redirect), 会重新去渲染路由，当重新新渲染路由并且匹配到对应路由的时候代码会继续往下执行，从而造成死循环<br>Switch  是为了值渲染匹配到的路由，当路由匹配到之后就返回当前路由</p>
-<p>使用方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">         &lt;Route path=<span class="string">"/user/list"</span> component=&#123;UserList&#125;&gt;&lt;<span class="regexp">/Route&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>Switch&gt;</span><br></pre></td></tr></table></figure>
-
-<p>实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  遍历所有子元素，通过判断子元素props  的path  属性是否和当前的地址是否相同</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;pathToRegexp&#125; fom <span class="string">'path-to-regexp'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Switch extends React.Component&#123;  </span><br><span class="line">      <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">    </span><br><span class="line">    render()&#123;</span><br><span class="line">         <span class="keyword">let</span> &#123;pathname&#125;  = <span class="keyword">this</span>.context.location;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.props.children.lengt; i++)&#123;</span><br><span class="line">                <span class="keyword">let</span> child = <span class="keyword">this</span>.props.children[i];</span><br><span class="line">                <span class="keyword">let</span> &#123;path = <span class="string">'/'</span>, exact = <span class="literal">false</span>&#125;  = child.props;</span><br><span class="line">                <span class="keyword">let</span> regexp = pathTpRegexp(path, [], &#123;<span class="attr">end</span>: exact&#125;);</span><br><span class="line">                <span class="keyword">let</span> result = pathname.match(regexp);</span><br><span class="line">                <span class="keyword">if</span>(result)&#123;</span><br><span class="line">                     <span class="keyword">return</span> child</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Link.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Link extends React.Component&#123;</span><br><span class="line">    <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;a onClick = &#123;()=&gt; <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)&#125;&gt;&#123;<span class="keyword">this</span>.props.children&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>Redirect.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Redirect extends React.Component&#123;</span><br><span class="line">    staic contextType = RouterContext;</span><br><span class="line">    render&#123;</span><br><span class="line">        <span class="keyword">this</span>.context.history.push(<span class="keyword">this</span>.props.to)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>受保护的路由</p>
-<p>经典案例</p>
-<p>index.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">import</span> Protected <span class="keyword">from</span> <span class="string">'./Protected'</span>;</span><br><span class="line">+ <span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">'./Login'</span>;</span><br><span class="line">+ <span class="keyword">import</span> Profile <span class="keyword">from</span> <span class="string">'./Profile'</span>;</span><br><span class="line"></span><br><span class="line">+ <span class="xml"><span class="tag">&lt;<span class="name">Route</span>  <span class="attr">path</span> = <span class="string">"/login"</span> <span class="attr">component</span> = <span class="string">&#123;Login&#125;</span> /&gt;</span></span></span><br><span class="line">+ <span class="xml"><span class="tag">&lt;<span class="name">Protected</span> <span class="attr">path</span> = <span class="string">"/profile"</span> <span class="attr">component</span> = <span class="string">&#123;Profile&#125;</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>Protected.js<br>如果登录了则渲染当前组件，否则跳转到Login</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Route, Redirect&#125; <span class="keyword">from</span> <span class="string">'./react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Protected</span>(<span class="params">&#123;component: Component, ...rest&#125;</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> (</span><br><span class="line">         &lt;Route </span><br><span class="line">           &#123;...rest&#125;</span><br><span class="line">           render = &#123;props =&gt;(</span><br><span class="line">               <span class="built_in">window</span>.localStorage.getItem(<span class="string">"login"</span>)?</span><br><span class="line">               &lt;Component &#123;...props&#125; /&gt;</span><br><span class="line">               :</span><br><span class="line">               &lt;Redirect  to = &#123;&#123;<span class="attr">pathname</span>: <span class="string">'/login'</span>, <span class="attr">state</span>:&#123;<span class="attr">from</span>: props.location.pathname&#125;&#125;&#125; /&gt;</span><br><span class="line">           )&#125;</span><br><span class="line">         /&gt;</span><br><span class="line">     )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Route.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">let</span> &#123;path, <span class="attr">component</span>: Component,exact = <span class="literal">false</span>, render&#125;  = <span class="keyword">this</span>.props;</span><br><span class="line">+ <span class="keyword">if</span>(Component)&#123;</span><br><span class="line">      <span class="keyword">return</span>&lt;  Component &#123;...props&#125;/&gt; </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(render)&#123;</span><br><span class="line">      render(props)</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>widthRouter.js</p>
-<p>是一个高阶组件，能够让普通组件（没有用Route包裹的组件）能够路由的基本属性（拥有history  对象）</p>
-<p>使用方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">widthRouter(Component)</span><br></pre></td></tr></table></figure>
-<p>实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Route <span class="keyword">from</span> <span class="string">'./Route'</span></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">widthRouter</span>(<span class="params">wrapperedComponent</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="params">props</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">Route</span>  <span class="attr">component</span> = <span class="string">&#123;wrapperedComponent&#125;</span> /&gt;</span></span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>Prompt.js</p>
-<p>阻止路由跳转</p>
-<p>Prompt 组件，接受两个参数，when： true  弹框  false  不弹框  message:  函数<br>使用方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Prompt <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">&lt;Prompt  </span><br><span class="line">    when = &#123;boolean&#125;</span><br><span class="line">    message = &#123;location =&gt;<span class="string">`你确定要进入<span class="subst">$&#123;location.pathname&#125;</span>?`</span>&#125;</span><br><span class="line">  /&gt;</span><br></pre></td></tr></table></figure>
-<p>实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> RouterContext <span class="keyword">from</span> <span class="string">'./RouterContext'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Prompt</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">static</span> contextType = RouterContext;</span><br><span class="line">     render()&#123;</span><br><span class="line">         <span class="keyword">let</span> &#123;when, message&#125; = <span class="keyword">this</span>.props;</span><br><span class="line">        <span class="keyword">let</span> &#123;location&#125; = <span class="keyword">this</span>.context;</span><br><span class="line">        <span class="keyword">if</span>(when)&#123;</span><br><span class="line">            location.block(message)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            location.block(<span class="literal">null</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>HashRouter.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">let</span> vlaue= &#123;</span><br><span class="line">      location: <span class="keyword">this</span>.state.location,</span><br><span class="line">      history: &#123;</span><br><span class="line">          push: <span class="function"><span class="keyword">function</span>(<span class="params">to, state</span>)</span>&#123;</span><br><span class="line">              + <span class="keyword">if</span>(that.message)&#123;</span><br><span class="line">                    <span class="keyword">let</span> comfirm =  confirm(that.block(<span class="keyword">typeof</span> to === <span class="string">'object'</span> ? to: &#123;<span class="attr">pathname</span>: to&#125;));</span><br><span class="line">                    <span class="keyword">if</span>(!comfirm) <span class="keyword">return</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">         + block: <span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</span><br><span class="line">          +      that.message = message</span><br><span class="line">          +&#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -260,16 +352,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/15/Router/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/09/hooks/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/09/react-lifecycle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react-lifecycle</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -289,639 +440,14 @@
 
 
 
-
-  
-    <article id="post-react-redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/09/react-redux/">react-redux</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/09/react-redux/" class="archive-article-date">
-  	<time datetime="2020-08-09T06:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、reacr-redux  的核心模块</p>
-<ol>
-<li>Provider</li>
-</ol>
-<p>为所有子组件提供  Store,  内部其实就是用context 来实现的</p>
-<p>一般在入口文件， index中使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider store = &#123;store&#125;&gt;</span><br><span class="line">            &lt;App/&gt;</span><br><span class="line">&lt;<span class="regexp">/Provider&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>实现</p>
-<p>context.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ReduxContext = React.createContext(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
-
-<p>provder.js   //   利用 context把store 传给所有子组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">        render()&#123;</span><br><span class="line">            <span class="keyword">return</span>(</span><br><span class="line">                &lt;ReduxContext.Provider value = &#123;&#123;<span class="attr">store</span>: ths.props.store&#125;&#125;&gt;</span><br><span class="line">                                &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">                &lt;<span class="regexp">/ReduxContext.Provider&gt;</span></span><br><span class="line"><span class="regexp">            )   </span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<ol start="2">
-<li>connect</li>
-</ol>
-<p>负责连接组件和仓库， 函数执行两次，第一次传入  state  和  dispatch  映射的参数, 第二次是传入当前组件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">参数说明：</span></span><br><span class="line"><span class="comment">mapStateProps：  state的映射</span></span><br><span class="line"><span class="comment">第二个参数：  </span></span><br><span class="line"><span class="comment">第一种：可以是整个actions对象</span></span><br><span class="line"><span class="comment">第二种： </span></span><br><span class="line"><span class="comment">const mapStateToDispatch = (dispatch) =&gt;&#123;</span></span><br><span class="line"><span class="comment">    return &#123;</span></span><br><span class="line"><span class="comment">        add: (...args) =&gt; dispatch(actions.add(...args))</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">const</span> mapStateProps  = <span class="function"><span class="params">state</span> =&gt;</span>&#123;<span class="keyword">return</span> state&#125;;</span><br><span class="line">  connect (mapStateProps, actions)(componentname)</span><br></pre></td></tr></table></figure>
-
-<p>实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span>  <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span> (<span class="params">mapStateToProps, mapStateDispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">wrapperComponent</span>)</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Component</span>()</span>&#123;</span><br><span class="line">                            <span class="comment">//  初始化 unsubscribe 函数</span></span><br><span class="line">                            unsubscribe = () =&#123;&#125;;</span><br><span class="line">                            <span class="comment">//  接收context值</span></span><br><span class="line">                            <span class="keyword">static</span> contextType = ReduxContext;</span><br><span class="line"></span><br><span class="line">                            contructor(props, context)&#123;</span><br><span class="line">                                <span class="keyword">super</span> (props);</span><br><span class="line">                                <span class="comment">//  通过context  获取Provider  传过来的Store</span></span><br><span class="line">                                <span class="keyword">this</span>.state = mapStateToProps(context.store.getState());</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 当接收到新的状态的时候，重新渲染页面</span></span><br><span class="line"></span><br><span class="line">                            componentDidMount()&#123;</span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe = (<span class="function"><span class="params">state</span> =&gt;</span>&#123;</span><br><span class="line">                                        <span class="keyword">this</span>.setState(mapStateToProps(<span class="keyword">this</span>.context.store.getState())</span><br><span class="line">                                  &#125;)</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            componentWillUnmount() &#123;</span><br><span class="line">                                <span class="comment">//  取消订阅</span></span><br><span class="line">                                  <span class="keyword">this</span>.unsubscribe();</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            render()&#123;</span><br><span class="line"></span><br><span class="line">                                actions = &#123;&#125;;</span><br><span class="line">                                <span class="comment">//  mapDispatchToProps  如果是一个函数， 就不需要使用  bindActionCreator,</span></span><br><span class="line">                                <span class="keyword">if</span>(<span class="keyword">typeof</span>  mapDispatchToProps === <span class="string">"function"</span>)&#123;</span><br><span class="line">                                    <span class="comment">// 如果是一个函数就直接把dispacth  方法映射到组件中去</span></span><br><span class="line">                                    action =  mapDispatchToProps(<span class="keyword">this</span>.context.store.dispatch)</span><br><span class="line">                                &#125;  <span class="keyword">else</span>&#123;</span><br><span class="line">                                    action = bindActionCreator(mapDispatchToProps, <span class="keyword">this</span>.context.store.dispatch) </span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                                <span class="keyword">return</span> (</span><br><span class="line">                                    &lt;wrapperComponent  &#123;...this.state&#125; &#123;...actions&#125;/&gt;</span><br><span class="line">                                )</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/09/react-redux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-browser-listener" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/08/browser-listener/">浏览器渲染原理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/08/browser-listener/" class="archive-article-date">
-  	<time datetime="2020-08-08T14:48:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/08/browser-listener/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-redux-thunk" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/06/redux-thunk/">redux-thunk</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/06/redux-thunk/" class="archive-article-date">
-  	<time datetime="2020-08-06T03:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/06/redux-thunk/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-combineReducers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/combineReducers/">redux-combineReducers</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/05/combineReducers/" class="archive-article-date">
-  	<time datetime="2020-08-05T01:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在项目结构中， 实际只能有一个Store,  但是可以有多个reducer,combineReducers可以合并多个reducer然后返回一个reducer</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> reducers = combineReducers(&#123;reducer1, reducer2&#125;);</span><br><span class="line"><span class="keyword">let</span> store = createStore(reducers)</span><br></pre></td></tr></table></figure>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// reducers  &#123;reducer1, reducer2&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">combineReducers</span>(<span class="params">reducers</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//  获取 对象的key</span></span><br><span class="line">        <span class="keyword">let</span> reducerKeys = <span class="built_in">Object</span>.keys(reducers);</span><br><span class="line">        <span class="comment">//  返回一个reducer 函数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">state = &#123;&#125;, action</span>)</span>&#123;</span><br><span class="line">               <span class="keyword">let</span> nextState = &#123;&#125;;</span><br><span class="line">               <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;  i &lt; reducerKeys.length;i++)&#123;</span><br><span class="line">                      <span class="keyword">let</span> key = reducerKeys[i];</span><br><span class="line">                      <span class="keyword">const</span> reducer = reducers[key];  </span><br><span class="line">                      <span class="comment">//  获取每个reducer 的老状态</span></span><br><span class="line">                      <span class="keyword">const</span> previousStateForKey = state[key];</span><br><span class="line">                      <span class="comment">// 调用需要合并的reducers, 然后获取每个reduce的新状态</span></span><br><span class="line">                      <span class="keyword">const</span> nextStateForKey = reducers(previousStateForKey, action);</span><br><span class="line"></span><br><span class="line">                      <span class="comment">//  下一个状态</span></span><br><span class="line">                        nextState[key] = nextStateForKey;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> nextState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/05/combineReducers/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-bindActionCreators" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/04/react-bindActionCreators/">redux-bindActionCreators</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/04/react-bindActionCreators/" class="archive-article-date">
-  	<time datetime="2020-08-04T13:23:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
-<li>bindActionCreators  是用来优化代码的，接收两个参数，action和dispatch。</li>
-<li>用来抽离actionType 和 action的逻辑<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bindActionCreators(actions, store.dispatch)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreator</span> (<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> funtion()&#123;</span><br><span class="line">        <span class="keyword">return</span> dispatch(actionCreators.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindActionCreators</span>(<span class="params">actionCreators, dispatch</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//  actionCreators 可能是整个actions 对象，也可能是actions 对象的某个函数</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> actionCreators === <span class="string">'function'</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> bindActionCreator(actionCreators, dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> boundActionCreators = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> key <span class="keyword">in</span> actionCreators)&#123;</span><br><span class="line">            boundActionCreators[key] = bindActionCreators(actionCreators[key], dispatch)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> boundActionCreators</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/04/react-bindActionCreators/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/redux/">实现redux</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/redux/" class="archive-article-date">
-  	<time datetime="2020-08-03T12:33:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>react  工作流<br><img src="/2020/08/03/redux/redux.png" alt="this"></p>
-</li>
-<li><p>redux  实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  判断对象是否是纯对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPlainObject</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !=<span class="string">'object'</span> || obj == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> proto  = obj;</span><br><span class="line">     <span class="keyword">while</span>(<span class="built_in">Object</span>.getPrototypeOf(proto))&#123;</span><br><span class="line">            proto = <span class="built_in">Object</span>.getPrototypeOf(proto)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Object</span>.getProtypeOf(obj) === proto</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  createStore  返回三个方法  getState,  dispatch,  subscribe</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, initState</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="keyword">typeof</span> reducer != <span class="string">'function'</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"reducer  必须是一个函数"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">let</span> currentState = initState;</span><br><span class="line">     <span class="keyword">let</span>  currentReducer  = reducer;</span><br><span class="line">    <span class="comment">//  getState方法  返回的是当前的状态</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getState</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> currentState</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  action  必须是一个纯对象， &#123;type: "ADD"&#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!isPlainObject(action))&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>  (action必须是一个纯对象)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(action === <span class="literal">undefined</span>)&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"type 不能为undefined"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//  触发reducer  方法,  reducer 会返回一个新的state,赋值给currentState,  getState的时候会返回新的state</span></span><br><span class="line">            currentState = currentReducer(currentState, action);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> action</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> currentListener = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  订阅，  当state  变化的时候重新渲染</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">subscribe</span>(<span class="params">listener</span>)</span>&#123;</span><br><span class="line">        currentListener.push(listener);</span><br><span class="line">        <span class="keyword">let</span> isunsubscribe = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//  返回取消订阅的函数， 在组件将要卸载的时候调用，componentWillunmount</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unsubscribe</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!isunsubscribe) <span class="keyword">return</span>;</span><br><span class="line">                <span class="keyword">const</span> index = currentListener.indexOf(listener);</span><br><span class="line">                currentListener.splice(index, <span class="number">1</span>);</span><br><span class="line">                isunsubscribe = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  初始化State   , 如果不初始化，reducer 中接收到的actoin的Type属性就是undefined, reducer源码中，reducer 中是不能为undefined的</span></span><br><span class="line">        dispatch(&#123;<span class="attr">type</span>: actionType.INIT&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/redux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-middleware" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/react-middleware/">redux-middleware</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/react-middleware/" class="archive-article-date">
-  	<time datetime="2020-08-03T02:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>react 的 applyModdleware  是在发起dispatch 之后 到达reducer 之前 需要做的事情；</p>
-<h1 id="react-applyMiddleware使用方法"><a href="#react-applyMiddleware使用方法" class="headerlink" title="react applyMiddleware使用方法"></a>react applyMiddleware使用方法</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;   </span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">store</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">dispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"-----老状态， store.getState());</span></span><br><span class="line"><span class="string">                  dispatch(action);</span></span><br><span class="line"><span class="string">                  console.log("</span>------新状态<span class="string">"， store.getState());</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  function logger2(store)&#123;</span></span><br><span class="line"><span class="string">        return function(dispatch)&#123;</span></span><br><span class="line"><span class="string">            return function(action)&#123;</span></span><br><span class="line"><span class="string">                  console.log("</span>-----老状态<span class="number">2</span>， store.getState());</span><br><span class="line">                  dispatch(action);</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"------新状态2"</span>， store.getState());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> store = applyMiddleware(logger, logger2)(createStore)(reducer)；</span><br></pre></td></tr></table></figure>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function compose(...funcs)&#123;   #  组合</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> a(b(...args)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params">...middlewares</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">createStore</span>)</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">reducer</span>)</span>&#123;</span><br><span class="line">                 let store = createStore(reducer);  # 原始仓库</span><br><span class="line">                 <span class="keyword">let</span> dispatch ;</span><br><span class="line">                 <span class="keyword">let</span> middlewareAPI = &#123;</span><br><span class="line">                     getState: store.getState();  </span><br><span class="line">                     dispacth: <span class="function">(<span class="params">...args</span>) =&gt;</span> dispatch(...args)</span><br><span class="line">                 &#125;;</span><br><span class="line">                 <span class="keyword">const</span> chain = middlewares.map(<span class="function"><span class="params">middleware</span> =&gt;</span> middleware(middlewareAPI));</span><br><span class="line">                 dispatch = compose(...chain)(store.dispatch);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/react-middleware/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-compose" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/01/compose/">组合（compose）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/01/compose/" class="archive-article-date">
-  	<time datetime="2020-08-01T07:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"1"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"2"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add3</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"3"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...funcs</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a,b</span>) =&gt;</span><span class="function">(<span class="params">...args</span>) =&gt;</span>a(b(...args)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = compose(add1,add2,add3)(<span class="string">"zhufeng"</span>)</span><br></pre></td></tr></table></figure>
-<p>示意图：<br><img src="/2020/08/01/compose/compose.png" alt="this"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/01/compose/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-execution-context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/04/execution-context/">执行上下文</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/04/execution-context/" class="archive-article-date">
-  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>含义</li>
-</ol>
-<p>js  执行前，会创建对应的执行上下文</p>
-<ol start="2">
-<li>全局执行上下文<br>全局执行上下文只有一个，在客户端中一般由浏览器创建，也就是window对象，能通过this直接找到它。全局window对象预定义了大量的方法和属性，在全局环境的任何一个地方都能直接访问这些属性和方法。</li>
-</ol>
-<p><img src="/2020/05/04/execution-context/this.png" alt="this"></p>
-<p>window对象是var生命的全局变量的载体，也就是说通过var创建的全局对象，都可以通过window直接访问</p>
-<p><img src="/2020/05/04/execution-context/var.png" alt="this"></p>
-<ol start="3">
-<li><p>函数执行上下文<br>函数执行上文可存在无数个，每当一个函数被调用时都会创建一个函数上下文，同一个函数被调用多次，都会创建新的上下文</p>
-</li>
-<li><p>多个执行上下文</p>
-</li>
-<li><p>1 在js  执行过程中会产生多个执行上下文， js会有栈来管理这些执行上下文</p>
-</li>
-<li><p>2 执行上下文也叫调用栈，执行栈用于储存代码执行期间创建的所有上下文，具有栈的特性（先进后出，后进先出）的特性</p>
-</li>
-<li><p>3 栈底永远是全局上下文，栈顶为当前正在执行的上下文</p>
-</li>
-<li><p>4当开启一个函数执行上下文时会产生一个新的执行上下文并放入调用栈，执行完毕后会自动出栈</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/04/execution-context/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -944,8 +470,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
