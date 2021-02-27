@@ -152,6 +152,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-execution-context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/04/execution-context/">执行上下文</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/04/execution-context/" class="archive-article-date">
+  	<time datetime="2020-05-04T09:43:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>含义</li>
+</ol>
+<p>js  执行前，会创建对应的执行上下文</p>
+<ol start="2">
+<li>全局执行上下文<br>全局执行上下文只有一个，在客户端中一般由浏览器创建，也就是window对象，能通过this直接找到它。全局window对象预定义了大量的方法和属性，在全局环境的任何一个地方都能直接访问这些属性和方法。</li>
+</ol>
+<p><img src="/2020/05/04/execution-context/this.png" alt="this"></p>
+<p>window对象是var生命的全局变量的载体，也就是说通过var创建的全局对象，都可以通过window直接访问</p>
+<p><img src="/2020/05/04/execution-context/var.png" alt="this"></p>
+<ol start="3">
+<li><p>函数执行上下文<br>函数执行上文可存在无数个，每当一个函数被调用时都会创建一个函数上下文，同一个函数被调用多次，都会创建新的上下文</p>
+</li>
+<li><p>多个执行上下文</p>
+</li>
+<li><p>1 在js  执行过程中会产生多个执行上下文， js会有栈来管理这些执行上下文</p>
+</li>
+<li><p>2 执行上下文也叫调用栈，执行栈用于储存代码执行期间创建的所有上下文，具有栈的特性（先进后出，后进先出）的特性</p>
+</li>
+<li><p>3 栈底永远是全局上下文，栈顶为当前正在执行的上下文</p>
+</li>
+<li><p>4当开启一个函数执行上下文时会产生一个新的执行上下文并放入调用栈，执行完毕后会自动出栈</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/04/execution-context/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-stackAndqueue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

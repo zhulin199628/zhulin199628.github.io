@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ES6 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="let  和 const let  声名的变量只能在  声明的代码块中使用  不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升  暂时性死区：  如果声明let  变量之前使用， 就会报错Referende error">
+  <meta name="description" content="兼容性问题 通过babel  转化成es5  https:&#x2F;&#x2F;babeljs.io&#x2F;repl  通过babel  将高级代码转换成 es5   let  和 const let  声名的变量只能在  声明的代码块中使用  不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升  暂时性死">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6">
 <meta property="og:url" content="http://yoursite.com/2020/11/05/ES6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="let  和 const let  声名的变量只能在  声明的代码块中使用  不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升  暂时性死区：  如果声明let  变量之前使用， 就会报错Referende error">
+<meta property="og:description" content="兼容性问题 通过babel  转化成es5  https:&#x2F;&#x2F;babeljs.io&#x2F;repl  通过babel  将高级代码转换成 es5   let  和 const let  声名的变量只能在  声明的代码块中使用  不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升  暂时性死">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-05T07:13:16.000Z">
-<meta property="article:modified_time" content="2020-11-06T02:04:18.725Z">
+<meta property="article:modified_time" content="2021-01-28T03:45:06.556Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -174,7 +174,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let  和 const"></a>let  和 const</h1><ol>
+        <h1 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h1><ul>
+<li><p>通过babel  转化成es5</p>
+</li>
+<li><p><a href="https://babeljs.io/repl" target="_blank" rel="noopener">https://babeljs.io/repl</a>  通过babel  将高级代码转换成 es5</p>
+</li>
+</ul>
+<h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let  和 const"></a>let  和 const</h1><ol>
 <li><p>let  声名的变量只能在  声明的代码块中使用</p>
 </li>
 <li><p>不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升</p>
@@ -182,7 +188,7 @@
 <li><p>暂时性死区：  如果声明let  变量之前使用， 就会报错Referende error</p>
 </li>
 </ol>
-
+<h1 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h1>
       
 
       

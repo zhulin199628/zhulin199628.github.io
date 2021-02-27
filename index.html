@@ -152,6 +152,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redux-saga" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/12/redux-saga/">redux-saga &amp;&amp;  generator</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/12/redux-saga/" class="archive-article-date">
+  	<time datetime="2021-01-12T12:33:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h1><ol>
+<li>基本示例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function * test()&#123;</span><br><span class="line">      yield &#39;hello&#39;;</span><br><span class="line"></span><br><span class="line">      yield &#39;world&#39;;</span><br><span class="line"></span><br><span class="line">      return &quot;stop&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let hw &#x3D; test();</span><br><span class="line"></span><br><span class="line">let t1 &#x3D; hw.next();  &#x2F;&#x2F;  &#123;value: &#39;hello&#39;, done: false&#125;  第一个 yield  的值，  done  false 遍历还没有结束</span><br><span class="line">console.log (t1);  </span><br><span class="line">let t2 &#x3D; hw.next(); &#x2F;&#x2F; &#123;value: &#39;world&#39;, done: fa;se&#125;  第二个 yield  的值，  done  false  遍历还没有结束</span><br><span class="line">console.log (t2);</span><br><span class="line">let t3 &#x3D; hw.next(); &#x2F;&#x2F;  &#123;value:&#39;stop&#39;, done: true&#125;  &#x2F;&#x2F;   return   的值，  done  true 遍历结束</span><br><span class="line">console.log (t3);</span><br><span class="line"></span><br><span class="line">let t4 &#x3D; hw.next(); &#x2F;&#x2F;  &#123;value: undefined&#39;, done: true&#125;  &#x2F;&#x2F;   函数已经运行 完毕， value 的值为undefined,  后面无论调多少次， 都是如此</span><br><span class="line">console.log (t4);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>yield  只能在  generator  函数中使用</p>
+</li>
+<li><p>next 方法的参数</p>
+</li>
+</ol>
+<p>yield 表达式本身没有返回值， 或者说总是返回undefined,  next  方法可以带一个参数，  该参数就会被当做上一个yield表达式的返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    let a &#x3D; yield  &quot;hello&quot;;</span><br><span class="line"></span><br><span class="line">    console.log(a)  &#x2F;&#x2F;  res</span><br><span class="line">    let b &#x3D; yield  &quot;b&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let t1 &#x3D;  test();</span><br><span class="line">t1.next();  &#x2F;&#x2F;  如果第一次传参，  因为是上一个的值，  所以参数无效</span><br><span class="line">let t2 &#x3D;  test(&quot;res&quot;);</span><br><span class="line">t2next();</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>for… of  循环遍历 </li>
+</ol>
+<p>next  方法为done 属性为true  ，  循环种植，不包含返回对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function * test()&#123;</span><br><span class="line">   let a  &#x3D;    yield &#39;hello&#39;;</span><br><span class="line"> </span><br><span class="line">      yield &#39;world&#39;;</span><br><span class="line"></span><br><span class="line">      return &quot;stop&quot;  &#x2F;&#x2F;  不包含返回对象</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (const i of test()) &#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>Generator.prototype.throw()</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/12/redux-saga/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -318,6 +403,14 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect, useState, useReducer &#125; from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">import &#123; resolve &#125; from &#39;dns&#39;;</span><br><span class="line">const initialState &#x3D; 0;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case &#39;increment&#39;:</span><br><span class="line">            return &#123; number: state.number + 1 &#125;;</span><br><span class="line">        case &#39;decrement&#39;:</span><br><span class="line">            return &#123; number: state.number - 1 &#125;;</span><br><span class="line">        default:</span><br><span class="line">            throw new Error();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function init(initialState) &#123;</span><br><span class="line">    return &#123; number: initialState &#125;;</span><br><span class="line">&#125;</span><br><span class="line">function useLogger(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchWithLogger &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;老状态&#39;, state);</span><br><span class="line">        dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    useEffect(function () &#123;</span><br><span class="line">        console.log(&#39;新状态&#39;, state);</span><br><span class="line">    &#125;, [state]);</span><br><span class="line">    return [state, dispatchWithLogger];</span><br><span class="line">&#125;</span><br><span class="line">function usePromise(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchPromise &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        if (action.payload &amp;&amp; action.payload.then) &#123;</span><br><span class="line">            action.payload.then((payload) &#x3D;&gt; dispatch(&#123; ...action, payload &#125;));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dispatch(action);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [state, dispatchPromise];</span><br><span class="line">&#125;</span><br><span class="line">function useThunk(reducer, initialState, init) &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useReducer(reducer, initialState, init);</span><br><span class="line">    let dispatchPromise &#x3D; (action) &#x3D;&gt; &#123;</span><br><span class="line">        if (typeof action &#x3D;&#x3D;&#x3D; &#39;function&#39;) &#123;</span><br><span class="line">            action(dispatchPromise, () &#x3D;&gt; state);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            dispatch(action)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [state, dispatchPromise];</span><br><span class="line">&#125;</span><br><span class="line">function Counter() &#123;</span><br><span class="line">    const [state, dispatch] &#x3D; useThunk(reducer, initialState, init);</span><br><span class="line">    return (</span><br><span class="line">        &lt;&gt;</span><br><span class="line">            Count: &#123;state.number&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;increment&#39; &#125;)&#125;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(function (dispatch, getState) &#123;</span><br><span class="line">                setTimeout(function () &#123;</span><br><span class="line">                    dispatch(&#123; type: &#39;increment&#39; &#125;);</span><br><span class="line">                &#125;, 1000);</span><br><span class="line">            &#125;)&#125;&gt;delay&lt;&#x2F;button&gt;</span><br><span class="line">        &lt;&#x2F;&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;Counter &#x2F;&gt;, document.getElementById(&#39;root&#39;));</span><br></pre></td></tr></table></figure>
 
+<h2 id="useLocation"><a href="#useLocation" class="headerlink" title="useLocation"></a>useLocation</h2><p>查看当前路由</p>
+<h2 id="useHistory"><a href="#useHistory" class="headerlink" title="useHistory"></a>useHistory</h2><p>返回上一页</p>
+<h2 id="useRouteMatch"><a href="#useRouteMatch" class="headerlink" title="useRouteMatch"></a>useRouteMatch</h2><ul>
+<li><p>useRouteMatch 挂钩尝试以与 Route 相同的方式 匹配当前 URL</p>
+</li>
+<li><p>在无需实际呈现 Route的情况下访问匹配数据最有用</p>
+</li>
+</ul>
 
       
 
@@ -1107,7 +1200,13 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let  和 const"></a>let  和 const</h1><ol>
+        <h1 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h1><ul>
+<li><p>通过babel  转化成es5</p>
+</li>
+<li><p><a href="https://babeljs.io/repl" target="_blank" rel="noopener">https://babeljs.io/repl</a>  通过babel  将高级代码转换成 es5</p>
+</li>
+</ul>
+<h1 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let  和 const"></a>let  和 const</h1><ol>
 <li><p>let  声名的变量只能在  声明的代码块中使用</p>
 </li>
 <li><p>不存在变量提升，  在使用var的时候，  执行js  代码的是首先会把所有的变量赋值为  undefined,  最后才会进行赋值，  使用let就不会进行变量提升</p>
@@ -1115,7 +1214,7 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
 <li><p>暂时性死区：  如果声明let  变量之前使用， 就会报错Referende error</p>
 </li>
 </ol>
-
+<h1 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h1>
       
 
       
@@ -1316,68 +1415,6 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/07/Bibao-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Bibao" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/07/Bibao/">Bibao</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/07/Bibao/" class="archive-article-date">
-  	<time datetime="2020-09-07T12:42:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/07/Bibao/">展开全文 >></a>
         </p>
       
 
