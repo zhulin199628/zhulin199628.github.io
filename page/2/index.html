@@ -152,6 +152,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Bibao-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/07/Bibao-1/">闭包</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/07/Bibao-1/" class="archive-article-date">
+  	<time datetime="2020-09-07T12:42:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="不管条件是否满足-都会进行变量提升"><a href="#不管条件是否满足-都会进行变量提升" class="headerlink" title="不管条件是否满足,  都会进行变量提升"></a>不管条件是否满足,  都会进行变量提升</h3><blockquote>
+<p> 不管条件是否成立,判断体中出现的var/function都会进行变量提升, 但是在最新的浏览器中, function声明的变量只提前声明不能定义了(前提:  函数实在判断体中)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num. test)  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> ===<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">12</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>上面代码的执行</strong></p>
+<blockquote>
+<p> 代码执行到条件判断的地方<br>[条件不成立]<br>进入不到不到判断体中, 赋值的代码就执行不了, 此时之前声明的变量或者是函数依然是undefined</p>
+<p>[条件成立]<br>进入条件判断中做的第一件事情不是执行代码,而是对之前变量提升的函数进行定义(进入到判断体中函数就定义了, 这是为了迎合ES6中的块级作用域)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(num. test)  <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> ===<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num, test) <span class="comment">// undefined  函数体本身</span></span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">12</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(num, test) <span class="comment">// 12  函数体本身</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在老版本浏览器中, 不管条件是否成立, 都是进行变量提升和定义,  新版本浏览器只是声明不定义</p>
+</blockquote>
+<h3 id="重命名的处理"><a href="#重命名的处理" class="headerlink" title="重命名的处理"></a>重命名的处理</h3><blockquote>
+<p>在变量提升阶段, 如果名字重复了, 不会重新的进行声明, 但是会重新的进行定义(后面赋的值会把前面赋的值给替换)</p>
+</blockquote>
+<h3 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h3><blockquote>
+<p>JS中的私有变量有且只有两种</p>
+<ul>
+<li>在私有作用域中变量提升阶段,声明过的变量(或者函数)</li>
+<li>形参也是私有变量<br>函数执行形成一个私有作用域</li>
+</ul>
+</blockquote>
+<p><strong>函数执行的步骤</strong></p>
+<blockquote>
+<ol>
+<li>形参赋值</li>
+<li>变量提升</li>
+<li>代码自上而下执行</li>
+<li>当前栈内存(私有作用域)销毁或者不销毁</li>
+</ol>
+</blockquote>
+<h3 id="如何查找上级作用域"><a href="#如何查找上级作用域" class="headerlink" title="如何查找上级作用域"></a>如何查找上级作用域</h3><blockquote>
+<p> 函数执行形成一个私有作用域,查看函数的上级作用域,  主要看函数是在哪里定义的,  和函数在哪里执行没有任何关系<br> 宿主环境:   函数在哪个作用域中执行的,  那么这个作用域就为宿主环境</p>
+</blockquote>
+<h3 id="闭包的含义"><a href="#闭包的含义" class="headerlink" title="闭包的含义"></a>闭包的含义</h3><blockquote>
+<p> 函数执行形成一个私有作用域,  让私有作用域里面的变量不受外界干扰,  就叫闭包 ,  这是最权威的解释</p>
+</blockquote>
+<h3 id="闭包作用-保存"><a href="#闭包作用-保存" class="headerlink" title="闭包作用(保存)"></a>闭包作用(保存)</h3><blockquote>
+<p>函数执行形成一个作用域, 函数执行完成, 形成的这个栈内存一般情况下都会自动释放<br> 还有另一种情况,  函数执行完成, 当前私有作用域(栈内存)中的某一部分被栈内存以外的其它东西(变量/元素的事件)占用了. 当前的栈内存就不能释放掉,  也就形成了不销毁的私有作用域(里面的私有变量也不会被销毁)</p>
+</blockquote>
+<p>‘i++  和 ++i’的区别</p>
+<blockquote>
+<p>i++  先拿原有的i值和其它值进行运算, 运算完成之后在自身累加1<br>++i 先自增1, 然后在和其它值进行运算<br> 函数执行形成一个私有作用域, 如果私有作用域中的部分内容被外界的变量或其它东西占用这的时候,  当前作用域不被销毁<br>[形式]<br>函数执行返回一个’引用数据类型堆内存的地址’(并且堆内存的属于当前的这个作用域), 在外面有一个变量接受这个返回值,  此时当前作用域就不能销毁(想要销毁, 就给接受的这个变量赋值为Null)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i= <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(n + i++)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = fn();</span><br><span class="line">f(<span class="number">10</span>);</span><br><span class="line">fn()(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">20</span>);</span><br><span class="line">fn()(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(n + (++i))</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = fn(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">10</span>);</span><br><span class="line">fn()(<span class="number">10</span>);</span><br><span class="line">f(<span class="number">20</span>);</span><br><span class="line">fn()(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><blockquote>
+<p>  当前函数执行的主体(谁执行的函数this  就是的谁)</p>
+<p>函数外面的this  是window, 我们一般都研究函数里面的this指向问题 </p>
+</blockquote>
+<blockquote>
+<p><strong>‘this是谁和他在哪里定义的以及在哪里执行的没有任何关系’</strong></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/07/Bibao-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Bibao" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -801,70 +918,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/08/03/react-middleware/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-compose" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/01/compose/">组合（compose）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/01/compose/" class="archive-article-date">
-  	<time datetime="2020-08-01T07:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add1</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"1"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add2</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"2"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add3</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"3"</span>+str</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...funcs</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a,b</span>) =&gt;</span><span class="function">(<span class="params">...args</span>) =&gt;</span>a(b(...args)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = compose(add1,add2,add3)(<span class="string">"zhufeng"</span>)</span><br></pre></td></tr></table></figure>
-<p>示意图：<br><img src="/2020/08/01/compose/compose.png" alt="this"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/01/compose/">展开全文 >></a>
         </p>
       
 
