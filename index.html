@@ -577,62 +577,185 @@
 </li>
 </ul>
 <ol start="52">
-<li>什么是 Css Hack？ie6,7,8 的 hack 分别是什么？<br>解决各浏览器对css解释不同所采取的方式，区别不同浏览器制作不同css样式的设置</li>
+<li>什么是 Css Hack？ie6,7,8 的 hack 分别是什么？<br>不同 浏览器或浏览器的版本对css的支持、解析不一样，导致在不同浏览器呈现出不一致的页面展示效果，这时，我们为了获取统一的结果，就需要对各浏览器或不同版本写特定的css样式，所以把这个对兼容性处理的css code过程叫css hack</li>
 </ol>
 <ul>
-<li>hack 分类<ul>
-<li>属性前缀法：</li>
+<li><p>hack 分类</p>
+<ul>
+<li><p>属性前缀法：IE6 能识别“_”和“<em>”, IE7能识别 “</em>”但不能识别 “_”, IE6-10都能识别”\9”. firfox都不能识别<br>只在IE下生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if IE]&gt;&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">只在IE6 下生效</span><br><span class="line">&lt;!--[if IE 6]&gt;&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IE 6 以上</span><br><span class="line">&lt;!--[if gte IE 6]&gt;&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IE8 以上不生效</span><br><span class="line">&lt;!--[if ! IE 8]&gt;&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+<p>属性选择器hack</p>
+</li>
+<li></li>
+<li><p>选择器前缀法： IE6 能识别 *html.class{}, IE7能识别 *+html.class{}或者 *:first-child+html.class{}</p>
+</li>
+<li><p>IE条件注释法： 针对所有IE(IE10+已经不支持条件注释)：<code>&lt;!--[ifIE]&gt;浏览器显示的内容&lt;![endif]--&gt;</code>，针对IE6及以下版本：<code>&lt;!--[if lt IE6]&gt;只在IE6显示的内容&lt;![endif]--&gt;</code>,</p>
+</li>
 </ul>
 </li>
 </ul>
 <ol start="53">
-<li><p>行内元素和块级元素的具体区别是什么？行内元素的 padding 和 margin 可设置吗？</p>
+<li>行内元素和块级元素的具体区别是什么？行内元素的 padding 和 margin 可设置吗？</li>
+</ol>
+<ul>
+<li>行内元素<br>不独占一行，横向排列；无法设置 width  height padding和margin 的top和bottom</li>
+<li>块状元素<br>独占一行， width height padding margin 都可控制</li>
+</ul>
+<ol start="54">
+<li>什么是外边距重叠？重叠的结果是什么？<br>两个相邻盒子的外边距可以结合成一个单独的外边框，这种合并外边距的方式被称为折叠<br>折叠结果计算规则：</li>
+</ol>
+<ul>
+<li>两个相邻外边距都是正数时，谁大就是谁</li>
+<li>两个相邻外边距为负数时，谁的绝对值大就是谁</li>
+<li>两个外边距一正一负，去两者之和</li>
+</ul>
+<ol start="55">
+<li><p>rgba() 和 opacity 的透明效果有什么不同？<br>opacity 作用于元素以及元素内的所有内容的透明度<br>rgba 只作用于元素的颜色或其背景色，并且子元素不会继承透明效果</p>
 </li>
-<li><p>什么是外边距重叠？重叠的结果是什么？</p>
-</li>
-<li><p>rgba() 和 opacity 的透明效果有什么不同？</p>
-</li>
-<li><p>css 中可以让文字在垂直和水平方向上重叠的两个属性是什么？</p>
+<li><p>css 中可以让文字在垂直和水平方向上重叠的两个属性是什么？<br>垂直方向： line-height<br>水平方向： letter-spaceing</p>
 </li>
 <li><p>px 和 em 的区别。</p>
 </li>
-<li><p>描述一个”reset”的CSS文件并如何使用它。知道normalize.css吗？你了解他们的不同之处？　</p>
-</li>
-<li><p>问:translate()方法能移动一个元素在z轴上的位置？</p>
+</ol>
+<p>px 的值是固定的，设置的多少就是多少，计算比较容易，em的值不是固定的，并且em会继承父元素的字体大小</p>
+<p>浏览器默认的字体都是 16px, 所以未经调整的浏览器都符合 1em = 16px, 12px = 0.75em  10px =  0.625em</p>
+<ol start="58">
+<li>描述一个”reset”的CSS文件并如何使用它。知道normalize.css吗？你了解他们的不同之处？　</li>
+</ol>
+<ol start="59">
+<li><p>问:translate()方法能移动一个元素在z轴上的位置？<br>不能， 只能移动到x,y轴上， translate3D可以</p>
 </li>
 <li><p>CSS3有哪些新特性？</p>
 </li>
-<li><p>xhtml 和 html 有什么区别</p>
+</ol>
+<ul>
+<li>圆角 border-dadius, 阴影  box-shadow</li>
+<li>对文字加特效  text-shadow,  线性渐变 gradient, 旋转  transform</li>
+<li>媒体查询  </li>
+</ul>
+<ol start="61">
+<li>xhtml 和 html 有什么区别    </li>
+</ol>
+<ul>
+<li>功能上的差别， HTML是一种基本的Web网页设计语言； XHTML 是一个基于xml的设置语言，XHTML 可兼容各大浏览器、手机以及PDA, 并且浏览器也能快速的编译网页，</li>
+<li>书写规范上<ul>
+<li>XHTML 所有标签都必须小写</li>
+<li>XHTML 标签必须成对</li>
+<li>XHTML 标签顺序必须正确</li>
+<li>XHTML 所有属性必须使用双引号</li>
+<li>XHTML 不允许使用 target = “_blank”</li>
+</ul>
 </li>
-<li><p>与 HTML4 比较，HTML5 废弃了哪些元素？</p>
+</ul>
+<ol start="62">
+<li><p>与 HTML4 比较，HTML5 废弃了哪些元素？<br>frame、frameseet、nofram、applet、big、center、basefont</p>
 </li>
-<li><p>CSS引入的方式有哪些？使用Link和@import有什么区别？</p>
+<li><p>CSS引入的方式有哪些？使用Link和@import有什么区别？<br>内联  内嵌  外联  导入</p>
 </li>
-<li><p>介绍一下你对浏览器内核的理解</p>
+</ol>
+<ul>
+<li>link 属于XHTML标签，除了加载css外，还能用于定义RSS, 定义rel链接属性等作用，无兼容性，只是使用javascript； @import 是css提供的， 只能用于加载css 不支持使用javascript 改变样式</li>
+<li>页面加载时,link 会被同时加载， @import 引用的css 会等到页面加载完成再加载</li>
+<li>import 只能在IE5以上才能被识别，  link 无兼容性问题</li>
+</ul>
+<ol start="64">
+<li>介绍一下你对浏览器内核的理解</li>
+</ol>
+<ul>
+<li>渲染引擎： 负责取得网页内容（html, 图像等)，整理讯息（css）, 以及计算网页的显示方式等，然后输出到显示器或打印机，浏览器的内核的不同对于网页的语法解释会有不同，所以渲染效果也有不同</li>
+<li>js  引擎，解析和执行js 代码</li>
+</ul>
+<ol start="65">
+<li>常见的浏览器内核有哪计算些？</li>
+</ol>
+<ul>
+<li><p>Trident: IE 360  搜狗浏览器</p>
 </li>
-<li><p>常见的浏览器内核有哪计算些？</p>
+<li><p>Gecko: NetScape6 及以上版本 FirFox   MozillaSuite</p>
 </li>
-<li><p>对WEB标准以及W3C的理解与认识</p>
+<li><p>Presto: Opera7及以上，  现在是 webkit</p>
 </li>
-<li><p>为什么HTML5里面我们不需要DTD（Document Type Definition文档类型定义）？</p>
+<li><p>webkit:  safari, chrome</p>
 </li>
-<li><p>如果我不放入，HTML5还会工作么？</p>
+<li><p>EdgeHTML:  Microsoft Edge </p>
 </li>
-<li><p>HTML5 中的 datalist 是什么？</p>
+</ul>
+<ol start="66">
+<li>对WEB标准以及W3C的理解与认识</li>
+</ol>
+<p>Web 标准简单来说可以分为结构 、表现和行为。 结构主要是由HTMLK标签组成，表现主要是由css组成，行为主要是页面和用户的交互，只要是js组成</p>
+<p>W3c 对web标准提出了规范的要求，也就是在编码中的一些代码规范</p>
+<ul>
+<li>对结构的要求：标签字母小写、标签闭合、标签不允许随意嵌套</li>
+<li>对css和js：  尽量使用外链css和脚本，把结构、表现、行为分为三块； 样式尽量少使用行间样式表，使结构和表现分离</li>
+</ul>
+<ol start="67">
+<li><p>为什么HTML5里面我们不需要DTD（Document Type Definition文档类型定义）？<br>HTML5 没有使用SGML或者XHTML ，它是一个全新的东西，因此不需要参考DTD, 只需要方放置 <code>&lt;DOCETYPE html&gt;</code>告诉浏览器识别这是HTML5文档</p>
+</li>
+<li><p>如果我不放入，HTML5还会工作么？<br>不会， 浏览器不能识别它是HTML文档</p>
+</li>
+<li><p>HTML5 中的 datalist 是什么？<br>有助于提供文本框自动完成特性</p>
 </li>
 <li><p>CSS中使用列布局是什么？</p>
 </li>
-<li><p>如何水平并且垂直居中一张背景图</p>
+</ol>
+<ol start="71">
+<li>如何水平并且垂直居中一张背景图</li>
+</ol>
+<p>background-position: center</p>
+<ol start="72">
+<li><p>font-style属性可以让它赋值为“oblique”是什么意思<br>让一种字体表示为斜体（oblique）,如果没有这种格式，就使用 italic字体</p>
 </li>
-<li><p>font-style属性可以让它赋值为“oblique”是什么意思</p>
-</li>
-<li><p>如何理解 CSS 的继承和重用？</p>
+<li><p>如何理解 CSS 的继承和重用？<br>继承：  父元素设置属性之后，子元素也会应用该属性， 但并不是所有的属性都会被继承，比如说宽高<br>重用：  一个样式文件，多个页面使用，</p>
 </li>
 <li><p>制作一个访问量很高的大型网站，你会如何来管理所有CSS文件,js 与图片？</p>
 </li>
-<li><p>强制换行的css是什么？</p>
+</ol>
+<ul>
+<li>项目初期 必须确定好全局样式，编码模式等</li>
+<li>编码习惯必须一致</li>
+<li>各自负责的模块需要注明负责人</li>
+<li>css 文件与HTML文件 并行存放，命名统一</li>
+<li>js 分文件夹存放，命名以模块功能命名</li>
+<li>图片采用整合的png格式文件命名，尽量整合在一起</li>
+</ul>
+<ol start="75">
+<li><p>强制换行的css是什么？<br>Word-break: breal-all</p>
+</li>
+<li><p>img 图片自带边距解决办法</p>
 </li>
 </ol>
+<ul>
+<li><p>转化程（行级）块状元素</p>
+</li>
+<li><p>浮动</p>
+</li>
+<li><p>img 定义vertical-align;  <code>border: 0,; vertical-align:bottom</code></p>
+</li>
+<li><p>父容器 的font-size: 0</p>
+</li>
+<li><p>父容器设置与图片相同的高度</p>
+</li>
+</ul>
+<h1 id="HTML篇"><a href="#HTML篇" class="headerlink" title="HTML篇"></a>HTML篇</h1><ol>
+<li>新的HTML5文档类型和字符集是？</li>
+</ol>
+<figure class="highlight plain"><figcaption><span>html> ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UTF-8</span><br><span class="line"></span><br><span class="line">2. HTML5如何嵌入音频视频</span><br><span class="line">支持三种音频格式文件：MP3  wav  Ogg</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;autio controls&gt;
+        &lt;source src= &quot;test.ogg&quot; type = &quot;audio/ogg&quot;&gt;
+        &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt;</code></pre><p>您的浏览器不支持 audio 元素。<br>    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">视频：  MP4，WebM Ogg</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;</code></pre>  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+您的浏览器不支持Video标签。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 除了音视频， HTML5还有哪些媒体标签</span><br><span class="line"></span><br><span class="line">Media  媒体查询、object 插件、</span><br><span class="line"></span><br><span class="line">4. HTML5 Canvas 元素有什么作用</span><br><span class="line"></span><br><span class="line">绘制图形，</span><br><span class="line"></span><br><span class="line">5. HTML5 储存类型有什么区别</span><br><span class="line"></span><br><span class="line">html5 的webstroage 分为两种：  LocalStroage 和 SessionStroage 两者的差别主要在生命周期</span><br><span class="line"></span><br><span class="line">LocalStroage</span><br><span class="line"></span><br><span class="line"> 本地持久化储存，储存在客户端的浏览器上，除非是主动删除数据， 否则数据永远不会过期，用键值对的方式进行储存，储存的方式只能是字符串</span><br><span class="line">- 储存方式， localStroage.setItem</span><br><span class="line"> - 获取  localStroage.getItem</span><br><span class="line"> - 删除  localStroage.removeItem(key)</span><br><span class="line"> - 清除全部数据   localStroage.clear()</span><br><span class="line"> - 获取地N个数据的key 键值， 使用  locaStroage.key(N)获取第N个数据的key 键值</span><br><span class="line"></span><br><span class="line"> SessionStroage</span><br><span class="line"></span><br><span class="line">本地储存，这些数据只有在用一个会话中的页面才能访问并且会话结束，例如窗口关闭，数据就会被销毁，它是一种会话级别的储存</span><br><span class="line"> - 使用方法和LocalStroage想似</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># JS</span><br><span class="line"></span><br><span class="line">1. js 基本数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型和引用数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型： string   number  null  undefined  Boolean  symbol</span><br><span class="line">- 引用数据类型： Object  Function Array </span><br><span class="line"></span><br><span class="line">2. undefined 和 null 的区别</span><br><span class="line"></span><br><span class="line">- null:   代表空值，是一个空对象指针，使用typeof 运算得到的是 object, 可以认为是一个特殊的对象值</span><br><span class="line"></span><br><span class="line"> - undefined  变量未初始化时，就是undfined</span><br><span class="line"></span><br><span class="line"> 3. Promise</span><br><span class="line"></span><br><span class="line"> Promise 是异步解决编程的一种解决方案，比如说多个回调函数嵌套（回调地狱），</span><br><span class="line"></span><br><span class="line"> 三种状态</span><br><span class="line"></span><br><span class="line"> - Pending  对象实例创建时候的初始状态</span><br><span class="line"> -  FulFiled 可以理解为成功的状态</span><br><span class="line"> - Rejected 失败的状态</span><br><span class="line"></span><br><span class="line"> API</span><br><span class="line"></span><br><span class="line"> - Promise all </span><br><span class="line"> 接受一个数组，  数组内都是Promise 实例， 返回一个实例，这个Promise实例的状态取决于参数实例的状态变化， 当参数中所有的实例都处于 Resolve时，返回的Promise实例会变成resolve状态，如果参数中任意一个实例处于 reject时，返回的Promise实例变成Reject 状态</span><br><span class="line"></span><br><span class="line"> - race</span><br><span class="line"> 接受数组， 数组内都是Promise 实例</span><br><span class="line"> 返回一个Promise实例，实例状态取决于参数Promise实例的状态变化，当参数中任何一个实例处于resolve 实例会变为resolve,任何一个实例处于reject状态，返回的promise实例变为reject</span><br><span class="line"></span><br><span class="line"> - resolve</span><br><span class="line">返回一个Promise 实例， 这个实例处于 resove</span><br><span class="line">根据传入的参数不同有不同的功能：值（对象，数组，字符串等）：作为resolve 传递出去的值；Promise实例：原封不动返回</span><br><span class="line">- reject </span><br><span class="line">返回一个Promise实例，这个实例处于reject状态 </span><br><span class="line"></span><br><span class="line">链式调用</span><br><span class="line"></span><br><span class="line">- 每次调用范湖一的都是一个新的Promise实例</span><br><span class="line">- 链式调用的参数通过返回值传递</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ES5 实现</span><br><span class="line">- Promise 是一个类，内中需要传入一个executor 执行器， 执行器会默认立即执行</span><br><span class="line">-  promise 内部会提供两个方法，可以更改Promise 的状态   等待  成功  失败</span><br></pre></td></tr></table></figure>
+    class 
+```
+
 
       
 
