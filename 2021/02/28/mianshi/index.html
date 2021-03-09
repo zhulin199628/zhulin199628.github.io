@@ -16,7 +16,7 @@
 <meta property="og:description" content="css 篇 css 盒子模型  标准盒子模型：  内容（content）+ 内边距 padding + 边框 border + 外边距 margin IE盒子模型： 内容（content + padding + border） + margin 标准盒子模型的宽度 &#x3D; content 的宽高 IE 盒子模型的宽高 &#x3D; content + padding + border  设置css  盒子模型">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-28T04:59:42.000Z">
-<meta property="article:modified_time" content="2021-03-06T04:55:11.919Z">
+<meta property="article:modified_time" content="2021-03-08T11:36:25.940Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -754,11 +754,132 @@
   <source src="movie.ogg" type="video/ogg">
 您的浏览器不支持Video标签。
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 除了音视频， HTML5还有哪些媒体标签</span><br><span class="line"></span><br><span class="line">Media  媒体查询、object 插件、</span><br><span class="line"></span><br><span class="line">4. HTML5 Canvas 元素有什么作用</span><br><span class="line"></span><br><span class="line">绘制图形，</span><br><span class="line"></span><br><span class="line">5. HTML5 储存类型有什么区别</span><br><span class="line"></span><br><span class="line">html5 的webstroage 分为两种：  LocalStroage 和 SessionStroage 两者的差别主要在生命周期</span><br><span class="line"></span><br><span class="line">LocalStroage</span><br><span class="line"></span><br><span class="line"> 本地持久化储存，储存在客户端的浏览器上，除非是主动删除数据， 否则数据永远不会过期，用键值对的方式进行储存，储存的方式只能是字符串</span><br><span class="line">- 储存方式， localStroage.setItem</span><br><span class="line"> - 获取  localStroage.getItem</span><br><span class="line"> - 删除  localStroage.removeItem(key)</span><br><span class="line"> - 清除全部数据   localStroage.clear()</span><br><span class="line"> - 获取地N个数据的key 键值， 使用  locaStroage.key(N)获取第N个数据的key 键值</span><br><span class="line"></span><br><span class="line"> SessionStroage</span><br><span class="line"></span><br><span class="line">本地储存，这些数据只有在用一个会话中的页面才能访问并且会话结束，例如窗口关闭，数据就会被销毁，它是一种会话级别的储存</span><br><span class="line"> - 使用方法和LocalStroage想似</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># JS</span><br><span class="line"></span><br><span class="line">1. js 基本数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型和引用数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型： string   number  null  undefined  Boolean  symbol</span><br><span class="line">- 引用数据类型： Object  Function Array </span><br><span class="line"></span><br><span class="line">2. undefined 和 null 的区别</span><br><span class="line"></span><br><span class="line">- null:   代表空值，是一个空对象指针，使用typeof 运算得到的是 object, 可以认为是一个特殊的对象值</span><br><span class="line"></span><br><span class="line"> - undefined  变量未初始化时，就是undfined</span><br><span class="line"></span><br><span class="line"> 3. Promise</span><br><span class="line"></span><br><span class="line"> Promise 是异步解决编程的一种解决方案，比如说多个回调函数嵌套（回调地狱），</span><br><span class="line"></span><br><span class="line"> 三种状态</span><br><span class="line"></span><br><span class="line"> - Pending  对象实例创建时候的初始状态</span><br><span class="line"> -  FulFiled 可以理解为成功的状态</span><br><span class="line"> - Rejected 失败的状态</span><br><span class="line"></span><br><span class="line"> API</span><br><span class="line"></span><br><span class="line"> - Promise all </span><br><span class="line"> 接受一个数组，  数组内都是Promise 实例， 返回一个实例，这个Promise实例的状态取决于参数实例的状态变化， 当参数中所有的实例都处于 Resolve时，返回的Promise实例会变成resolve状态，如果参数中任意一个实例处于 reject时，返回的Promise实例变成Reject 状态</span><br><span class="line"></span><br><span class="line"> - race</span><br><span class="line"> 接受数组， 数组内都是Promise 实例</span><br><span class="line"> 返回一个Promise实例，实例状态取决于参数Promise实例的状态变化，当参数中任何一个实例处于resolve 实例会变为resolve,任何一个实例处于reject状态，返回的promise实例变为reject</span><br><span class="line"></span><br><span class="line"> - resolve</span><br><span class="line">返回一个Promise 实例， 这个实例处于 resove</span><br><span class="line">根据传入的参数不同有不同的功能：值（对象，数组，字符串等）：作为resolve 传递出去的值；Promise实例：原封不动返回</span><br><span class="line">- reject </span><br><span class="line">返回一个Promise实例，这个实例处于reject状态 </span><br><span class="line"></span><br><span class="line">链式调用</span><br><span class="line"></span><br><span class="line">- 每次调用范湖一的都是一个新的Promise实例</span><br><span class="line">- 链式调用的参数通过返回值传递</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ES5 实现</span><br><span class="line">- Promise 是一个类，内中需要传入一个executor 执行器， 执行器会默认立即执行</span><br><span class="line">-  promise 内部会提供两个方法，可以更改Promise 的状态   等待  成功  失败</span><br></pre></td></tr></table></figure>
-    class 
-```
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 除了音视频， HTML5还有哪些媒体标签</span><br><span class="line"></span><br><span class="line">Media  媒体查询、object 插件、</span><br><span class="line"></span><br><span class="line">4. HTML5 Canvas 元素有什么作用</span><br><span class="line"></span><br><span class="line">绘制图形，</span><br><span class="line"></span><br><span class="line">5. HTML5 储存类型有什么区别</span><br><span class="line"></span><br><span class="line">html5 的webstroage 分为两种：  LocalStroage 和 SessionStroage 两者的差别主要在生命周期</span><br><span class="line"></span><br><span class="line">LocalStroage</span><br><span class="line"></span><br><span class="line"> 本地持久化储存，储存在客户端的浏览器上，除非是主动删除数据， 否则数据永远不会过期，用键值对的方式进行储存，储存的方式只能是字符串</span><br><span class="line">- 储存方式， localStroage.setItem</span><br><span class="line"> - 获取  localStroage.getItem</span><br><span class="line"> - 删除  localStroage.removeItem(key)</span><br><span class="line"> - 清除全部数据   localStroage.clear()</span><br><span class="line"> - 获取地N个数据的key 键值， 使用  locaStroage.key(N)获取第N个数据的key 键值</span><br><span class="line"></span><br><span class="line"> SessionStroage</span><br><span class="line"></span><br><span class="line">本地储存，这些数据只有在用一个会话中的页面才能访问并且会话结束，例如窗口关闭，数据就会被销毁，它是一种会话级别的储存</span><br><span class="line"> - 使用方法和LocalStroage想似</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># JS</span><br><span class="line"></span><br><span class="line">1. js 基本数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型和引用数据类型</span><br><span class="line"></span><br><span class="line">- 基本数据类型： string   number  null  undefined  Boolean  symbol</span><br><span class="line">- 引用数据类型： Object  Function Array </span><br><span class="line"></span><br><span class="line">2. undefined 和 null 的区别</span><br><span class="line"></span><br><span class="line">- null:   代表空值，是一个空对象指针，使用typeof 运算得到的是 object, 可以认为是一个特殊的对象值</span><br><span class="line"></span><br><span class="line"> - undefined  变量未初始化时，就是undfined</span><br><span class="line"></span><br><span class="line"> 3. Promise</span><br><span class="line"></span><br><span class="line"> - 目前低版本的 IE浏览器不支持，  需要 polyfill es6-promise  </span><br><span class="line"></span><br><span class="line"> - promise 是一个天生的类， 类中需要传入 executor 执行器，默认会立即执行</span><br><span class="line"> - 一旦promsie 成功了就不能失败，失败的情况:  reject()、抛出异常</span><br><span class="line"></span><br><span class="line"> Promise 是异步解决编程的一种解决方案，比如说多个回调函数嵌套（回调地狱）、并发异步处理</span><br><span class="line"></span><br><span class="line"> 三种状态</span><br><span class="line"></span><br><span class="line"> - Pending  对象实例创建时候的初始状态</span><br><span class="line"> -  FulFiled 可以理解为成功的状态</span><br><span class="line"> - Rejected 失败的状态</span><br><span class="line"></span><br><span class="line"> API</span><br><span class="line"></span><br><span class="line"> - Promise all </span><br><span class="line"> 接受一个数组，  数组内都是Promise 实例， 返回一个实例，这个Promise实例的状态取决于参数实例的状态变化， 当参数中所有的实例都处于 Resolve时，返回的Promise实例会变成resolve状态，如果参数中任意一个实例处于 reject时，返回的Promise实例变成Reject 状态</span><br></pre></td></tr></table></figure>
+ //  判断是否是promise 对象
+
+<p>function isPromise(x){<br>        if((typeof x === ‘object’ &amp;&amp; x!== null || typeof x == ‘function’)){<br>             if(typeof x.then === ‘function’){<br>                    return  true<br>             }<br>        }<br>        return false<br>}<br>Promise.all(promises){<br>        //  f返回一个promise  对象<br>        return new Promise((resolve, reject) =&gt;{<br>            let arr = [];<br>            let idx = 0;<br>            let processData = (value, index)=&gt;{<br>                    arr[index] = value;<br>                        if(++idx === promises.length){<br>                                resolve(arr)<br>                        }<br>            }<br>              for(let i = 0; i &lt; promises.length; i++){<br>                        let currentValue = promises[i];<br>                        //  两种情况， promsie  和 ! promise<br>                        if(isPromise(currentValue)){<br>                                currentValue.then((y) =&gt;{<br>                                        processData(y, i)<br>                                }, reject)<br>                        }else{<br>                                processData(currentValue, i)<br>                        }<br>              }<br>        })<br>}<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> - race</span><br><span class="line"> 接受数组， 数组内都是Promise 实例</span><br><span class="line"> 返回一个Promise实例，实例状态取决于参数Promise实例的状态变化，当参数中任何一个实例处于resolve 实例会变为resolve,任何一个实例处于reject状态，返回的promise实例变为reject</span><br><span class="line"></span><br><span class="line"> - resolve</span><br><span class="line">返回一个Promise 实例， 这个实例处于 resove</span><br><span class="line">根据传入的参数不同有不同的功能：值（对象，数组，字符串等）：作为resolve 传递出去的值；Promise实例：原封不动返回</span><br></pre></td></tr></table></figure></p>
+<pre><code>Promise.resolve = function(value){
+      return new Promise((resolve, reject) =&gt;{
+            resolve(value)
+      })
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- reject </span><br><span class="line">返回一个Promise实例，这个实例处于reject状态</span><br></pre></td></tr></table></figure>
+
+<pre><code>Promise.reject = function(value){
+      return new Promise((resolve, reject) =&gt;{
+            reject(value)
+      })
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- resolve  reject 的区别  </span><br><span class="line"></span><br><span class="line">resolve 可以接受一个promise  reject 可以接受一个promise但是不会有等待效果，</span><br><span class="line"></span><br><span class="line">链式调用</span><br><span class="line"></span><br><span class="line">- 每次调用范湖一的都是一个新的Promise实例</span><br><span class="line">- 链式调用的参数通过返回值传递</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ES5 实现</span><br><span class="line">- Promise 是一个类，内中需要传入一个executor 执行器， 执行器会默认立即执行</span><br><span class="line">-  promise 内部会提供两个方法，可以更改Promise 的状态   等待  成功  失败</span><br></pre></td></tr></table></figure>
+<pre><code>const PENDING = &quot;PENDING&quot;;</code></pre><p>const FULFILED=  “FULFILED”;<br>const REJECTED = “REJECTED”;<br>class Promise {<br>    constructor(executor){<br>        // 初始值<br>        this.status  = PENDING;<br>        this.successValue= undefined;<br>        this.errValue = undefined;<br>   //  保存所有的成功和失败的函数<br>        this.resolveCallback = [];<br>        this.rejectCallback  = [];<br>        let resolve = (value) =&gt;{<br>            //  改变状态  为  resolve  只有当状态是等待状态的时候 进行改变<br>            if(this.status == PENDING){<br>                this.status  = FULFILED ;<br>                this.successValue = value;<br>                this.resolveCallback.forEach((fn) =&gt; fn() );<br>            }</p>
+<pre><code>    };
+
+    let reject = (errValue) =&gt;{
+        if(this.status == PENDING){
+            this.status = REJECTED;
+            this.errValue = errValue;
+            this.rejectCallback.forEach(fn =&gt; fn())
+        }
+
+    };
+
+    // 执行器  立即执行.  可能会直接抛出一个错误  throw new Error(&quot;xxxx&quot;)
+    try {
+    executor(resolve, reject)
+    } catch (error) {
+        reject(e)
+    }
+}
+
+//  只有成功， 没有失败的方法
+catch (err){
+  return  this.then(null, this.reject(err))
+}
+
+// 
+then(successFun, errorFun){
+        let {status,  successValue, errValue} = this;
+        if(status=== FULFILED){
+                successFun(successValue)
+        }
+        if(status === REJECTED){
+            errorFun(errValue)
+        }
+        //  如果promise 中有异步操作，  会是Pending 状态
+        //  有异步操作
+        if(status === PENDING){
+            this.resolveCallback.push(() =&gt;{
+                successFun(this.successValue)
+            });
+            this.rejectCallback.push(() =&gt;{
+                 errorFun(this.errValue)
+            })
+        }
+
+}</code></pre><p>}</p>
+<p>//  调用<br>let pro = new Promise((resolve, reject) =&gt;{<br>      resolve(“成功”)<br>})<br>pro.then((value =&gt;{<br>        console.log(value,”—–value”)<br>}), (err =&gt;{<br>      console.log(err, “—-value”)<br>})) </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise 中有异步函数的情况</span><br></pre></td></tr></table></figure>
+<pre><code>let pro = new Promise((resolve, reject) =&gt;{
+     setTimeout(function(){
+            resolve(&quot;xxx&quot;)
+     }, 1000)
+})
+
+pro.then((data) =&gt;{
+        console.log(data)
+}, err =&gt;{
+    console.log(err)
+})
+
+pro.then((data) =&gt;{
+        console.log(data)
+}, err =&gt;{
+    console.log(err)
+})
+//  以上这种情况，  会在1s只后会执行所有成功的回调函数</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4. generator  生成器，   解决异步编程</span><br><span class="line"></span><br><span class="line">- 没有返回值的情况  会直接 返回一个  &#123;value: xxx, done: true&#x2F;false&#125;  在yield 执行完成后，  dong  为false  value为undefined</span><br><span class="line"></span><br><span class="line">- 有返回值的情况，  next 函数传参  是给上一个yield的返回值传的</span><br></pre></td></tr></table></figure>
+<p>  funtion * read(){<br>        let a =- yiled 1;<br>        console.log(a);<br>        let b= yield 2;<br>        console.log(b)<br>  }<br>  let it = read();<br>  it.next(“hello”);<br>  it.nect(“world”);<br>  //  只会打印第二个，第一次传参是没有意义的，next 参数会传递给上一个 yield的返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">5.  高阶函数</span><br><span class="line"></span><br><span class="line"> 定义：  1。 如果一个函数的参数是一个函数（回调函数也是一个高阶函数）；2. 如果一个函数返回一个函数  也是高阶函数（闭包）</span><br><span class="line"></span><br><span class="line"> 6. 闭包</span><br><span class="line"></span><br><span class="line"> 定义： 一个函数在定义的时候就决定了自己所在的作用域，闭包就是一个函数不在自己的作用域下执行。</span><br><span class="line"></span><br><span class="line"> 7. 发布订阅和观察者模式</span><br><span class="line"></span><br><span class="line"> - 异步： 执行后的结果不能立马获取，  需要等待同步代码执行完成之后   才会获取结果，  异步的解决方案最早是基于回调函数的， 不能使用try catch  来解决异常，因为等到try catch 执行完成之后才会执行异步函数，无法获取到错误信息</span><br><span class="line"></span><br><span class="line"> - 发布订阅：  发布 emit  订阅  on.  每次使用on订阅事件的时候，都会把订阅的事件存放在数组中，当发布的时候让订阅的数组中的方法一次执行</span><br><span class="line">   补充：  发布和订阅 中间没有一个公共的中介，是没有任何关联的，可以缺少其中的任意一个，也不关心订阅的数组的多少</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> 8. 观察者模式</span><br><span class="line">- 观察者和被观察这是有关联的，观察者需要将自己放到被观察者之上， 当被观察者状态发生改变时， 需要通知所有的观察者</span><br></pre></td></tr></table></figure>
+<p>class Subject{<br>    constructor(name){<br>         this.state = “开心”;  //  状态;<br>         this.name  = name;<br>        this.observers  = [];<br>    }<br>    // 将注册者放到自己的身上<br>    attach(o){<br>        this.observers.push(o)<br>    }</p>
+<pre><code>setState(state){
+    this.state = state  //  更新被观察者的状态；
+    this.observers.forEach(o =&gt;{
+          o.update(this)
+    })
+}</code></pre><p>}</p>
+<p>//  观察者</p>
+<p>class Observer{</p>
+<pre><code>update(s){   //  被观察者的状态发生变化会调用这个方法
+    console.log(s.name,&quot;--------&quot;, s.state)
+}</code></pre><p>}</p>
+<p>let sub = new Subject(“小宝宝”);<br>let parent = new Observer(“爸爸”);<br>let mother = new Observer(“妈妈”);</p>
+<p>sub.attach(parent);<br>sub.attach(mother);</p>
+<p>sub.setState(“不开心”)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">9. async</span><br><span class="line"></span><br><span class="line">async 函数返回的结果就是一个promise</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">10. 事件循环  EvenLoop</span><br><span class="line"></span><br><span class="line">- js 的运行机制： 同步和异步；  同步：从上到下执行，js  执行一个script脚本的时候叫做宏任务（样式渲染也是宏任务）</span><br><span class="line">- 异步代吗肯定会在同步代码之后执行</span><br><span class="line"></span><br><span class="line">- js  默认主线程只有一条，  执行js的时候只能同时执行一个（单线程），异步方法也是会创建一个线程的</span><br><span class="line"></span><br><span class="line">- 简述： js  执行的时候，会创建一个上下文环境，执行一个js脚本的时候，代码从上到下执行的，遇到同步代码的时候，会直接在执行栈里执行，如果遇到像Promise这样的函数之后，会把它放到一个微任务队列里面去，等到主栈里面的代码执行完成之后会先把微任务队列里面的成员给清空掉，  如果遇到像setTimeout onCLick, ajax 等异步函数的时候，会另外开一个线程， 等到主栈代码执行完成之后并且异步函数等待时间到了的时候，会把当前的异步函数放到一个等待队列里面去，队列是先进先出的，所以会以此把等待队列里面的异步函数放到主栈里面去执行； </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">11. call  bind  apply</span><br><span class="line"></span><br><span class="line">- call 的特点， 改变this指向；  可以让函数执行</span><br></pre></td></tr></table></figure>
+<p>Function.prototype.call = function(context){<br>        if(context !== undefined || context === null){<br>                context = window<br>        }else{<br>            context = new Object(context)<br>        }<br>        context.fn = this;<br>        context.fn();</p>
+<pre><code>// 携带参数情况
+let arr = [];
+for(let i = 0; i &lt; arguments.length; i++){
+      arr.push(arguments[i])
+}
+context.fn(...arr);
+delete context.fn</code></pre><p>}    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- apply  接受一个数组</span><br></pre></td></tr></table></figure>
+<p>Function.prototype.apply = function(context){<br>    if(context !== undefined || context === null){<br>            context = window<br>    }else{<br>        context = new Object(context)<br>    }<br>    context.fn = this;<br>    context.fn();</p>
+<pre><code>// 携带参数情况
+let newArray = Array.prototype.slice.call(arguments);
+context.fn(...newArray[1])
+delete context.fn</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- bind  返回一个新的函数并且可以改变this指向， 并且只能绑定一次</span><br></pre></td></tr></table></figure>
+<pre><code>Function.prototype.bind = function(thisValue, ...args){
+  //  判断条件一样
+
+  thisValue.fn = this;
+  return function(...values){
+         thisValue.fn(...args, ...values)
+  }</code></pre><p>}</p>
+<pre><code>
 
 
+
+</code></pre>
       
 
       
