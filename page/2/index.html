@@ -152,6 +152,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react-setState" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/02/react-setState/">react-state</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/02/react-setState/" class="archive-article-date">
+  	<time datetime="2020-11-02T13:35:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="react-SetState有可能是异步的"><a href="#react-SetState有可能是异步的" class="headerlink" title="react  SetState有可能是异步的"></a>react  SetState有可能是异步的</h1><p>react  setState的时候会执行如下流程</p>
+<ol>
+<li><p>this.setState(newState);</p>
+</li>
+<li><p>new State()  会存入pedding队列中</p>
+</li>
+<li><p>判断是否处于批量更新状态，如果处于批量更新状态， 就把当前的 state 加入到  dirtyComponents 集合中。如果不处于批量更新状态（放setState只执行一次或者是多个setSate执行到最后一次的时候）的时候就去遍历 dirtyComponents 集合，之后调用 updateComponent,  </p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/02/react-setState/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Bibao-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -883,73 +954,9 @@
 
 
   
-    <article id="post-react-middleware" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/react-middleware/">redux-middleware</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/03/react-middleware/" class="archive-article-date">
-  	<time datetime="2020-08-03T02:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>react 的 applyModdleware  是在发起dispatch 之后 到达reducer 之前 需要做的事情；</p>
-<h1 id="react-applyMiddleware使用方法"><a href="#react-applyMiddleware使用方法" class="headerlink" title="react applyMiddleware使用方法"></a>react applyMiddleware使用方法</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore, applyMiddleware&#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;   </span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">store</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">dispatch</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"-----老状态， store.getState());</span></span><br><span class="line"><span class="string">                  dispatch(action);</span></span><br><span class="line"><span class="string">                  console.log("</span>------新状态<span class="string">"， store.getState());</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  function logger2(store)&#123;</span></span><br><span class="line"><span class="string">        return function(dispatch)&#123;</span></span><br><span class="line"><span class="string">            return function(action)&#123;</span></span><br><span class="line"><span class="string">                  console.log("</span>-----老状态<span class="number">2</span>， store.getState());</span><br><span class="line">                  dispatch(action);</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"------新状态2"</span>， store.getState());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> store = applyMiddleware(logger, logger2)(createStore)(reducer)；</span><br></pre></td></tr></table></figure>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function compose(...funcs)&#123;   #  组合</span><br><span class="line">        <span class="keyword">return</span> funcs.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> a(b(...args)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">applyMiddleware</span>(<span class="params">...middlewares</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">createStore</span>)</span>&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">reducer</span>)</span>&#123;</span><br><span class="line">                 let store = createStore(reducer);  # 原始仓库</span><br><span class="line">                 <span class="keyword">let</span> dispatch ;</span><br><span class="line">                 <span class="keyword">let</span> middlewareAPI = &#123;</span><br><span class="line">                     getState: store.getState();  </span><br><span class="line">                     dispacth: <span class="function">(<span class="params">...args</span>) =&gt;</span> dispatch(...args)</span><br><span class="line">                 &#125;;</span><br><span class="line">                 <span class="keyword">const</span> chain = middlewares.map(<span class="function"><span class="params">middleware</span> =&gt;</span> middleware(middlewareAPI));</span><br><span class="line">                 dispatch = compose(...chain)(store.dispatch);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/03/react-middleware/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 

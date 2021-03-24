@@ -152,6 +152,197 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mianshizongjie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/23/mianshizongjie/">面试总结</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/23/mianshizongjie/" class="archive-article-date">
+  	<time datetime="2021-03-23T09:06:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>数组扁平化</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  let arr &#x3D; [1,2,[2,3,[5]]];</span><br><span class="line">  arr.toString().split(&#39;,&#39;).map(item &#x3D;&gt; Number(item));</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;  toString 方法的原理</span><br><span class="line">Array.prototype.split.call(arr);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[2,3,[5]]];</span><br><span class="line">JSON.stringify(arr).split(&#39;,&#39;).replace(&#x2F;\[|]\&#x2F;g,&#39;&#39;).map(item &#x3D;&gt; Number(item))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [1,2,[2,3,[5]]];</span><br><span class="line">while(arr.some(item &#x3D;&gt; Array.isArray(item)))&#123;</span><br><span class="line">     arr &#x3D; [].cancat(...arr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  let arr &#x3D; [1,2,[2,3,[5]]];</span><br><span class="line">  Array.prototype.flat &#x3D; function()&#123;</span><br><span class="line">        let result &#x3D; [];</span><br><span class="line">        let _this &#x3D; this;</span><br><span class="line">        function _flat(arr)&#123;</span><br><span class="line">            for(let i &#x3D; 0; i&lt; arr.length; i++&gt;)&#123;</span><br><span class="line">              if(Array.isArray(arr[i]))&#123;</span><br><span class="line">                  _flat(arr[i])</span><br><span class="line">              &#125;else&#123;</span><br><span class="line">                   rseult.push(arr[i])</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        _flat(this);</span><br><span class="line">        return result</span><br><span class="line">  &#125;</span><br><span class="line">arr.flat()</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>React VDOM</li>
+</ol>
+<ul>
+<li>react.createElement 函数所返回的对象就是一个虚拟DOM</li>
+<li>虚拟DOM 就是一个描述真实DOM的纯js对象</li>
+</ul>
+<p>在react中，  会维护自己的一套DOM树，  这个DOM树其实就是一个对象，  对象里面会有type,  props属性，  这个对象是怎么来的，  因为我们在编写react元素的时候，会经过babel编译成 React.createELement()的形式， 这个方法里面有三个参数， 一个参数是当前元素的名称， 比如说 div, 第二个属性就是当前元素的属性，  比如id  style onClick,  第三个是当前元素的一个子元素，  当然这里并不是把子元素的名称直接给到第三个参数，  而是重新调用createElment方法去重新生成一个对象， 如果没有子元素就直接把第三个参数赋值为null</p>
+<ul>
+<li>优缺点<br>优点：  处理浏览器兼容性的问题，避免用户操作真实DOM； 更新的时候可以实现差异化更新，减少更新DOM的操作<br>缺点：虚拟DOM 需要消耗额外的内存； 首次渲染其实可能会更新比较慢</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">calss Element()&#123;</span><br><span class="line">      constructor()&#123;</span><br><span class="line">          this.props &#x3D; props;</span><br><span class="line">          this.type &#x3D; type;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">  function createElement (type, props &#x3D; &#123;&#125;, ...children)&#123;</span><br><span class="line">        props.children &#x3D; children ||[];</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>虚拟DOM 绑定事件</p>
+<p>会直接把事件委托在 document上， 为什么要这么做， 如果仅仅只是对于性能问题来说的话，  事件委托是把给子元素的事件绑定在父元素的这样一个方法， 这样可以提升性能，也不用去循环给子元素添加事件，还有一点就是 你在绑定事件之前，其实DOM还没有渲染到页面上去，所以不能给DOM绑定事件</p>
+<ul>
+<li>dom-diff</li>
+</ul>
+<p>dom-diff  一般是在组件更新的时候去进行的操作<br> react  对 树的算法进行了简介明了的优化，也就是对树进行了分层的比较， 两棵树只会对同一层次的节点进行比较， 当出现跨层级移动的时候，并不会做出移动的操作， 而是以当前移动的元素为根节点的树会被整个重新创建，</p>
+<ol start="3">
+<li>React 函数组件和类组件相同点和不同点</li>
+</ol>
+<ul>
+<li>相同点<br>都可以接受属性并且返回react 元素</li>
+<li>不同点<br>编程思想不同： 类组件需要创建实例，函数组件不需要创建实例<br>状态： 类组件有自己的实例，可以定义状态，并且可以修改状态更新组件，函数组件以前没有状态，但是新版本可以使用useState使用状态<br>生命周期：类组件有自己完整的生命周期，函数组件以前没有生命周期，现在有useEffect 实现类似生命周期的功能<br>逻辑复用： 类组件可以通过继承实现逻辑的复用，但是官方推荐组件优于继承，函数组件可以通过hooks实现逻辑复用<br>跳过更新: 类组件可以shouldComponentUpdate 和 PureComponent 来跳过更新，函数组件可以使用React.memo来跳过更新<br>内存占用： 类组件需要创建并保存实例，会占用一定内存，函数组件不需要创建实例，可以节约内存占用</li>
+</ul>
+<ol>
+<li>原型和原型链</li>
+</ol>
+<p>每个对象都有一个proto属性，  每个函数都有proto和prototype属性（因为函数也是对象），</p>
+<p>当创建一个函数的时候， 内部会生成一个prototype属性， 对象的__proto属性会指向它构造函数的原型</p>
+<p>当对象查找属性的时候，会先从自身查找，  如果找不到就会根据proto属性去查找它构造函数的原型</p>
+<ol start="2">
+<li>继承的方式</li>
+</ol>
+<ul>
+<li>原型链继承</li>
+</ul>
+<p>Child.prototype = new Father();</p>
+<p>优点:  简单   父类新增的方法和属性  子类都能访问到<br>缺点：  无法在改变原型之后对子类进行添加方法； </p>
+<ul>
+<li>构造函数继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Chld()&#123;</span><br><span class="line">        &#x2F;&#x2F; 改变 Father的this指向，并且执行Father 函数</span><br><span class="line">        Father.call(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点:  可以给父类传递参数； 可以实现多继承<br>缺点：  实例并不是父类的实例， 只是子类的实例；只能继承父类的属性和方法，不能继承父类的原型方法；</p>
+<ul>
+<li>实例继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function Child()&#123;  let instaince &#x3D; New Father(); instance.sex &#x3D; &quot;男&quot;  return instance  &#x2F;&#x2F; 想要添加属性和方法  &#125;</span><br></pre></td></tr></table></figure>
+<p>特点： 不限制调用；<br>缺点： 实例是父类的实例不是子类的实例，不支持多继承</p>
+<ul>
+<li>拷贝继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Child()&#123;</span><br><span class="line">        var animal &#x3D; new Animal();</span><br><span class="line">        for(let i in animal)&#123;</span><br><span class="line">                Child.prorotype[i] &#x3D; animal[i]</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>特点： 支持多继承<br>缺点： 效率不高；  无法获取父类不可枚举的方法</p>
+<ul>
+<li>组合继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Child()&#123;</span><br><span class="line">          Animal.call(this);</span><br><span class="line">          this.name &#x3D; name</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype &#x3D; new Animal();</span><br><span class="line">Child.prototype.constructor &#x3D; Child;</span><br></pre></td></tr></table></figure>
+<p>特点： 函数可复用；可传参；是子类的实例也是父类的实例；属性和原型方法都可以继承</p>
+<p>缺点：  调用了两次构造函数，生成了两个实例</p>
+<ul>
+<li>寄生组合继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Child()&#123;</span><br><span class="line">         Animal.call(this);</span><br><span class="line">         this.name &#x3D; name;</span><br><span class="line">&#125;</span><br><span class="line">(function()&#123;</span><br><span class="line">         vat Super &#x3D; functoin()&#123;&#125;;</span><br><span class="line">         Super.prototype &#x3D; Animal.prototype;</span><br><span class="line">         Child.prototype &#x3D; new Super();</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure></li>
+<li>Es6 继承</li>
+</ul>
+<ol start="3">
+<li>作用域和作用域链</li>
+</ol>
+<ul>
+<li><p>作用域<br>当js代码开始执行的时候，会创建一个执行上下文环境， 这个执行上下文可以看做是一个对象，里面vo变量对象的属性，执行上下文分为两个阶段，一个是编译阶段，一个是执行阶段，编译的时候会先把函数进行变量提升，然后是对变量进行提升，函数提升的时候会进行声明和赋值，变量提升的时候会进行声明和赋值为undefiend,执行阶段会进行赋值操作，这些变量会储存在VO属性里面，值是基本类型就存值，引用类型就存指针；而当函数定义的时候会生成一个[[scope]]属性， 这个属性是不可以被外界访问的，里面存了上一级执行上下文，一直到全局执行上下文，这个就是作用域</p>
+<ul>
+<li>作用域链<br>其实里面存的就是一个一个的上下文，  scopChain可以看做一个里面存了一个一个的上下文， 查找的是可以根据出栈的顺序去查找作用域</li>
+</ul>
+</li>
+</ul>
+<p>补充：  作用域链是在函数定义的时候确定的， 调用栈是在函数调用的时候确认的</p>
+<ul>
+<li>new </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function new()&#123;</span><br><span class="line">     let obj &#x3D; new Object();</span><br><span class="line">     obj.__proto__ &#x3D;  Test.prototype;</span><br><span class="line">     let newObj &#x3D; Test.call(obj);</span><br><span class="line">     if(typeof(newObj) &#x3D;&#x3D; &#39;object&#39;)&#123;</span><br><span class="line">             return newObj</span><br><span class="line">     &#125;else&#123;</span><br><span class="line">             return obj</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>闭包</p>
+<p>当前执行上下文A和它所在执行上文中创建函数B，函数B引用了A中的变量， 这就是一个闭包</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>var let const 的区别<br>var 定义的变量没有块的概念，不能跨块访问，有变量提升，可以重复声明<br>let 定义的变量只能在块作用域内访问，不能跨块访问，无变量提升，不可以重复声明<br>或者说let定义的变量提升了，但是在let声明变量前不能访问该变量这个特性叫暂时性死区</p>
+</li>
+<li><p>this  </p>
+</li>
+</ol>
+<p>当前执行这个函数或者是逻辑的主题是谁</p>
+<ol start="7">
+<li>call apply bind</li>
+</ol>
+<ul>
+<li><p>call<br>改变this指向，  参数是一个一个传的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.call &#x3D; function(context, ...args)&#123;</span><br><span class="line">        &#x2F;&#x2F;  如果是基本数据类型</span><br><span class="line">       if(context !&#x3D;&#x3D; undefined || context &#x3D;&#x3D;&#x3D; null)&#123;</span><br><span class="line">               context &#x3D; window</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">               Object(context)</span><br><span class="line">       &#125;</span><br><span class="line">       context.fn &#x3D; this;</span><br><span class="line">       context.fn(...args);</span><br><span class="line">       delete context.fn</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apply </p>
+</li>
+</ul>
+<p>改变this指向，  参数为数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype &#x3D; function(context, ...args)&#123;</span><br><span class="line">        if(context !&#x3D;&#x3D; undefiend || context &#x3D;&#x3D;&#x3D; null)&#123;</span><br><span class="line">                context &#x3D; window</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">                Object(context)</span><br><span class="line">        &#125;</span><br><span class="line">        context.fn &#x3D; this;</span><br><span class="line">        context.fn(args);</span><br><span class="line">       delete context.fn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>bind    使用柯里化的方式实现的</li>
+</ul>
+<p>用来改变this指向， 参数是一个个传的， 返回一个函数用来改变this指向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Function.ptototype.bind &#x3D; function(context, ...args)&#123;</span><br><span class="line">       return (...bindArgs) &#x3D;&gt; this.call(context, ...args, bindArgs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>柯里化</li>
+</ul>
+<p>就是把函数的功能做的具体一些，  可以分批传递参数</p>
+<p>作用：<br>参数复用：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/23/mianshizongjie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mianshi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -210,8 +401,9 @@
 </li>
 <li><p>Box 垂直方向的距离有margin 决定，  属于同一个BFC的两个相邻BOX的margin  会发生重叠，  也就是垂直margin  重叠的问题</p>
 </li>
-<li></li>
 </ul>
+<p>哪些元素会产生BFC</p>
+<p>float 属性不为none<br>position 属性为absolute或fixed</p>
 <ol start="5">
 <li>根据盒子模型解释边距重叠</li>
 </ol>
@@ -1172,12 +1364,26 @@ tree diff 是对树的每一层进行遍历，如果某个组件不存在了会�
 
 - key
 
+- SSR  服务端渲染
+
+渲染步骤：1. 浏览器发送请求  2.  服务器运行React 生成页面：  有一些最基本的设置
 
 
+webpack.config.js
 
-## state
+打包需要的基本配置：  babel-loader  @babel/core @babel-preset-env  @babel/preset-react  
 
-- 不要直接修改state,  直接修改state不能刷新页面, setState 包含了刷新界面的操作，  就是让真实的DOM和虚拟DOM保持一致
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     target: &#39;node&#39;, &#x2F;&#x2F; 需要声明打个包的是服务端node 文件</span><br><span class="line">     externals:  [nodeExternals()] &#x2F;&#x2F;  告诉webpack  不需要打包node的核心模块</span><br><span class="line">     module:&#123;</span><br><span class="line">           &#x2F;&#x2F;  对一些语法进行转义，  es6 es7 react转  es5</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+在通过Node 返回的时候  需要把 组件返回的DOM元素转为 html 字符串
+
+优化启动流程：  安装 nodemon;  配置启动项，dev: &quot;npm-run-all --parallel dev: **&quot;, // 逆向运行；&quot;dev: start&quot;:&quot;nodemon &apos;./server/build/build.js&apos;&quot;, &apos;dev:build&apos;:&quot;webpack --config&quot;</code></pre><p>案例：计数器组件渲染流程</p>
+<p>服务端运行react 代码渲染出来的HTML;<br>服务器把渲染出的HTML页面发送给浏览器；<br>浏览器接受到HTML会渲染页面；<br>如果有引用js文件 会去下载；<br>浏览器下载js文件之后会在客户端执行；<br>浏览器中的代码接管了页面的所有内容，然后和客户端渲染一样</p>
+<p>路由：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const content&#x3D;renderToString(</span><br><span class="line">        &lt;StaticRouter context&#x3D;&#123;&#123;&#125;&#125; location&#x3D;&#123;req.path&#125;&gt;</span><br><span class="line">            &#123;routes&#125;</span><br><span class="line">        &lt;&#x2F;StaticRouter&gt;</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><pre><code>- 不要直接修改state,  直接修改state不能刷新页面, setState 包含了刷新界面的操作，  就是让真实的DOM和虚拟DOM保持一致
 
 -  setState 的更新可能会被合并，  说明setState 里传的对象跟老的对象进行合并，并不会直接覆盖
 
@@ -1185,26 +1391,12 @@ tree diff 是对树的每一层进行遍历，如果某个组件不存在了会�
 
 在事件处理函数里 setState 的时候并不会直接修改状态，  而是先把临时状态放入一个数组缓存起来，等事件执行结束了在统一更新；
 
-解决方法：  setState 可以接收一个回调函数，回调函数的参数是上一个state的值
+解决方法：  setState 可以接收一个回调函数，回调函数的参数是上一个state的值</code></pre><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><pre><code>在react 中，  当触发一个事件的时候， 并不是把这个事件直接绑定在原生DOM中， 而是通过事件委托的方式，把事件放到document去监听，当事件冒泡到document的时候，react把事件的逻辑放到了 dispatchEvent 里执行指定的事件函数</code></pre><h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><pre><code>-  ref 允许我们访问DOM节点，  或者在react中创建的组件实例
 
-
-
-## 合成事件
-
-在react 中，  当触发一个事件的时候， 并不是把这个事件直接绑定在原生DOM中， 而是通过事件委托的方式，把事件放到document去监听，当事件冒泡到document的时候，react把事件的逻辑放到了 dispatchEvent 里执行指定的事件函数
-
-
-
-##  ref
-
--  ref 允许我们访问DOM节点，  或者在react中创建的组件实例
-
--  可以是字符串， 函数， 对象（主流）
-
- ##  高阶组件</code></pre><p>   三大应用场景<br>    -   属性代理<br>    - 反向继承：  拦截生命周期、state、渲染过程</p>
-<pre><code># webpack
-
-1.  loader 和 plugin 的不同
+-  可以是字符串， 函数， 对象（主流）</code></pre><h2 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h2><p>   三大应用场景<br>    -   属性代理<br>    - 反向继承：  拦截生命周期、state、渲染过程</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>三个阶段：<br>Mounting 阶段:  componentWillMount  render  componentDidMount<br>Updation: 当接受到新的prop/state/forceupdate()的时候会进行更新，<br>老版本更新周期：<br>props:<br>componentWillReciveProps() -&gt; shouComponentUpdate() =&gt; true 和 false =&gt; compoentWillUpdate() -&gt; render() =&gt; componentDidUpdate()<br>state:<br>shouldCompoentUpdate() =&gt; true false =&gt; componentWillUpdate() =&gt; render() =&gt; compoentDidUpdate()<br>组件卸载阶段：  componentWillUnMount</p>
+<p>新版本的声明周期</p>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><pre><code>1.  loader 和 plugin 的不同
 
 - webpack 把一切视为模块，但是webpack 的原生只能解析js文件，如果想要把其它文件也打包的话就需要用到loader(css, jsx， img), 所以loader的作用就是让webpack 拥有打包其它文件的能力
 
@@ -2467,80 +2659,9 @@ input[type=&quot;text&quot;]{.....}</code></pre><ul>
 
 
   
-    <article id="post-react-setState" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/react-setState/">react-state</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/02/react-setState/" class="archive-article-date">
-  	<time datetime="2020-11-02T13:35:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="react-SetState有可能是异步的"><a href="#react-SetState有可能是异步的" class="headerlink" title="react  SetState有可能是异步的"></a>react  SetState有可能是异步的</h1><p>react  setState的时候会执行如下流程</p>
-<ol>
-<li><p>this.setState(newState);</p>
-</li>
-<li><p>new State()  会存入pedding队列中</p>
-</li>
-<li><p>判断是否处于批量更新状态，如果处于批量更新状态， 就把当前的 state 加入到  dirtyComponents 集合中。如果不处于批量更新状态（放setState只执行一次或者是多个setSate执行到最后一次的时候）的时候就去遍历 dirtyComponents 集合，之后调用 updateComponent,  </p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/react-setState/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 

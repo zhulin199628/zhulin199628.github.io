@@ -16,7 +16,7 @@
 <meta property="og:description" content="css 篇 css 盒子模型  标准盒子模型：  内容（content）+ 内边距 padding + 边框 border + 外边距 margin IE盒子模型： 内容（content + padding + border） + margin 标准盒子模型的宽度 &#x3D; content 的宽高 IE 盒子模型的宽高 &#x3D; content + padding + border  设置css  盒子模型">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-28T04:59:42.000Z">
-<meta property="article:modified_time" content="2021-03-16T07:54:03.309Z">
+<meta property="article:modified_time" content="2021-03-18T06:34:30.785Z">
 <meta property="article:author" content="象牙山的飒">
 <meta name="twitter:card" content="summary">
   
@@ -212,8 +212,9 @@
 </li>
 <li><p>Box 垂直方向的距离有margin 决定，  属于同一个BFC的两个相邻BOX的margin  会发生重叠，  也就是垂直margin  重叠的问题</p>
 </li>
-<li></li>
 </ul>
+<p>哪些元素会产生BFC</p>
+<p>float 属性不为none<br>position 属性为absolute或fixed</p>
 <ol start="5">
 <li>根据盒子模型解释边距重叠</li>
 </ol>
@@ -1174,12 +1175,26 @@ tree diff 是对树的每一层进行遍历，如果某个组件不存在了会�
 
 - key
 
+- SSR  服务端渲染
+
+渲染步骤：1. 浏览器发送请求  2.  服务器运行React 生成页面：  有一些最基本的设置
 
 
+webpack.config.js
 
-## state
+打包需要的基本配置：  babel-loader  @babel/core @babel-preset-env  @babel/preset-react  
 
-- 不要直接修改state,  直接修改state不能刷新页面, setState 包含了刷新界面的操作，  就是让真实的DOM和虚拟DOM保持一致
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     target: &#39;node&#39;, &#x2F;&#x2F; 需要声明打个包的是服务端node 文件</span><br><span class="line">     externals:  [nodeExternals()] &#x2F;&#x2F;  告诉webpack  不需要打包node的核心模块</span><br><span class="line">     module:&#123;</span><br><span class="line">           &#x2F;&#x2F;  对一些语法进行转义，  es6 es7 react转  es5</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+在通过Node 返回的时候  需要把 组件返回的DOM元素转为 html 字符串
+
+优化启动流程：  安装 nodemon;  配置启动项，dev: &quot;npm-run-all --parallel dev: **&quot;, // 逆向运行；&quot;dev: start&quot;:&quot;nodemon &apos;./server/build/build.js&apos;&quot;, &apos;dev:build&apos;:&quot;webpack --config&quot;</code></pre><p>案例：计数器组件渲染流程</p>
+<p>服务端运行react 代码渲染出来的HTML;<br>服务器把渲染出的HTML页面发送给浏览器；<br>浏览器接受到HTML会渲染页面；<br>如果有引用js文件 会去下载；<br>浏览器下载js文件之后会在客户端执行；<br>浏览器中的代码接管了页面的所有内容，然后和客户端渲染一样</p>
+<p>路由：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const content&#x3D;renderToString(</span><br><span class="line">        &lt;StaticRouter context&#x3D;&#123;&#123;&#125;&#125; location&#x3D;&#123;req.path&#125;&gt;</span><br><span class="line">            &#123;routes&#125;</span><br><span class="line">        &lt;&#x2F;StaticRouter&gt;</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="state"><a href="#state" class="headerlink" title="state"></a>state</h2><pre><code>- 不要直接修改state,  直接修改state不能刷新页面, setState 包含了刷新界面的操作，  就是让真实的DOM和虚拟DOM保持一致
 
 -  setState 的更新可能会被合并，  说明setState 里传的对象跟老的对象进行合并，并不会直接覆盖
 
@@ -1187,26 +1202,12 @@ tree diff 是对树的每一层进行遍历，如果某个组件不存在了会�
 
 在事件处理函数里 setState 的时候并不会直接修改状态，  而是先把临时状态放入一个数组缓存起来，等事件执行结束了在统一更新；
 
-解决方法：  setState 可以接收一个回调函数，回调函数的参数是上一个state的值
+解决方法：  setState 可以接收一个回调函数，回调函数的参数是上一个state的值</code></pre><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><pre><code>在react 中，  当触发一个事件的时候， 并不是把这个事件直接绑定在原生DOM中， 而是通过事件委托的方式，把事件放到document去监听，当事件冒泡到document的时候，react把事件的逻辑放到了 dispatchEvent 里执行指定的事件函数</code></pre><h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><pre><code>-  ref 允许我们访问DOM节点，  或者在react中创建的组件实例
 
-
-
-## 合成事件
-
-在react 中，  当触发一个事件的时候， 并不是把这个事件直接绑定在原生DOM中， 而是通过事件委托的方式，把事件放到document去监听，当事件冒泡到document的时候，react把事件的逻辑放到了 dispatchEvent 里执行指定的事件函数
-
-
-
-##  ref
-
--  ref 允许我们访问DOM节点，  或者在react中创建的组件实例
-
--  可以是字符串， 函数， 对象（主流）
-
- ##  高阶组件</code></pre><p>   三大应用场景<br>    -   属性代理<br>    - 反向继承：  拦截生命周期、state、渲染过程</p>
-<pre><code># webpack
-
-1.  loader 和 plugin 的不同
+-  可以是字符串， 函数， 对象（主流）</code></pre><h2 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h2><p>   三大应用场景<br>    -   属性代理<br>    - 反向继承：  拦截生命周期、state、渲染过程</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>三个阶段：<br>Mounting 阶段:  componentWillMount  render  componentDidMount<br>Updation: 当接受到新的prop/state/forceupdate()的时候会进行更新，<br>老版本更新周期：<br>props:<br>componentWillReciveProps() -&gt; shouComponentUpdate() =&gt; true 和 false =&gt; compoentWillUpdate() -&gt; render() =&gt; componentDidUpdate()<br>state:<br>shouldCompoentUpdate() =&gt; true false =&gt; componentWillUpdate() =&gt; render() =&gt; compoentDidUpdate()<br>组件卸载阶段：  componentWillUnMount</p>
+<p>新版本的声明周期</p>
+<h1 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h1><pre><code>1.  loader 和 plugin 的不同
 
 - webpack 把一切视为模块，但是webpack 的原生只能解析js文件，如果想要把其它文件也打包的话就需要用到loader(css, jsx， img), 所以loader的作用就是让webpack 拥有打包其它文件的能力
 
@@ -1415,6 +1416,15 @@ transform: rotate(12deg)  scale (0.82) translate(10px, 10px)  skew(9deg, 9deg)  
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/03/23/mianshizongjie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          面试总结
+        
+      </div>
+    </a>
   
   
     <a href="/2021/01/12/redux-saga/" id="article-nav-older" class="article-nav-link-wrap">
